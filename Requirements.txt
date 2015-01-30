@@ -1,1 +1,11 @@
-Requirements
+Requirements:
+  Must not crash.
+  Must perform well.
+    Graphics framerate 30 or above.
+  Must have mouse control.
+  Should have a points system.
+  Should have sound effects/music.
+  Mechanics
+    Player shoots ball at robots once per turn.
+    Ball must have physics during movement.
+    Bots move once per turn.
