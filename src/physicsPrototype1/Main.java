@@ -1,6 +1,10 @@
 package physicsPrototype1;
 
+import java.awt.*;
+
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
@@ -12,29 +16,45 @@ public class Main extends JFrame{
     private static final long serialVersionUID = 1L;
     protected static World world = new World(new Vec2(0.0f, 0.0f));
     protected Ball ball = new Ball(world);
+    JPanel gamePanel = new GamePanel();
+    
+    //Screen width and height
+    public static final int WIDTH = 600;
+    public static final int HEIGHT = 600;
     
     public static void main(String[] args){
         
     }
     
     public Main(){
+        getContentPane().setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        pack();
         
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setTitle("Botgolf Prototype");
+        this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.PAGE_AXIS));
+        this.add(gamePanel);
+        this.setVisible(true);
+        
+        gamePanel.addMouseListener(ball.ballLauncher);
     }
     
-    //This method creates a wall.
-    public static void addWall(float posX, float posY, float width, float height){
-        PolygonShape ps = new PolygonShape();
-        ps.setAsBox(width,height);
-             
-        FixtureDef fd = new FixtureDef();
-        fd.shape = ps;
-        fd.density = 1.0f;
-        fd.friction = 0.3f;   
-     
-        BodyDef bd = new BodyDef();
-        bd.position.set(posX, posY);
-             
-        world.createBody(bd).createFixture(fd);
+    private class GamePanel extends JPanel {
+
+        private static final long serialVersionUID = 1L;
+        
+        public GamePanel(){ 
+            setDoubleBuffered(true);
+        }
+        
+        public void paintComponent(Graphics g1) {
+            super.paintComponent(g1);
+            Graphics2D g = (Graphics2D) g1;
+            g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+            ball.render(g);
+            
+            g.dispose();
+        }
     }
     
     //Convert a JBox2D x coordinate to a Swing pixel x coordinate

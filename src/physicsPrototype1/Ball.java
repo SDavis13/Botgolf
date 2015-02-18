@@ -1,20 +1,32 @@
 package physicsPrototype1;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.event.MouseEvent;
+import java.awt.geom.Ellipse2D;
+
+import javax.swing.event.MouseInputAdapter;
+
 import org.jbox2d.collision.shapes.CircleShape;
+import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
 
 
 public class Ball {
     int x,y;
     int mouseX,mouseY;
+    boolean grabbed;
     
+    Ellipse2D.Float pixCircle;
     CircleShape shape;
     Body body;
     World world;
     
+    BallLaunch ballLauncher = new BallLaunch();
+    
     public Ball(World world){
         this.world = world;
+        grabbed = false;
         x = 0;
         y = 0;
         mouseX = 0;
@@ -40,12 +52,45 @@ public class Ball {
         //create the body and add fixture to it
         body = world.createBody(bd);
         body.createFixture(fd);
+        
+        x = (int)Main.toPixelPosX(body.getPosition().x);
+        y = (int)Main.toPixelPosY(body.getPosition().y);
+        float temp = Main.toPixelWidth(shape.m_radius);
+        pixCircle = new Ellipse2D.Float((x - temp), (y - temp), temp*2, temp*2);
     }
     
     void render(Graphics2D g){
+        g.setColor(Color.BLACK);
         x = (int)Main.toPixelPosX(body.getPosition().x);
         y = (int)Main.toPixelPosY(body.getPosition().y);
-        int temp = (int)(Main.toPixelWidth(shape.m_radius + .5f));
-        g.drawOval((x - temp), (y - temp), temp*2, temp*2);
+        float temp = (Main.toPixelWidth(shape.m_radius));
+        pixCircle.x = x - temp;
+        pixCircle.y = y - temp;
+        g.fill(pixCircle);
+        if(grabbed){
+            int temp2 = (int)(temp + 0.5f);
+            g.drawLine(x, y, mouseX, mouseY);
+            g.drawOval((mouseX - temp2/2), (mouseY - temp2/2), temp2, temp2);
+        }
+    }
+    
+    class BallLaunch extends MouseInputAdapter{
+        public void mouseDragged(MouseEvent e){
+            mouseX = e.getX();
+            mouseY = e.getY();
+            if(pixCircle.contains(mouseX,mouseY) && e.getButton() == MouseEvent.BUTTON1){
+                grabbed = true;
+            }
+        }
+        public void mouseReleased(MouseEvent e){
+            mouseX = e.getX();
+            mouseY = e.getY();
+            if(grabbed && e.getButton() == MouseEvent.BUTTON1){
+                grabbed = false;
+                Vec2 temp = 
+                        new Vec2(Main.toPosX(Math.abs(x - mouseX)),Main.toPosY(Math.abs(y - mouseY)));
+                body.applyForceToCenter(temp);
+            }
+        }
     }
 }
