@@ -51,7 +51,7 @@ public class Ball {
         
         //create the body and add fixture to it
         body = world.createBody(bd);
-        body.createFixture(fd);
+        body.createFixture(fd).setUserData((int)0);
         
         x = (int)Main.toPixelPosX(body.getPosition().x);
         y = (int)Main.toPixelPosY(body.getPosition().y);
@@ -61,8 +61,8 @@ public class Ball {
     
     void render(Graphics2D g){
         g.setColor(Color.BLACK);
-        x = (int)Main.toPixelPosX(body.getPosition().x);
-        y = (int)Main.toPixelPosY(body.getPosition().y);
+        x = (int)(Main.toPixelPosX(body.getPosition().x) + .5f);
+        y = (int)(Main.toPixelPosY(body.getPosition().y) + .5f);
         float temp = (Main.toPixelWidth(shape.m_radius));
         pixCircle.x = x - temp;
         pixCircle.y = y - temp;
