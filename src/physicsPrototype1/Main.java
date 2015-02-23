@@ -1,6 +1,7 @@
 package physicsPrototype1;
 
 import java.awt.*;
+import java.util.*;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -13,14 +14,20 @@ public class Main extends JFrame{
     private static final long serialVersionUID = 1L;
     protected static World world = new World(new Vec2(0.0f, 0.0f));
     protected Ball ball = new Ball(world);
+    protected Wall[] walls;
     JPanel gamePanel = new GamePanel();
+    Loop loop = new Loop();
+    float timeStep = 1.0f / 60.f;
+    int velocityIterations = 6;
+    int positionIterations = 3;
+    Timer timer;
     
     //Screen width and height
     public static final int WIDTH = 600;
     public static final int HEIGHT = 600;
     
     public static void main(String[] args){
-        
+        Main theMain = new Main();
     }
     
     public Main(){
@@ -34,13 +41,23 @@ public class Main extends JFrame{
         this.setVisible(true);
         
         gamePanel.addMouseListener(ball.ballLauncher);
+        
+        walls[0] = new Wall(world, 0f, 0f, 5f, 5f);
+        
+        timer = new Timer();
+        timer.scheduleAtFixedRate(new Loop(), 
+                100, 25);//milliseconds
+    }
+    
+    public void step(){
+        world.step(timeStep, velocityIterations, positionIterations);
     }
     
     private class GamePanel extends JPanel {
 
         private static final long serialVersionUID = 1L;
         
-        public GamePanel(){ 
+        public GamePanel(){
             setDoubleBuffered(true);
         }
         
@@ -51,6 +68,14 @@ public class Main extends JFrame{
             ball.render(g);
             
             g.dispose();
+        }
+    }
+    
+    private class Loop extends TimerTask {
+        @Override
+        public void run() {
+            gamePanel.repaint();
+            step();
         }
     }
     
