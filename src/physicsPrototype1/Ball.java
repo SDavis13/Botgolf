@@ -75,26 +75,20 @@ public class Ball {
     }
     
     class BallLaunch extends MouseInputAdapter{
-        public void mousePressed(MouseEvent e){
+        public void mouseDragged(MouseEvent e){
             mouseX = e.getX();
             mouseY = e.getY();
-            if(pixCircle.contains(mouseX,mouseY) && e.getButton() == MouseEvent.BUTTON1){
+            if(pixCircle.contains(mouseX,mouseY) && e.getButton() == 0){
                 grabbed = true;
-            }
-        }
-        public void mouseMoved(MouseEvent e){
-            if(grabbed){
-                mouseX = e.getX();
-                mouseY = e.getY();
             }
         }
         public void mouseReleased(MouseEvent e){
             mouseX = e.getX();
             mouseY = e.getY();
-            if(grabbed && e.getButton() == MouseEvent.BUTTON1){
+            if(grabbed && e.getButton() == 1){
                 grabbed = false;
                 Vec2 temp = 
-                        new Vec2(Main.toPosX(Math.abs(x - mouseX)),Main.toPosY(Math.abs(y - mouseY)));
+                        new Vec2(Main.toPosX(x - mouseX),Main.toPosY(y - mouseY));
                 body.applyForceToCenter(temp);
             }
         }

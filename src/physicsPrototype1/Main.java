@@ -39,6 +39,11 @@ public class Main extends JFrame{
         getContentPane().setPreferredSize(new Dimension(WIDTH, HEIGHT));
         pack();
         
+        walls[0] = new Wall(world, 10f, 50f, 5f, 45f);
+        walls[1] = new Wall(world, 50f, 90f, 45f, 5f);
+        walls[2] = new Wall(world, 90f, 50f, 5f, 45f);
+        walls[3] = new Wall(world, 50f, 10f, 45f, 5f);
+        
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Botgolf Prototype");
         this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.PAGE_AXIS));
@@ -46,11 +51,7 @@ public class Main extends JFrame{
         this.setVisible(true);
         
         gamePanel.addMouseListener(ball.ballLauncher);
-        
-        walls[0] = new Wall(world, 10f, 50f, 5f, 45f);
-        walls[1] = new Wall(world, 50f, 90f, 45f, 5f);
-        walls[2] = new Wall(world, 90f, 50f, 5f, 45f);
-        walls[3] = new Wall(world, 50f, 10f, 45f, 5f);
+        gamePanel.addMouseMotionListener(ball.ballLauncher);
         
         world.setContactListener(new SoundPlayer());
         
@@ -76,8 +77,8 @@ public class Main extends JFrame{
             Graphics2D g = (Graphics2D) g1;
             g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
             ball.render(g);
-            for(Wall wall : walls){
-                wall.render(g);
+            for(int i = 0; i < walls.length; i++){
+                walls[i].render(g);
             }
             
             g.dispose();
@@ -100,10 +101,14 @@ public class Main extends JFrame{
             Object object2 = contact.getFixtureB().getUserData();
             
             if(object1 instanceof Clip){
-                ((Clip)(object1)).start();
+                Clip clip = (Clip)(object1);
+                if(clip.getFramePosition() != 0) clip.setFramePosition(0);
+                (clip).start();
             }
             if(object2 instanceof Clip){
-                ((Clip)(object1)).start();
+                Clip clip = (Clip)(object2);
+                if(clip.getFramePosition() != 0) clip.setFramePosition(0);
+                (clip).start();
             }
         }
 
