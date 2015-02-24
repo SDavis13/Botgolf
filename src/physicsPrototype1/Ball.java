@@ -38,7 +38,7 @@ public class Ball {
         
         //define shape of the body.
         shape = new CircleShape();
-        shape.m_radius = 0.5f;
+        shape.m_radius = 1f;
         
         //define fixture of the body.
         FixtureDef fd = new FixtureDef();
@@ -75,11 +75,17 @@ public class Ball {
     }
     
     class BallLaunch extends MouseInputAdapter{
-        public void mouseDragged(MouseEvent e){
+        public void mousePressed(MouseEvent e){
             mouseX = e.getX();
             mouseY = e.getY();
             if(pixCircle.contains(mouseX,mouseY) && e.getButton() == MouseEvent.BUTTON1){
                 grabbed = true;
+            }
+        }
+        public void mouseMoved(MouseEvent e){
+            if(grabbed){
+                mouseX = e.getX();
+                mouseY = e.getY();
             }
         }
         public void mouseReleased(MouseEvent e){
