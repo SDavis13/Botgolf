@@ -13,9 +13,10 @@ import org.jbox2d.dynamics.*;
 
 
 public class Ball {
-    int x,y;
+    float x,y;
     int mouseX,mouseY;
     boolean grabbed;
+    static final int IMPULSE_SCALE = 50;
     
     Ellipse2D.Float pixCircle;
     CircleShape shape;
@@ -38,7 +39,7 @@ public class Ball {
         
         //define shape of the body.
         shape = new CircleShape();
-        shape.m_radius = 1f;
+        shape.m_radius = 2.5f;
         
         //define fixture of the body.
         FixtureDef fd = new FixtureDef();
@@ -53,23 +54,23 @@ public class Ball {
         body = world.createBody(bd);
         body.createFixture(fd).setUserData((int)0);
         
-        x = (int)Main.toPixelPosX(body.getPosition().x);
-        y = (int)Main.toPixelPosY(body.getPosition().y);
+        x = Main.toPixelPosX(body.getPosition().x);
+        y = Main.toPixelPosY(body.getPosition().y);
         float temp = Main.toPixelWidth(shape.m_radius);
         pixCircle = new Ellipse2D.Float((x - temp), (y - temp), temp*2, temp*2);
     }
-    
+
     void render(Graphics2D g){
         g.setColor(Color.BLACK);
-        x = (int)(Main.toPixelPosX(body.getPosition().x) + .5f);
-        y = (int)(Main.toPixelPosY(body.getPosition().y) + .5f);
+        x = Main.toPixelPosX(body.getPosition().x);
+        y = Main.toPixelPosY(body.getPosition().y);
         float temp = (Main.toPixelWidth(shape.m_radius));
         pixCircle.x = x - temp;
         pixCircle.y = y - temp;
         g.fill(pixCircle);
         if(grabbed){
             int temp2 = (int)(temp + 0.5f);
-            g.drawLine(x, y, mouseX, mouseY);
+            g.drawLine((int)(x + .5f), (int)(y + .5f), mouseX, mouseY);
             g.drawOval((mouseX - temp2/2), (mouseY - temp2/2), temp2, temp2);
         }
     }
@@ -88,8 +89,9 @@ public class Ball {
             if(grabbed && e.getButton() == 1){
                 grabbed = false;
                 Vec2 temp = 
-                        new Vec2(Main.toPosX(x - mouseX),Main.toPosY(y - mouseY));
-                body.applyForceToCenter(temp);
+                        new Vec2( (body.getPosition().x - Main.toPosX(mouseX))*IMPULSE_SCALE,
+                                (body.getPosition().y - Main.toPosY(mouseY))*IMPULSE_SCALE );
+                body.applyLinearImpulse(temp,body.getPosition());
             }
         }
     }
