@@ -88,9 +88,11 @@ public class Ball {
             mouseY = e.getY();
             if(grabbed && e.getButton() == 1){
                 grabbed = false;
+                float xDif = body.getPosition().x - Main.toPosX(mouseX);
+                float yDif = body.getPosition().y - Main.toPosY(mouseY);
                 Vec2 temp = 
-                        new Vec2( (body.getPosition().x - Main.toPosX(mouseX))*IMPULSE_SCALE,
-                                (body.getPosition().y - Main.toPosY(mouseY))*IMPULSE_SCALE );
+                        new Vec2( (xDif * Math.abs(xDif)) * IMPULSE_SCALE,
+                                (yDif * Math.abs(yDif)) * IMPULSE_SCALE );
                 body.applyLinearImpulse(temp,body.getPosition());
             }
         }

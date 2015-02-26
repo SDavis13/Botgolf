@@ -53,11 +53,12 @@ public class Wall {
                     file = new File("resources/physicsPrototype1/whipp.wav");
                     break;
             default:
-                    color = Color.GRAY;
-                    file = new File("resources/physicsPrototype1/bop.wav");
+                    color = new Color(200,245,255);
+                    file = null;
         }
         try {
-            clip.open(AudioSystem.getAudioInputStream(file));
+            if(file != null)
+                    clip.open(AudioSystem.getAudioInputStream(file));
         } catch (LineUnavailableException e) {
             // Auto-generated catch block
             e.printStackTrace();
@@ -73,6 +74,9 @@ public class Wall {
         fd.shape = shape;
         fd.density = 1.0f;
         fd.friction = 0.3f;
+        if(id > 4){
+            fd.friction = 10f;
+        }
      
         BodyDef bd = new BodyDef();
         bd.position.set(posX, posY);

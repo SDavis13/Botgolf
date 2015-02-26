@@ -14,12 +14,14 @@ import org.jbox2d.collision.Manifold;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
 import org.jbox2d.dynamics.contacts.Contact;
+import org.jbox2d.dynamics.joints.FrictionJointDef;
 
 public class Main extends JFrame{
     private static final long serialVersionUID = 1L;
     protected static World world = new World(new Vec2(0.0f, 0.0f));
     protected Ball ball = new Ball(world);
     protected Wall[] walls = new Wall[4];
+    Wall fricWall;
     JPanel gamePanel = new GamePanel();
     Loop loop = new Loop();
     float timeStep = 1.0f / 60.f;
@@ -43,6 +45,15 @@ public class Main extends JFrame{
         walls[1] = new Wall(world, 50f, 90f, 45f, 5f);
         walls[2] = new Wall(world, 90f, 50f, 5f, 45f);
         walls[3] = new Wall(world, 50f, 10f, 45f, 5f);
+        
+        fricWall = new Wall(world, 50f, 50f, 47f, 47f);
+        FrictionJointDef uniFric = new FrictionJointDef();
+        uniFric.bodyA = ball.body;
+        uniFric.bodyB = fricWall.body;
+        uniFric.maxForce = 25f;
+        uniFric.maxTorque = 0f;
+        
+        world.createJoint(uniFric);
         
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Botgolf Prototype");
@@ -76,10 +87,11 @@ public class Main extends JFrame{
             super.paintComponent(g1);
             Graphics2D g = (Graphics2D) g1;
             g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
-            ball.render(g);
+            fricWall.render(g);
             for(int i = 0; i < walls.length; i++){
                 walls[i].render(g);
             }
+            ball.render(g);
             
             g.dispose();
         }
