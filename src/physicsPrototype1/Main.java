@@ -21,7 +21,7 @@ public class Main extends JFrame{
     protected static World world = new World(new Vec2(0.0f, 0.0f));
     protected Ball ball = new Ball(world);
     protected Wall[] walls = new Wall[4];
-    Wall fricWall;
+    //Wall fricWall;
     JPanel gamePanel = new GamePanel();
     Loop loop = new Loop();
     float timeStep = 1.0f / 60.f;
@@ -46,6 +46,7 @@ public class Main extends JFrame{
         walls[2] = new Wall(world, 90f, 50f, 5f, 45f);
         walls[3] = new Wall(world, 50f, 10f, 45f, 5f);
         
+        /*
         fricWall = new Wall(world, 50f, 50f, 47f, 47f);
         FrictionJointDef uniFric = new FrictionJointDef();
         uniFric.bodyA = ball.body;
@@ -54,6 +55,7 @@ public class Main extends JFrame{
         uniFric.maxTorque = 0f;
         
         world.createJoint(uniFric);
+        */
         
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Botgolf Prototype");
@@ -87,7 +89,7 @@ public class Main extends JFrame{
             super.paintComponent(g1);
             Graphics2D g = (Graphics2D) g1;
             g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
-            fricWall.render(g);
+            //fricWall.render(g);
             for(int i = 0; i < walls.length; i++){
                 walls[i].render(g);
             }

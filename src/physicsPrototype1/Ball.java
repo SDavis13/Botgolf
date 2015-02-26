@@ -36,6 +36,7 @@ public class Ball {
         BodyDef bd = new BodyDef();
         bd.position.set(50, 50);
         bd.type = BodyType.DYNAMIC;
+        bd.linearDamping = 1.5f;
         
         //define shape of the body.
         shape = new CircleShape();
@@ -91,8 +92,8 @@ public class Ball {
                 float xDif = body.getPosition().x - Main.toPosX(mouseX);
                 float yDif = body.getPosition().y - Main.toPosY(mouseY);
                 Vec2 temp = 
-                        new Vec2( (xDif * Math.abs(xDif)) * IMPULSE_SCALE,
-                                (yDif * Math.abs(yDif)) * IMPULSE_SCALE );
+                        new Vec2( xDif * IMPULSE_SCALE,
+                                yDif * IMPULSE_SCALE );
                 body.applyLinearImpulse(temp,body.getPosition());
             }
         }
