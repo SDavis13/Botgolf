@@ -14,7 +14,7 @@ import org.jbox2d.collision.Manifold;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
 import org.jbox2d.dynamics.contacts.Contact;
-import org.jbox2d.dynamics.joints.FrictionJointDef;
+//import org.jbox2d.dynamics.joints.FrictionJointDef;
 
 public class Main extends JFrame{
     private static final long serialVersionUID = 1L;
@@ -35,6 +35,7 @@ public class Main extends JFrame{
     
     public static void main(String[] args){
         Main theMain = new Main();
+        System.out.print("Starting: " + theMain.timeStep + " seconds per tick.");
     }
     
     public Main(){
@@ -118,11 +119,13 @@ public class Main extends JFrame{
                 Clip clip = (Clip)(object1);
                 if(clip.getFramePosition() != 0) clip.setFramePosition(0);
                 (clip).start();
+                clip.close();
             }
             if(object2 instanceof Clip){
                 Clip clip = (Clip)(object2);
                 if(clip.getFramePosition() != 0) clip.setFramePosition(0);
                 (clip).start();
+                clip.close();
             }
         }
 
