@@ -1,8 +1,10 @@
 package game;
 
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
-public abstract class View extends JPanel{
+public abstract class View extends JPanel implements ActionListener{
     String name;
     Main frame;
     boolean active;
@@ -15,4 +17,5 @@ public abstract class View extends JPanel{
     public void activate(Object message){
         active = true;
     }
+    
 }
