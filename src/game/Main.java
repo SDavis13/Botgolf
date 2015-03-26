@@ -7,7 +7,7 @@ import javax.swing.*;
 
 public class Main extends JFrame{
     static Main theMain = new Main();
-    Hashtable<String,View> views;
+    Hashtable<String,View> views = new Hashtable<String,View>();
     View curView;
     
     //Screen width and height
@@ -16,6 +16,7 @@ public class Main extends JFrame{
     
     public static void main(String[] args){
         Main frame = theMain;
+        frame.switchView("Main", null);
     }
     
     public static Main getInstance(){
@@ -23,6 +24,7 @@ public class Main extends JFrame{
     }
     
     private Main(){
+        createPages();
         getContentPane().setPreferredSize(new Dimension(WIDTH, HEIGHT));
         pack();
         
@@ -38,9 +40,18 @@ public class Main extends JFrame{
     
     public void switchView(String name, Object message){
         View view = views.get(name);
-        remove(curView);
-        add(view);
-        curView = view;
-        view.activate(message);
+        if(view != null){
+            if(curView != null){
+                curView.deactivate();
+                remove(curView);
+            }
+            add(view);
+            curView = view;
+            view.activate(message);
+        }
+    }
+    
+    private void createPages(){
+        addView(MainPage.getInstance());
     }
 }
