@@ -2,9 +2,19 @@ package game;
 
 import java.awt.event.ActionEvent;
 
-public class QuickplayPage extends View{
+import javax.swing.*;
 
-    public QuickplayPage(String name) {
+public class QuickplayPage extends View{
+    static QuickplayPage page = new QuickplayPage(Consts.QUICKPLAY);
+    JScrollPane jsLevelList = new JScrollPane();
+    JButton[] jbLevels;
+    JButton jbBack = new JButton("Back");
+    
+    public static QuickplayPage getInstance(){
+        return page;
+    }
+    
+    protected QuickplayPage(String name) {
         super(name);
         
     }

@@ -43,6 +43,8 @@ public class MainPage extends View{
         jbAbout.addActionListener(this);
         jbExit.addActionListener(this);
         
+        
+        
         add(jlTitle);
     }
 
