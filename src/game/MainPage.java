@@ -28,13 +28,18 @@ public class MainPage extends View{
     JButton jbHighscore = new JButton("High Scores");
     JButton jbAbout = new JButton("About");
     JButton jbExit = new JButton("Exit");
+        
     
     public static MainPage getInstance(){
         return page;
     }
     
     protected MainPage(String name) {
-        super(name);
+            	    
+    	super(name);
+    	
+    	Insets insetDefinition = new Insets(15,20,15,20);
+    	
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         try{
             logo = new ImageIcon(ImageIO.read(new File(Consts.IMGLOC + "logo.png")));
@@ -45,8 +50,17 @@ public class MainPage extends View{
             System.out.println("Could not load main logo image.");
             e.printStackTrace();
         }
+                
+        jbCampaign.setMargin(insetDefinition);
+        jbQuickplay.setMargin(insetDefinition);
+        jbOptions.setMargin(insetDefinition);
+        jbInstructions.setMargin(insetDefinition);
+        jbHighscore.setMargin(insetDefinition);
+        jbAbout.setMargin(insetDefinition);
+        jbExit.setMargin(insetDefinition);
+        
         jlTitle.setAlignmentX(CENTER_ALIGNMENT);
-        jlTitle.setBorder(BorderFactory.createLineBorder(Color.black));
+        //jlTitle.setBorder(BorderFactory.createLineBorder(Color.black));
         //jpShirt.setLayout(new BoxLayout(jpShirt, BoxLayout.X_AXIS));
             jpLeft.setLayout(new BoxLayout(jpLeft, BoxLayout.Y_AXIS));
             jpRight.setLayout(new BoxLayout(jpRight, BoxLayout.Y_AXIS));
