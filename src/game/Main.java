@@ -36,7 +36,7 @@ public class Main extends JFrame{
     private Main(){
     	SynthLookAndFeel theme = new SynthLookAndFeel();
     	try {
-			theme.load(new URL("file:///Botgolf/resources/game/script/gui.xml")); //NEEDS FIXING
+			theme.load(new URL("https://github.com/SDavis13/Botgolf/tree/master/resources/game/script/gui.xml"));
 			UIManager.setLookAndFeel(theme);
 		} catch (ParseException | IOException | UnsupportedLookAndFeelException e) {
 			// TODO Auto-generated catch block
