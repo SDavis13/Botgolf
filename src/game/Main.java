@@ -16,6 +16,7 @@ public class Main extends JFrame{
     
     public static void main(String[] args){
         Main frame = theMain;
+        frame.createPages();
         frame.switchView("Main", null);
     }
     
@@ -24,7 +25,6 @@ public class Main extends JFrame{
     }
     
     private Main(){
-        createPages();
         getContentPane().setPreferredSize(new Dimension(WIDTH, HEIGHT));
         pack();
         
@@ -48,6 +48,8 @@ public class Main extends JFrame{
             add(view);
             curView = view;
             view.activate(message);
+            revalidate();
+            repaint();
         }
     }
     
