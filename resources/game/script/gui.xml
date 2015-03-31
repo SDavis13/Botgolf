@@ -1,0 +1,33 @@
+<synth>
+
+<style id="jPanel1">
+   <opaque value="false"/>   
+   <imagePainter method="panelBackground" path="Back.png"
+      sourceInsets="0 0 0 0" paintCenter="true"/>
+</style>
+<bind style="jPanel1" type="region" key=".*"/>
+
+<style id="playButton">
+   <opaque value="true"/>
+   <state>
+      <font name="Verdana" size="20"/>      
+      <color value="#afafff" type="FOREGROUND"/>
+	  <imagePainter method="buttonBackground" path="..\images\ButtonIdle.png"
+      sourceInsets="26 26 26 26" paintCenter="true"/>
+   <insets top="4" left="6" bottom="4" right="6"/>
+   </state>   
+   <state value="MOUSE_OVER">
+   <font name="Verdana" size="20"/>      
+      <color value="#afafff" type="FOREGROUND"/>
+	  <imagePainter method="buttonBackground" path="..\images\ButtonOver.png"
+      sourceInsets="26 26 26 26" paintCenter="true"/>
+   </state>
+   <state value="PRESSED">
+   <font name="Verdana" size="20"/>      
+      <color value="#afafff" type="FOREGROUND"/>
+	  <imagePainter method="buttonBackground" path="..\images\ButtonPush.png"
+      sourceInsets="26 26 26 26" paintCenter="true"/>
+   </state>   
+</style>
+<bind style="playButton" type="region" key="Button"/>
+</synth>
