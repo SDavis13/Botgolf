@@ -2,7 +2,7 @@
 
 <style id="jPanel1">
    <opaque value="false"/>   
-   <imagePainter method="panelBackground" path="Back.png"
+   <imagePainter method="panelBackground" path="..\images\Back.png"
       sourceInsets="0 0 0 0" paintCenter="true"/>
 </style>
 <bind style="jPanel1" type="region" key=".*"/>
