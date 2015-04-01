@@ -16,7 +16,7 @@ public class Ball {
     float x,y;
     int mouseX,mouseY;
     boolean grabbed;
-    static final int IMPULSE_SCALE = 50;
+    static final int IMPULSE_SCALE = 10;
     
     Ellipse2D.Float pixCircle;
     CircleShape shape;
@@ -34,19 +34,19 @@ public class Ball {
         mouseY = 0;
         //body definition
         BodyDef bd = new BodyDef();
-        bd.position.set(50, 50);
+        bd.position.set(Main.toPosX(300), Main.toPosY(300));
         bd.type = BodyType.DYNAMIC;
         bd.linearDamping = 1.5f;
         
         //define shape of the body.
         shape = new CircleShape();
-        shape.m_radius = 2.5f;
+        shape.m_radius = .75f;
         
         //define fixture of the body.
         FixtureDef fd = new FixtureDef();
         fd.shape = shape;
-        fd.density = 0.5f; //This defines the heaviness of the body with respect to its area.
-        fd.friction = 0.3f; //This defines how bodies slide when they come in contact with each other. 
+        fd.density = 0.15f; //This defines the heaviness of the body with respect to its area.
+        fd.friction = 0.1f; //This defines how bodies slide when they come in contact with each other. 
         //Friction value can be set between 0 and 1. Lower value means more slippery bodies.
         fd.restitution = 0.5f; //This define how bouncy is the body.
         //Restitution values can be set between 0 and 1. Here higher value means more bouncy body.

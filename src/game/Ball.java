@@ -31,4 +31,8 @@ public class Ball extends Entity{
         
     }
     
+    public boolean contains(int pixX, int pixY){
+        return pixShape.contains(pixX, pixY);
+    }
+    
 }

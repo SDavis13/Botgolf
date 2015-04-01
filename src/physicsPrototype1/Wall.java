@@ -73,7 +73,7 @@ public class Wall {
         FixtureDef fd = new FixtureDef();
         fd.shape = shape;
         fd.density = 1.0f;
-        fd.friction = 0.3f;
+        fd.friction = 0.1f;
         if(id > 4){
             fd.friction = 10f;
         }
