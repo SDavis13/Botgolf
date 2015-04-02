@@ -58,39 +58,5 @@ public class GameController {
             }
         }
     }
-    
-    //Convert a JBox2D x coordinate to a Swing pixel x coordinate
-    public static float toPixelPosX(float posX) {
-        float x = Main.WIDTH*posX / 100.0f;
-        return x;
-    }
-
-    //Convert a Swing pixel x coordinate to a JBox2D x coordinate
-    public static float toPosX(float pixX) {
-        float x = (pixX*100.0f*1.0f)/Main.WIDTH;
-        return x;
-    }
-
-    //Convert a JBox2D y coordinate to a Swing pixel y coordinate
-    public static float toPixelPosY(float posY) {
-        float y = Main.HEIGHT - (1.0f*Main.HEIGHT) * posY / 100.0f;
-        return y;
-    }
-
-    //Convert a Swing pixel y coordinate to a JBox2D y coordinate
-    public static float toPosY(float pixY) {
-        float y = 100.0f - ((pixY * 100*1.0f) /Main.HEIGHT) ;
-        return y;
-    }
-
-    //Convert a JBox2D width to pixel width
-    public static float toPixelWidth(float width) {
-        return Main.WIDTH*width / 100.0f;
-    }
-
-    //Convert a JBox2D height to pixel height
-    public static float toPixelHeight(float height) {
-        return Main.HEIGHT*height/100.0f;
-    }
         
 }
