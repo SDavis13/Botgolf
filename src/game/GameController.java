@@ -13,18 +13,21 @@ public class GameController {
     Ball ball;
     ScheduledExecutorService tickRunner;
     GameState state;
+    GameState tempState;
     float pxOffset, pyOffset;
     
     public GameController(){
-        
+        state = GameState.INACTIVE;
+        tempState = GameState.READY;
     }
     public void loadLevel(String levelName){
         
     }
     public void startGame(){
-        
+        state = tempState;
     }
     public void pauseGame(){
+        tempState = state;
         state = GameState.PAUSED;
     }
     private class PhysicsLoop implements Runnable{
@@ -53,6 +56,7 @@ public class GameController {
             if(state == GameState.READY)
                 if(ball.contains(e.getX(),e.getY()) && e.getButton() == 0){
                     state = GameState.GRAB;
+                    ball.setGrabbed();
                 }
         }
         @Override
