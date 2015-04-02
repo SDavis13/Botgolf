@@ -1,12 +1,8 @@
 package game;
 
 import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyAdapter;
-import java.util.ArrayList;
+import java.awt.event.*;
 import java.util.concurrent.ScheduledExecutorService;
-
-import javax.swing.event.MouseInputAdapter;
 
 public class GamePage extends View{
     static GamePage page = new GamePage(Consts.GAME, new GameController());

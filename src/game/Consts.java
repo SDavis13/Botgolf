@@ -1,5 +1,7 @@
 package game;
 
+import java.awt.event.KeyEvent;
+
 public class Consts {
     private Consts(){}
                                 //File locations
@@ -21,4 +23,8 @@ public class Consts {
                                 GAME        = "Game";
     
     public static final int SCALE = 2000;
+    
+    public static int pauseMenuKey = KeyEvent.VK_ESCAPE, //goes to pause menu
+                      pauseKey = KeyEvent.VK_PAUSE; //simply pauses the game
+                      //TODO Make a way to save and load key preferences to/from a file
 }

@@ -9,10 +9,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class MainPage extends View{
-    /**
-     * 
-     */
-    private static final long serialVersionUID = 1L;
     static MainPage page = new MainPage(Consts.MAIN);
     static ImageIcon logo;
     JLabel jlTitle = new JLabel(); //Title logo
