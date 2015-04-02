@@ -42,10 +42,12 @@ public class Main extends JFrame{
         getContentPane().setPreferredSize(new Dimension(WIDTH, HEIGHT));
         pack();
         
-        walls[0] = new Wall(world, 10f, 50f, 5f, 45f);
-        walls[1] = new Wall(world, 50f, 90f, 45f, 5f);
-        walls[2] = new Wall(world, 90f, 50f, 5f, 45f);
-        walls[3] = new Wall(world, 50f, 10f, 45f, 5f);
+        float alength = 13.5f;
+        float awidth = 1.5f;
+        walls[0] = new Wall(world, 3f, Main.toPosY(300), awidth, alength);//red
+        walls[1] = new Wall(world, Main.toPosX(300), Main.toPosY(0) - 3f, alength, awidth);//yellow
+        walls[2] = new Wall(world, Main.toPosX(600) - 3f, Main.toPosY(300), awidth, alength);//green
+        walls[3] = new Wall(world, Main.toPosX(300), Main.toPosY(600) + 3f, alength, awidth);//blue
         
         /*
         fricWall = new Wall(world, 50f, 50f, 47f, 47f);
@@ -148,37 +150,38 @@ public class Main extends JFrame{
         }
     }
     
+    static int envSize = 2000;
     //Convert a JBox2D x coordinate to a Swing pixel x coordinate
     public static float toPixelPosX(float posX) {
-        float x = WIDTH*posX / 100.0f;
+        float x = envSize*posX / 100.0f;
         return x;
     }
 
     //Convert a Swing pixel x coordinate to a JBox2D x coordinate
     public static float toPosX(float posX) {
-        float x = (posX*100.0f*1.0f)/WIDTH;
+        float x = (posX*100.0f*1.0f)/envSize;
         return x;
     }
 
     //Convert a JBox2D y coordinate to a Swing pixel y coordinate
     public static float toPixelPosY(float posY) {
-        float y = HEIGHT - (1.0f*HEIGHT) * posY / 100.0f;
+        float y = envSize - (1.0f*envSize) * posY / 100.0f;
         return y;
     }
 
     //Convert a Swing pixel y coordinate to a JBox2D y coordinate
     public static float toPosY(float posY) {
-        float y = 100.0f - ((posY * 100*1.0f) /HEIGHT) ;
+        float y = 100.0f - ((posY * 100*1.0f) /envSize) ;
         return y;
     }
 
     //Convert a JBox2D width to pixel width
     public static float toPixelWidth(float width) {
-        return WIDTH*width / 100.0f;
+        return envSize*width / 100.0f;
     }
 
     //Convert a JBox2D height to pixel height
     public static float toPixelHeight(float height) {
-        return HEIGHT*height/100.0f;
+        return envSize*height/100.0f;
     }
 }

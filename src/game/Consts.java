@@ -19,4 +19,6 @@ public class Consts {
                                 PAUSE       = "Pause",
                                 HIGHSCORE   = "HighScore",
                                 GAME        = "Game";
+    
+    public static final int SCALE = 2000;
 }
