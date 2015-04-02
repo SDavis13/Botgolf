@@ -16,6 +16,7 @@ public class GameController {
     Ball ball;
     ScheduledExecutorService tickRunner;
     GameState state;
+    float pxOffset, pyOffset;
     
     public GameController(){
         
@@ -48,13 +49,8 @@ public class GameController {
         }
         public void mouseReleased(MouseEvent e){
             if(state == GameState.GRAB && e.getButton() == 1){
-                /*state = GameState.LAUNCH;
-                float xDif = body.getPosition().x - Main.toPosX(mouseX);
-                float yDif = body.getPosition().y - Main.toPosY(mouseY);
-                Vec2 temp = 
-                        new Vec2( xDif * IMPULSE_SCALE,
-                                yDif * IMPULSE_SCALE );
-                body.applyLinearImpulse(temp,body.getPosition());*/
+                state = GameState.LAUNCH;
+                ball.launch(Utils.toPhysX(e.getX(),pxOffset), Utils.toPhysY(e.getY(),pyOffset));
             }
         }
     }
