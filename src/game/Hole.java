@@ -15,7 +15,7 @@ public class Hole extends Entity{
     public CircleShape shape;
     public Ellipse2D.Float pixShape;
     
-    Image holeImage = Toolkit.getDefaultToolkit().getImage(Consts.IMG_HOLE);
+    Image holeImage = Toolkit.getDefaultToolkit().getImage(Consts.IMG_HOLE + "Hole.png");
     
     Hole(World world, BodyDef bd, FixtureDef fd, CircleShape shape, Vec2 position){
         this.world = world;
@@ -27,7 +27,7 @@ public class Hole extends Entity{
         
         //create the body and add fixture to it
         body = world.createBody(bd);
-        body.createFixture(fd).setUserData(this);
+        body.createFixture(fd).setUserData(this);      
         
         pixX = Main.toPixelPosX(body.getPosition().x);
         pixY = Main.toPixelPosY(body.getPosition().y);
