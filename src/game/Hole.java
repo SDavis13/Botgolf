@@ -29,8 +29,8 @@ public class Hole extends Entity{
         body = world.createBody(bd);
         body.createFixture(fd).setUserData(this);      
         
-        pixX = Main.toPixelPosX(body.getPosition().x);
-        pixY = Main.toPixelPosY(body.getPosition().y);
+        pixX = Utils.toPixX(body.getPosition().x);
+        pixY = Utils.toPixY(body.getPosition().y);
         pixShape = new Ellipse2D.Float((pixX - pixRad), (pixY - pixRad), pixRad*2, pixRad*2);
     }
 
@@ -43,9 +43,12 @@ public class Hole extends Entity{
     }
 
     @Override
-    public void render(Graphics g1) {
-        // TODO Auto-generated method stub
-        
+    public void render(Graphics g1) 
+    {
+        float temp = (Utils.toPixLength(shape.m_radius));
+        pixShape.x = pixX - temp;
+        pixShape.y = pixY - temp;
+        g1.drawImage(holeImage, (int)pixShape.x, (int)pixShape.y, null);
     }
 
 }
