@@ -1,20 +1,20 @@
 package game;
 
 import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyAdapter;
-import java.util.ArrayList;
+import java.awt.Graphics2D;
+import java.awt.event.*;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.ScheduledExecutorService;
 
-import javax.swing.event.MouseInputAdapter;
-
 public class GamePage extends View{
+    final static long TICKTIME = 1000/60;
     static GamePage page = new GamePage(Consts.GAME, new GameController());
-    Level level;
+    Level curLevel;
     GameSpec spec;
     GameController control;
     RenderLoop loop;
-    ScheduledExecutorService tickRunner;
+    Timer tickRunner;
 
     public static GamePage getInstance(){
         return page;
@@ -27,12 +27,19 @@ public class GamePage extends View{
     }
 
     protected void paintComponent(Graphics g1){
-        
+        super.paintComponent(g1);
+        curLevel.render((Graphics2D)g1);
+    }
+    
+    public void startRender(){
+        tickRunner = new Timer();
+        tickRunner.schedule(new RenderLoop(), 0, TICKTIME);
     }
     
     public void pause(){
-        frame.switchView(Consts.PAUSE, level.name);
-            //TODO give level a getName() method
+        tickRunner.cancel();
+        frame.switchView(Consts.PAUSE, curLevel.name);
+            //TODO give curLevel a getName() method
             //TODO Make all instance vars private, except for the obvious and GameSpec's stuff
     }
     
@@ -45,9 +52,9 @@ public class GamePage extends View{
         
     }
     
-    private class RenderLoop implements Runnable{
+    private class RenderLoop extends TimerTask{
         public void run(){
-            
+            repaint();
         }
     }
 
