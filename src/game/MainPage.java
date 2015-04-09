@@ -38,7 +38,7 @@ public class MainPage extends View{
     	
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         try{
-            logo = new ImageIcon(ImageIO.read(new File(Consts.IMGLOC + "logo.png")));
+            logo = new ImageIcon(ImageIO.read(new File(Consts.IMG_LOGO)));
             jlTitle.setSize(logo.getIconWidth(), logo.getIconHeight());
             jlTitle.setIcon(logo);
         }catch(IOException e){

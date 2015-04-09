@@ -9,8 +9,6 @@ import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
 
-import physicsPrototype1.Main;
-
 import java.awt.Toolkit;
 
 
@@ -33,8 +31,8 @@ public class Ball extends Entity{
 
     CircleShape shape;
     Ellipse2D.Float pixCircle;
-    static final float IMPULSE_SCALE = 10;
-    Image ballImage = Toolkit.getDefaultToolkit().getImage(Consts.IMGLOC + "Ball.png");
+    static final float IMPULSE_SCALE = 10; //TODO Should make this also a function of Consts.SCALE
+    Image ballImage = Toolkit.getDefaultToolkit().getImage(Consts.IMG_BALL);
 
     public Ball(World world, BodyDef bd, FixtureDef fd, CircleShape shape, Vec2 position){
         
@@ -44,10 +42,12 @@ public class Ball extends Entity{
         pixY = 0;
         mouseX = 0;
         mouseY = 0;
-        //body definition
-        bd.position.set(position);
-        bd.type = BodyType.DYNAMIC;
-        bd.linearDamping = Consts.rollingFriction;
+        {//TODO Move this logic to the level factory
+            //body definition
+            bd.position.set(position);
+            bd.type = BodyType.DYNAMIC;
+            bd.linearDamping = Consts.rollingFriction;
+        }
         
         int pixRad = ballImage.getWidth(null) / 2;
         //define shape of the body.
@@ -62,10 +62,10 @@ public class Ball extends Entity{
         
         //create the body and add fixture to it
         body = world.createBody(bd);
-        body.createFixture(fd)/*.setUserData(?)*/;
+        body.createFixture(fd).setUserData(this);
         
-        pixX = Main.toPixelPosX(body.getPosition().x);
-        pixY = Main.toPixelPosY(body.getPosition().y);
+        pixX = Utils.toPixX(body.getPosition().x);
+        pixY = Utils.toPixY(body.getPosition().y);
         pixCircle = new Ellipse2D.Float((pixX - pixRad), (pixY - pixRad), pixRad*2, pixRad*2);
     }
     
@@ -74,7 +74,7 @@ public class Ball extends Entity{
     }
 
     @Override
-    public void hit() {
+    public void hit(Entity otherEntity) {
         // TODO Auto-generated method stub
         
     }
@@ -82,9 +82,9 @@ public class Ball extends Entity{
     @Override
     public void render(Graphics g1) {
             	
-        pixX = Main.toPixelPosX(body.getPosition().x);
-        pixY = Main.toPixelPosY(body.getPosition().y);
-        float temp = (Main.toPixelWidth(shape.m_radius));
+        pixX = Utils.toPixX(body.getPosition().x);
+        pixY = Utils.toPixY(body.getPosition().y);
+        float temp = (Utils.toPixLength(shape.m_radius));
         pixCircle.x = pixX - temp;
         pixCircle.y = pixY - temp;
         g1.drawImage(ballImage, (int)pixCircle.x, (int)pixCircle.y, null);

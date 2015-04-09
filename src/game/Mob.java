@@ -13,7 +13,7 @@ public class Mob extends Entity{
     }
 
     @Override
-    public void hit() {
+    public void hit(Entity otherEntity) {
         // TODO Auto-generated method stub
         
     }

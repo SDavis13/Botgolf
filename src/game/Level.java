@@ -1,6 +1,8 @@
 package game;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.Shape;
 import java.util.ArrayList;
 
 import org.jbox2d.dynamics.*;
@@ -12,7 +14,6 @@ public class Level {
     ArrayList<Mob> mobs;
     ArrayList<Wall> walls;
     Hole hole;
-    SoundRepository sounds;
     World world;
     
     Level(World world){
@@ -25,6 +26,12 @@ public class Level {
         
     }
     void render(Graphics2D g){
-        
+        Rectangle bounds = g.getClipBounds();
+        if(hole.pixShape.intersects(bounds)){
+            hole.render(g);
+        }
+        for(Wall wall : walls){
+            
+        }
     }
 }

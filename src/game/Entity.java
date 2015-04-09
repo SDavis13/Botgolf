@@ -10,7 +10,7 @@ public abstract class Entity {
     float pixX,pixY;
     World world;
 
-    public abstract void hit();
+    public abstract void hit(Entity otherEntity);
     public abstract void render(Graphics g1);
 
 }

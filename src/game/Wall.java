@@ -29,7 +29,7 @@ public class Wall extends Entity {
     }
 
     @Override
-    public void hit() {
+    public void hit(Entity otherEntity) {
         // TODO Auto-generated method stub
         
     }

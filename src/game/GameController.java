@@ -17,7 +17,6 @@ public class GameController {
     Timer tickRunner;
     GameState state;
     GameState tempState;
-    float pxOffset, pyOffset;
     
     public GameController(){
         state = GameState.INACTIVE;
@@ -69,7 +68,7 @@ public class GameController {
         public void mouseReleased(MouseEvent e){
             if(state == GameState.GRAB && e.getButton() == 1){
                 state = GameState.LAUNCH;
-                ball.launch(Utils.toPhysX(e.getX(),pxOffset), Utils.toPhysY(e.getY(),pyOffset));
+                ball.launch(Utils.toPhysX(e.getX()), Utils.toPhysY(e.getY()));
             }
         }
     }
