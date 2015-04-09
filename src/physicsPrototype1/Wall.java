@@ -41,16 +41,16 @@ public class Wall {
         File file;
         switch(id){
             case 1: color = Color.RED;
-                    file = new File("resources/physicsPrototype1/bop.wav");
+                    file = new File("resources/physicsPrototype1/beep1.wav");
                     break;
             case 2: color = Color.YELLOW;
-                    file = new File("resources/physicsPrototype1/hit.wav");
+                    file = new File("resources/physicsPrototype1/beep2.wav");
                     break;
             case 3: color = Color.GREEN;
-                    file = new File("resources/physicsPrototype1/ping.wav");
+                    file = new File("resources/physicsPrototype1/zap1.wav");
                     break;
             case 4: color = Color.BLUE;
-                    file = new File("resources/physicsPrototype1/whipp.wav");
+                    file = new File("resources/physicsPrototype1/zap2.wav");
                     break;
             default:
                     color = new Color(200,245,255);
