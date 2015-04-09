@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 import org.jbox2d.dynamics.*;
@@ -21,6 +22,9 @@ public class Level {
         
     }
     void step(){
+        
+    }
+    void render(Graphics2D g){
         
     }
 }

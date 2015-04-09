@@ -1,6 +1,8 @@
 package game;
 
 import java.awt.event.*;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.ScheduledExecutorService;
 
 import javax.swing.event.MouseInputAdapter;
@@ -8,10 +10,11 @@ import javax.swing.event.MouseInputAdapter;
 import org.jbox2d.common.Vec2;
 
 public class GameController {
+    final static long TICKTIME = 1000/60;
     GamePage view;
     Level curLevel;
     Ball ball;
-    ScheduledExecutorService tickRunner;
+    Timer tickRunner;
     GameState state;
     GameState tempState;
     float pxOffset, pyOffset;
@@ -25,12 +28,15 @@ public class GameController {
     }
     public void startGame(){
         state = tempState;
+        tickRunner = new Timer();
+        tickRunner.schedule(new PhysicsLoop(), 0, TICKTIME);
     }
     public void pauseGame(){
         tempState = state;
+        tickRunner.cancel();
         state = GameState.PAUSED;
     }
-    private class PhysicsLoop implements Runnable{
+    private class PhysicsLoop extends TimerTask{
         public void run(){
             curLevel.step();
         }
