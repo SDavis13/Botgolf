@@ -9,8 +9,6 @@ import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
 
-import physicsPrototype1.Main;
-
 public class Hole extends Entity{
     public CircleShape shape;
     public Ellipse2D.Float pixShape;
