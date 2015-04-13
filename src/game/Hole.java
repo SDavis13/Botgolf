@@ -43,10 +43,14 @@ public class Hole extends Entity{
     @Override
     public void render(Graphics g1) 
     {
+        g1.drawImage(holeImage, (int)pixShape.x, (int)pixShape.y, null);
+    }
+
+    @Override
+    public void pixUpdate() {
         float temp = (Utils.toPixLength(shape.m_radius));
         pixShape.x = pixX - temp;
         pixShape.y = pixY - temp;
-        g1.drawImage(holeImage, (int)pixShape.x, (int)pixShape.y, null);
     }
 
 }

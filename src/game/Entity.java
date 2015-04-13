@@ -12,5 +12,6 @@ public abstract class Entity {
 
     public abstract void hit(Entity otherEntity);
     public abstract void render(Graphics g1);
+    public abstract void pixUpdate();
 
 }

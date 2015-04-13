@@ -41,4 +41,10 @@ public class Wall extends Entity {
         g1.fillPolygon(pixShape);        
     }
 
+    @Override
+    public void pixUpdate() {
+        // TODO Auto-generated method stub
+        
+    }
+
 }

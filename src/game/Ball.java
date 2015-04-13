@@ -28,6 +28,7 @@ public class Ball extends Entity{
     
     int mouseX,mouseY;
     boolean grabbed;
+    float pixRad;
 
     CircleShape shape;
     Ellipse2D.Float pixCircle;
@@ -81,18 +82,21 @@ public class Ball extends Entity{
 
     @Override
     public void render(Graphics g1) {
-            	
-        pixX = Utils.toPixX(body.getPosition().x);
-        pixY = Utils.toPixY(body.getPosition().y);
-        float temp = (Utils.toPixLength(shape.m_radius));
-        pixCircle.x = pixX - temp;
-        pixCircle.y = pixY - temp;
         g1.drawImage(ballImage, (int)pixCircle.x, (int)pixCircle.y, null);
         if(grabbed){
-            int temp2 = (int)(temp + 0.5f);
+            int temp2 = (int)(pixRad + 0.5f);
             g1.drawLine((int)(pixX + .5f), (int)(pixY + .5f), mouseX, mouseY);
             g1.drawOval((mouseX - temp2/2), (mouseY - temp2/2), temp2, temp2);
         }
+    }
+    
+    @Override
+    public void pixUpdate() {
+        pixX = Utils.toPixX(body.getPosition().x);
+        pixY = Utils.toPixY(body.getPosition().y);
+        pixRad = (Utils.toPixLength(shape.m_radius));
+        pixCircle.x = pixX - pixRad;
+        pixCircle.y = pixY - pixRad;
     }
     
     public void launch(float impulseX, float impulseY){
@@ -108,5 +112,4 @@ public class Ball extends Entity{
     public boolean contains(int pixX, int pixY){
         return pixCircle.contains(pixX, pixY);
     }
-    
 }

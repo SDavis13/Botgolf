@@ -40,13 +40,16 @@ public class Mob extends Entity{
 
     @Override
     public void render(Graphics g1) {
-    	pixX = Utils.toPixX(body.getPosition().x);
+        g1.drawImage(genericMob, (int)pixShape.x, (int)pixShape.y, null);
+    }
+
+    @Override
+    public void pixUpdate() {
+        pixX = Utils.toPixX(body.getPosition().x);
         pixY = Utils.toPixY(body.getPosition().y);
         float temp = (Utils.toPixLength(shape.m_radius));        
         pixShape.x = pixX - temp;
         pixShape.y = pixY - temp;
-        g1.drawImage(genericMob, (int)pixShape.x, (int)pixShape.y, null);
-        
     }
     
     
