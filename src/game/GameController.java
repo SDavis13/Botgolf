@@ -10,25 +10,27 @@ import javax.swing.event.MouseInputAdapter;
 import org.jbox2d.common.Vec2;
 
 public class GameController {
-    final static long TICKTIME = 1000/60;
     GamePage view;
     Level curLevel;
     Ball ball;
     Timer tickRunner;
     GameState state;
     GameState tempState;
+    LevelFactory curFactory;
     
     public GameController(){
         state = GameState.INACTIVE;
         tempState = GameState.READY;
     }
-    public void loadLevel(String levelName){
-        
+    public void loadLevel(GameSpec levelSpec){
+        if(levelSpec.newGame)
+                curLevel = curFactory.createLevel(levelSpec);
+        ball = curLevel.getBall();
     }
     public void startGame(){
         state = tempState;
         tickRunner = new Timer();
-        tickRunner.schedule(new PhysicsLoop(), 0, TICKTIME);
+        tickRunner.schedule(new PhysicsLoop(), 0, Consts.TIMERTICK);
     }
     public void pauseGame(){
         tempState = state;
@@ -36,8 +38,23 @@ public class GameController {
         state = GameState.PAUSED;
     }
     private class PhysicsLoop extends TimerTask{
+        boolean launched = false;
+        
         public void run(){
             curLevel.step();
+            switch(state){
+                case LAUNCH:
+                    if(ball.body.isAwake()){
+                        launched = true;
+                    }else{
+                        launched = false;
+                        state = GameState.MOBTURN;
+                    }
+                    break;
+                case MOBTURN:
+                    curLevel.moveMobs();
+                    break;
+            }
         }
     }
     

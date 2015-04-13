@@ -91,7 +91,7 @@ public class MainPage extends View{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == jbQuickplay){
-            frame.switchView(Consts.GAME, new GameSpec(true, null, "Test", 0));
+            frame.switchView(Consts.GAME, new GameSpec("Test"));
         }
         if(e.getSource() == jbCampaign){
             frame.switchView(Consts.CAMPAIGN, null);

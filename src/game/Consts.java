@@ -16,7 +16,7 @@ public class Consts {
     public static final String  IMG_LOGO    = IMGLOC + "Logo.png",
                                 IMG_BALL    = IMGLOC + "Ball.png",
                                 IMG_HOLE    = IMGLOC + "Hole.png",
-    							IMG_GENROBO = IMGLOC + "BotGeneric.png";
+                                IMG_GENROBO = IMGLOC + "BotGeneric.png";
                                 
                                 //Page names
     public static final String  MAIN        = "Main",

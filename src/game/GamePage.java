@@ -8,7 +8,6 @@ import java.util.TimerTask;
 import java.util.concurrent.ScheduledExecutorService;
 
 public class GamePage extends View{
-    final static long TICKTIME = 1000/60;
     static GamePage page = new GamePage(Consts.GAME, new GameController());
     Level curLevel;
     GameSpec spec;
@@ -33,7 +32,7 @@ public class GamePage extends View{
     
     public void startRender(){
         tickRunner = new Timer();
-        tickRunner.schedule(new RenderLoop(), 0, TICKTIME);
+        tickRunner.schedule(new RenderLoop(), 0, Consts.TIMERTICK);
     }
     
     public void pause(){
@@ -44,8 +43,11 @@ public class GamePage extends View{
     }
     
     public void activate(Object message){
-        assert (message instanceof GameSpec);
-        spec = (GameSpec) message;
+        if(message instanceof GameSpec){
+            spec = (GameSpec) message;
+            control.loadLevel(spec);
+        }
+        control.startGame();
     }
     
     public void actionPerformed(ActionEvent e){

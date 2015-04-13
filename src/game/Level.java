@@ -8,6 +8,16 @@ import java.util.ArrayList;
 import org.jbox2d.dynamics.*;
 
 public class Level {
+    /**
+     * Velocity value accuracy.
+     * Higher = more accuracy, less performance
+     */
+    final static int VELOCITY_ITERATIONS = 6;
+    /**
+     * Position value accuracy.
+     * Higher = more accuracy, less performance
+     */
+    final static int POSITION_ITERATIONS = 3;
     int id;
     String name;
     Ball ball;
@@ -19,11 +29,12 @@ public class Level {
     Level(World world){
         this.world = world;
     }
-    void moveMobs(){
-        
+    boolean moveMobs(){
+        //TODO move the mobs
+        return true;
     }
     void step(){
-        
+        world.step(Consts.TIMESTEP, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
     }
     void render(Graphics2D g){
         Rectangle bounds = g.getClipBounds();
@@ -33,5 +44,8 @@ public class Level {
         for(Wall wall : walls){
             
         }
+    }
+    public Ball getBall(){
+        return ball;
     }
 }
