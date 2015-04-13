@@ -13,7 +13,7 @@ public class Hole extends Entity{
     public CircleShape shape;
     public Ellipse2D.Float pixShape;
     
-    Image holeImage = Toolkit.getDefaultToolkit().getImage(Consts.IMG_HOLE + "Hole.png");
+    Image holeImage = Toolkit.getDefaultToolkit().getImage(Consts.IMG_HOLE);
     
     Hole(World world, BodyDef bd, FixtureDef fd, CircleShape shape, Vec2 position){
         this.world = world;
