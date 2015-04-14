@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import org.jbox2d.dynamics.*;
 
@@ -22,29 +23,49 @@ public class Level {
     String name;
     Ball ball;
     ArrayList<Mob> mobs;
+    ArrayList<Mob> mDelete;
+    IterFlag mobIterFlag;
     ArrayList<Wall> walls;
+    ArrayList<Wall> wDelete;
     Hole hole;
     World world;
     
-    Level(World world){
+    Level(World world, String levelName, int levelNum){
         this.world = world;
+        name = levelName;
+        id = levelNum;
+        mobIterFlag.access = true;
     }
+
     boolean moveMobs(){
         //TODO move the mobs
         return true;
     }
+
     void step(){
         world.step(Consts.TIMESTEP, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
         ball.pixUpdate();
         hole.pixUpdate();
         for(Mob mob : mobs){
-            if(mob.remove) world.destroyBody(mob.body);
             mob.pixUpdate();
+            if(mob.remove){
+                mDelete.add(mob);
+            }
+        }
+        synchronized(mobIterFlag){
+            if(mobIterFlag.access){
+                for(Mob mob : mDelete){
+                    world.destroyBody(mob.body);
+                    mobs.remove(mob);
+                }
+                mDelete.clear();
+            }
         }
         for(Wall wall : walls){
             wall.pixUpdate();
         }
     }
+
     void render(Graphics2D g){
         Rectangle bounds = g.getClipBounds();
         for(Wall wall : walls){
@@ -52,17 +73,28 @@ public class Level {
                 wall.render(g);
             }
         }
-        for(Mob mob : mobs){
-            if(mob.pixShape.intersects(bounds)){
-                mob.render(g);
-            }
+        
+        synchronized(mobIterFlag){
+            mobIterFlag.access = false;
         }
+            for(Mob mob : mobs){
+                if(mob.pixShape.intersects(bounds)){
+                    mob.render(g);
+                }
+            }
+        mobIterFlag.access = true;
+        
         if(hole.pixShape.intersects(bounds)){
             hole.render(g);
         }
         ball.render(g);
     }
+
     public Ball getBall(){
         return ball;
+    }
+    
+    class IterFlag{
+        boolean access;
     }
 }
