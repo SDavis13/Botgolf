@@ -15,16 +15,18 @@ public class GameController {
     Timer tickRunner;
     GameState state;
     GameState tempState;
-    LevelFactory curFactory;
+    LevelFactory curFactory = new CreateLevel(); //TODO This is hardcoded and will need to be changed.
     
-    public GameController(){
+    public GameController(GamePage page){
         state = GameState.INACTIVE;
         tempState = GameState.READY;
+        view = page;
     }
     public void loadLevel(GameSpec levelSpec){
         if(levelSpec.newGame)
                 curLevel = curFactory.createLevel(levelSpec);
         ball = curLevel.getBall();
+        view.setLevel(curLevel);
     }
     public void startGame(){
         state = tempState;

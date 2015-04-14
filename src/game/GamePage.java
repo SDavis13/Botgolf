@@ -8,7 +8,7 @@ import java.util.TimerTask;
 import java.util.concurrent.ScheduledExecutorService;
 
 public class GamePage extends View{
-    static GamePage page = new GamePage(Consts.GAME, new GameController());
+    static GamePage page = new GamePage(Consts.GAME);
     Level curLevel;
     GameSpec spec;
     GameController control;
@@ -19,10 +19,9 @@ public class GamePage extends View{
         return page;
     }
     
-    protected GamePage(String name, GameController control) {
+    protected GamePage(String name) {
         super(name);
-        this.control = control;
-        
+        control = new GameController(this);
     }
 
     protected void paintComponent(Graphics g1){
@@ -52,6 +51,10 @@ public class GamePage extends View{
     
     public void actionPerformed(ActionEvent e){
         
+    }
+    
+    public void setLevel(Level level){
+        curLevel = level;
     }
     
     private class RenderLoop extends TimerTask{
