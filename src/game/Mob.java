@@ -13,7 +13,7 @@ public class Mob extends Entity{
 	Rectangle2D.Float pixShape;	
 	Image genericMob = Toolkit.getDefaultToolkit().getImage(Consts.IMG_GENROBO);
     int health;
-    int numOfSpacesMobCanMove;
+    int numOfSpacesMobCanMove;    
     
     Mob(World world, BodyDef bd, FixtureDef fd, PolygonShape shape, float gridScale){
     	this.world = world;        
@@ -33,7 +33,7 @@ public class Mob extends Entity{
         health--;
         if (health == 0)
         {
-        	//explosions
+        	remove = true;
         }
         
     }
