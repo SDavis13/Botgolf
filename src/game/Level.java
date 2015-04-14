@@ -30,10 +30,11 @@ public class Level {
     Hole hole;
     World world;
     
-    Level(World world, String levelName, int levelNum){
+    Level(World world, String levelName, int levelNum, ArrayList<Wall> wallList){
         this.world = world;
         name = levelName;
         id = levelNum;
+        
         mobIterFlag.access = true;
     }
 
