@@ -3,7 +3,6 @@ package game;
 import java.awt.event.*;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.ScheduledExecutorService;
 
 import javax.swing.event.MouseInputAdapter;
 
@@ -16,16 +15,18 @@ public class GameController {
     Timer tickRunner;
     GameState state;
     GameState tempState;
-    LevelFactory curFactory;
+    LevelFactory curFactory = new CreateLevel(); //TODO This is hardcoded and will need to be changed.
     
-    public GameController(){
+    public GameController(GamePage page){
         state = GameState.INACTIVE;
         tempState = GameState.READY;
+        view = page;
     }
     public void loadLevel(GameSpec levelSpec){
         if(levelSpec.newGame)
                 curLevel = curFactory.createLevel(levelSpec);
         ball = curLevel.getBall();
+        view.setLevel(curLevel);
     }
     public void startGame(){
         state = tempState;
@@ -73,16 +74,29 @@ public class GameController {
     }
     
     private class MouseInput extends MouseInputAdapter{
+        int xOrigin, yOrigin, oldXOffset, oldYOffset;
         @Override
         public void mouseDragged(MouseEvent e){
-            if(state == GameState.READY)
+            if(state == GameState.READY){
                 if(ball.contains(e.getX(),e.getY()) && e.getButton() == 0){
                     state = GameState.GRAB;
                     ball.setGrabbed();
+                }else{
+                    if(xOrigin == 0 && yOrigin == 0){
+                        xOrigin = e.getX();
+                        yOrigin = e.getY();
+                        oldXOffset = (int)(Consts.pxOffset + 0.5f);
+                        oldYOffset = (int)(Consts.pyOffset + 0.5f);
+                    }
+                    Consts.pxOffset = oldXOffset + (xOrigin - e.getX());
+                    Consts.pyOffset = oldYOffset + (yOrigin - e.getY());
                 }
+            }
         }
         @Override
         public void mouseReleased(MouseEvent e){
+            xOrigin = 0;
+            yOrigin = 0;
             if(state == GameState.GRAB && e.getButton() == 1){
                 state = GameState.LAUNCH;
                 ball.launch(Utils.toPhysX(e.getX()), Utils.toPhysY(e.getY()));
