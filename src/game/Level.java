@@ -35,15 +35,32 @@ public class Level {
     }
     void step(){
         world.step(Consts.TIMESTEP, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
+        ball.pixUpdate();
+        hole.pixUpdate();
+        for(Mob mob : mobs){
+            if(mob.remove) world.destroyBody(mob.body);
+            mob.pixUpdate();
+        }
+        for(Wall wall : walls){
+            wall.pixUpdate();
+        }
     }
     void render(Graphics2D g){
         Rectangle bounds = g.getClipBounds();
+        for(Wall wall : walls){
+            if(wall.pixShape.intersects(bounds)){
+                wall.render(g);
+            }
+        }
+        for(Mob mob : mobs){
+            if(mob.pixShape.intersects(bounds)){
+                mob.render(g);
+            }
+        }
         if(hole.pixShape.intersects(bounds)){
             hole.render(g);
         }
-        for(Wall wall : walls){
-            
-        }
+        ball.render(g);
     }
     public Ball getBall(){
         return ball;

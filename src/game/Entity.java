@@ -9,6 +9,7 @@ public abstract class Entity {
     Fixture fixture;
     float pixX,pixY;
     World world;
+    boolean remove = false;
 
     public abstract void hit(Entity otherEntity);
     public abstract void render(Graphics g1);
