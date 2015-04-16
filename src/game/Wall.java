@@ -10,21 +10,17 @@ import org.jbox2d.dynamics.*;
 public class Wall extends Entity {
 	
 	PolygonShape shape;
-	Polygon pixShape;      
-    Color color;
-     
+	Polygon pixShape;
+
     Wall(World world, BodyDef bd, FixtureDef fd, PolygonShape shape) 
     {
     	this.world = world;        
-    	shape = new PolygonShape();
-    	shape.setAsBox(5f, 5f);    
+    	this.shape = shape;
     	
     	fd.shape = shape;
-    	fd.density = 1.0f;
-    	fd.friction = 0.1f;
     	
-    	bd.position.set(1f, 1f);
-    	bd.type = BodyType.STATIC;
+    	body = world.createBody(bd);
+        fixture = body.createFixture(fd);
     	
     }
 
@@ -37,13 +33,14 @@ public class Wall extends Entity {
     @Override
     public void render(Graphics g1) 
     {    	    	
-        g1.setColor(color.ORANGE);
-        g1.fillPolygon(pixShape);        
+        g1.setColor(Color.ORANGE);
+        g1.fillPolygon(pixShape);      
     }
 
     @Override
     public void pixUpdate() {
-        // TODO Auto-generated method stub
+        // Auto-generated method stub
+        // Doesn't need code until (if) moving walls exist.
         
     }
 

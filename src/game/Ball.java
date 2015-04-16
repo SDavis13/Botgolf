@@ -13,18 +13,6 @@ import java.awt.Toolkit;
 
 
 public class Ball extends Entity{
-    /**
-     * Value between 0 and 1. Higher = bouncier
-     */
-    public static final float BOUNCE = 0.5f;
-    /**
-     * Value between 0 and 1. Lower = slipperier
-     */
-    public static final float FRICTION = 0.1f;
-    /**
-     * Mass / Area
-     */
-    public static final float DENSITY = 0.15f; //TODO Should probably make this a function of Consts.SCALE
     
     int mouseX,mouseY;
     boolean grabbed;
@@ -35,7 +23,7 @@ public class Ball extends Entity{
     static final float IMPULSE_SCALE = 10; //TODO Should make this also a function of Consts.SCALE
     Image ballImage = Toolkit.getDefaultToolkit().getImage(Consts.IMG_BALL);
 
-    public Ball(World world, BodyDef bd, FixtureDef fd, CircleShape shape, Vec2 position){
+    public Ball(World world, BodyDef bd, FixtureDef fd, Vec2 position){
         
     	this.world = world;
         grabbed = false;
@@ -57,9 +45,6 @@ public class Ball extends Entity{
         
         //define fixture of the body.        
         fd.shape = shape;
-        fd.density = DENSITY;
-        fd.friction = FRICTION;
-        fd.restitution = BOUNCE;
         
         //create the body and add fixture to it
         body = world.createBody(bd);
