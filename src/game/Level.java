@@ -37,6 +37,9 @@ public class Level {
         walls = wallList;
         mobs = mobList;
         ball = theBall;
+        hole = theHole;
+        mDelete = new ArrayList<Mob>();
+        wDelete = new ArrayList<Wall>();
         
         mobIterFlag.access = true;
     }
