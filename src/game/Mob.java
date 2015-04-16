@@ -9,10 +9,11 @@ import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.dynamics.*;
 
 public class Mob extends Entity{
+    public final static int DEFAULT_HEALTH = 2;
     PolygonShape shape;
 	Rectangle2D.Float pixShape;
 	Image genericMob;
-    int health;
+    int health = DEFAULT_HEALTH;
     int numOfSpacesMobCanMove;
     
     Mob(World world, BodyDef bd, FixtureDef fd, PolygonShape shape, float gridScale){
@@ -26,6 +27,7 @@ public class Mob extends Entity{
         
         body = world.createBody(bd);
         fixture = body.createFixture(fd);
+        fixture.setUserData(this);
     }
 
     @Override

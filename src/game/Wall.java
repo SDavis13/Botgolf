@@ -21,6 +21,7 @@ public class Wall extends Entity {
     	
     	body = world.createBody(bd);
         fixture = body.createFixture(fd);
+        fixture.setUserData(this);
     	
     }
 
