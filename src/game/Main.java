@@ -74,6 +74,11 @@ public class Main extends JFrame{
         }
     }
     
+    public void repaint(){
+        super.repaint();
+        curView.repaint();
+    }
+    
     private void createPages(){
         addView(MainPage.getInstance());
         addView(GamePage.getInstance());

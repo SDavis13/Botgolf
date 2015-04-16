@@ -57,7 +57,7 @@ public class CreateLevel implements LevelFactory {
         wallList.add(createWall(world, 20,69,20,1,0));//South
         //Interior Walls
         wallList.add(createWall(world, 8,84,6,2,0));//Horizontal
-        wallList.add(createWall(world, 24,88,6,2,45));//Diagonal
+        wallList.add(createWall(world, 24,88,6,2,(float)Math.toRadians(-45)));//Diagonal
 		
 		Level theLevel = new Level(world, specs, wallList, mobList, ball, hole);
 		return theLevel;
