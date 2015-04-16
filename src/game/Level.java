@@ -35,6 +35,7 @@ public class Level {
         name = specs.levelName;
         id = specs.levelNum;
         walls = wallList;
+        mobs = mobList;
         ball = theBall;
         
         mobIterFlag.access = true;
