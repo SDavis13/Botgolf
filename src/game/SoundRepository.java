@@ -12,7 +12,7 @@ import javax.sound.sampled.*;
 public class SoundRepository {
 
 
-	/*    private class SoundPlayer implements ContactListener{
+	 /*    private class SoundPlayer implements ContactListener{
 
         @Override
         public void beginContact(Contact contact) {
@@ -37,15 +37,15 @@ public class SoundRepository {
 	//create hashtable
 	//Hashtable<String, Object> soundBank = new Hashtable<String,Object>();
 
-	HashMap<String,Clip> soundBank = new HashMap<String,Clip>();
+	static HashMap<String,Clip> soundBank = new HashMap<String,Clip>();
 	//String key;
 	//Object File;
 	
 	
-	public Clip clip;
-	//public soundBank.put("zap2", clip);
 	
-
+	//soundBank.put("zap2", new Clip();
+	
+/*
 	public SoundRepository(String fileName){
 		try{
 			File file = new File(fileName);
@@ -83,10 +83,29 @@ public class SoundRepository {
 	public void stop(){
 		clip.stop();
 	}
-
-	public static void playSound(String sndScore) {
-		// TODO Auto-generated method stub
-		
+*/
+	public static void playSound(String file) {
+		Clip clip = null;
+		AudioInputStream audio = null;
+		if(soundBank.containsKey(file)){
+			clip = soundBank.get(file);
+			clip.setFramePosition(0);
+		}
+		else{
+			audio = AudioSystem.getAudioInputStream(clip.getFormat(), audio);//getClass().getResource("/resources/game/sounds/" + file + ".wav"));
+			clip = soundBank.put("zap2", clip);//AudioSystem.getClip();
+			try {
+				clip.open(audio);
+			} catch (LineUnavailableException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			soundBank.put(file, clip);
+		}
+		clip.start();
 	}
 
 
