@@ -31,8 +31,8 @@ public class Wall extends Entity {
             yAry[i] = (int)(Utils.toPixY(shape.m_vertices[i].y + bd.position.y) + .5f);
         }
         pixShape = new Polygon(xAry, yAry, shape.m_count);
-        pixX = pixShape.getBounds().x;
-        pixY = pixShape.getBounds().y;
+        pixX = Utils.toPixX(body.getPosition().x);
+        pixY = Utils.toPixY(body.getPosition().y);
     }
 
     @Override

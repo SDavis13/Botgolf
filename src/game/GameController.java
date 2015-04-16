@@ -21,6 +21,10 @@ public class GameController {
         state = GameState.INACTIVE;
         tempState = GameState.READY;
         view = page;
+        MouseInput mouseInput = new MouseInput();
+        view.addMouseListener(mouseInput);
+        view.addMouseMotionListener(mouseInput);
+        view.addKeyListener(new KeyboardInput());
     }
     public void loadLevel(GameSpec levelSpec){
         if(levelSpec.newGame)

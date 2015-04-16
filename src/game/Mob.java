@@ -43,11 +43,11 @@ public class Mob extends Entity{
         }
         pixShape = new Polygon(xAry, yAry, shape.m_count);
         rectangle = pixShape.getBounds();
-        pixX = rectangle.x;
-        pixY = rectangle.y;
+        pixX = Utils.toPixX(body.getPosition().x);
+        pixY = Utils.toPixY(body.getPosition().y);
         
-        imgXOffset = (rectangle.width - genericMob.getWidth(null))/2;
-        imgYOffset = rectangle.height - genericMob.getHeight(null);
+        imgXOffset = genericMob.getWidth(null)/2;
+        imgYOffset = genericMob.getHeight(null);
     }
     
     public void setHealth(int health){
