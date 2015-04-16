@@ -14,7 +14,7 @@ public class Wall extends Entity {
 
     Wall(World world, BodyDef bd, FixtureDef fd, PolygonShape shape) 
     {
-    	this.world = world;        
+    	this.world = world;
     	this.shape = shape;
     	
     	fd.shape = shape;

@@ -21,9 +21,11 @@ public class Ball extends Entity{
     CircleShape shape;
     Ellipse2D.Float pixCircle;
     static final float IMPULSE_SCALE = 10; //TODO Should make this also a function of Consts.SCALE
-    Image ballImage = Toolkit.getDefaultToolkit().getImage(Consts.IMG_BALL);
+    Image ballImage;
 
-    public Ball(World world, BodyDef bd, FixtureDef fd, Vec2 position){
+    public Ball(World world, BodyDef bd, FixtureDef fd){
+        
+        ballImage = Toolkit.getDefaultToolkit().getImage(Consts.IMG_BALL);
         
     	this.world = world;
         grabbed = false;
@@ -31,22 +33,13 @@ public class Ball extends Entity{
         pixY = 0;
         mouseX = 0;
         mouseY = 0;
-        {//TODO Move this logic to the level factory
-            //body definition
-            bd.position.set(position);
-            bd.type = BodyType.DYNAMIC;
-            bd.linearDamping = Consts.rollingFriction;
-        }
         
         int pixRad = ballImage.getWidth(null) / 2;
-        //define shape of the body.
         shape = new CircleShape();
         shape.m_radius = Utils.toPhysLength(pixRad);
-        
-        //define fixture of the body.        
+             
         fd.shape = shape;
         
-        //create the body and add fixture to it
         body = world.createBody(bd);
         body.createFixture(fd).setUserData(this);
         

@@ -13,19 +13,24 @@ public class Hole extends Entity{
     public CircleShape shape;
     public Ellipse2D.Float pixShape;
     
-    Image holeImage = Toolkit.getDefaultToolkit().getImage(Consts.IMG_HOLE);
+    Image holeImage;
     
     Hole(World world, BodyDef bd, FixtureDef fd, CircleShape shape, Vec2 position){
+
+        holeImage = Toolkit.getDefaultToolkit().getImage(Consts.IMG_HOLE);
+        
         this.world = world;
+        pixX = 0;
+        pixY = 0;
         
         int pixRad = holeImage.getWidth(null) / 2;
-        //define shape of the body.
         shape = new CircleShape();
         shape.m_radius = Utils.toPhysLength(pixRad);
+             
+        fd.shape = shape;
         
-        //create the body and add fixture to it
         body = world.createBody(bd);
-        body.createFixture(fd).setUserData(this);      
+        body.createFixture(fd).setUserData(this);
         
         pixX = Utils.toPixX(body.getPosition().x);
         pixY = Utils.toPixY(body.getPosition().y);

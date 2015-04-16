@@ -9,29 +9,29 @@ import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.dynamics.*;
 
 public class Mob extends Entity{
-    PolygonShape shape;	
-	Rectangle2D.Float pixShape;	
-	Image genericMob = Toolkit.getDefaultToolkit().getImage(Consts.IMG_GENROBO);
+    PolygonShape shape;
+	Rectangle2D.Float pixShape;
+	Image genericMob;
     int health;
-    int numOfSpacesMobCanMove;    
+    int numOfSpacesMobCanMove;
     
     Mob(World world, BodyDef bd, FixtureDef fd, PolygonShape shape, float gridScale){
-    	this.world = world;        
-    	shape = new PolygonShape();
-    	shape.setAsBox(5f, 5f);    
-    	
-    	fd.shape = shape;    	
-    	fd.density = 1.0f;
-    	fd.friction = 0.1f;
-    	
-    	bd.position.set(1f, 1f);
-    	bd.type = BodyType.STATIC;
+        
+        genericMob = Toolkit.getDefaultToolkit().getImage(Consts.IMG_GENROBO);
+        
+        this.world = world;
+        this.shape = shape;
+
+        fd.shape = shape;
+        
+        body = world.createBody(bd);
+        fixture = body.createFixture(fd);
     }
 
     @Override
     public void hit(Entity otherEntity) {
         health--;
-        if (health == 0)
+        if (health <= 0)
         {
         	remove = true;
         }
