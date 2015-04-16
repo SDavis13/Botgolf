@@ -20,6 +20,8 @@ public class CreateLevel implements LevelFactory {
      */
     public static final float BALL_DENSITY = 0.15f; //TODO Should probably make this a function of Consts.SCALE
     
+    public static final Vec2 BALL_CENTER = new Vec2(4,76);        
+    
     
 	public Level createLevel(GameSpec specs){
 					
@@ -53,18 +55,23 @@ public class CreateLevel implements LevelFactory {
 		Wall wall4 = new Wall(world, body, fixture, polyShape);
 		wallList.add(wall4);
 		
-		Level theLevel = new Level(world, specs.levelName, specs.levelNum, wallList);
+		
+		
+		Level theLevel = new Level(world, specs, wallList, createBall(world));
 		return theLevel;
 	}
 	
-	private Ball createBall(){
+	private Ball createBall(World theWorld){
 	    Ball ball;
-        FixtureDef ballFix = null;
+        FixtureDef ballFix = new FixtureDef();
         ballFix.density = BALL_DENSITY;
         ballFix.friction = BALL_FRICTION;
         ballFix.restitution = BALL_BOUNCE;
+        BodyDef ballBody = new BodyDef(); 
+        ballBody.position = BALL_CENTER;
+        ballBody.linearDamping = Consts.rollingFriction;
         
-        ball = new Ball(null,null,null,null);
+        ball = new Ball(theWorld,ballBody,ballFix);
         return ball;
 	}
 }

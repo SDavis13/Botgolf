@@ -24,16 +24,18 @@ public class Level {
     Ball ball;
     ArrayList<Mob> mobs;
     ArrayList<Mob> mDelete;
-    IterFlag mobIterFlag;
+    IterFlag mobIterFlag = new IterFlag();
     ArrayList<Wall> walls;
     ArrayList<Wall> wDelete;
     Hole hole;
     World world;
     
-    Level(World world, String levelName, int levelNum, ArrayList<Wall> wallList){
+    Level(World world, GameSpec specs, ArrayList<Wall> wallList, Ball theBall){
         this.world = world;
-        name = levelName;
-        id = levelNum;
+        name = specs.levelName;
+        id = specs.levelNum;
+        walls = wallList;
+        ball = theBall;
         
         mobIterFlag.access = true;
     }
