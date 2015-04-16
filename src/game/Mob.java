@@ -2,6 +2,8 @@ package game;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Polygon;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.geom.Rectangle2D;
 
@@ -10,8 +12,11 @@ import org.jbox2d.dynamics.*;
 
 public class Mob extends Entity{
     public final static int DEFAULT_HEALTH = 2;
+    final int imgXOffset;
+    final int imgYOffset;
     PolygonShape shape;
-	Rectangle2D.Float pixShape;
+	Polygon pixShape;
+	Rectangle rectangle;
 	Image genericMob;
     int health = DEFAULT_HEALTH;
     int numOfSpacesMobCanMove;
@@ -28,6 +33,25 @@ public class Mob extends Entity{
         body = world.createBody(bd);
         fixture = body.createFixture(fd);
         fixture.setUserData(this);
+        
+        int[] xAry = new int[shape.m_count];
+        int[] yAry = new int[shape.m_count];
+        
+        for(int i = 0; i < xAry.length; i++){
+            xAry[i] = (int)(Utils.toPixX(shape.m_vertices[i].x + bd.position.x) + .5f);
+            yAry[i] = (int)(Utils.toPixY(shape.m_vertices[i].y + bd.position.y) + .5f);
+        }
+        pixShape = new Polygon(xAry, yAry, shape.m_count);
+        rectangle = pixShape.getBounds();
+        pixX = rectangle.x;
+        pixY = rectangle.y;
+        
+        imgXOffset = (rectangle.width - genericMob.getWidth(null))/2;
+        imgYOffset = rectangle.height - genericMob.getHeight(null);
+    }
+    
+    public void setHealth(int health){
+        this.health = health;
     }
 
     @Override
@@ -42,16 +66,17 @@ public class Mob extends Entity{
 
     @Override
     public void render(Graphics g1) {
-        g1.drawImage(genericMob, (int)pixShape.x, (int)pixShape.y, null);
+        g1.drawImage(genericMob, (int)(pixX+.5f) + imgXOffset, (int)(pixY+.5f) + imgYOffset, null);
     }
 
     @Override
     public void pixUpdate() {
-        pixX = Utils.toPixX(body.getPosition().x);
-        pixY = Utils.toPixY(body.getPosition().y);
-        float temp = (Utils.toPixLength(shape.m_radius));        
-        pixShape.x = pixX - temp;
-        pixShape.y = pixY - temp;
+        float newPixX = Utils.toPixX(body.getPosition().x);
+        float newPixY = Utils.toPixY(body.getPosition().y);
+        pixShape.translate((int)(newPixX - pixX + .5f), (int)(newPixY - pixY + .5f));
+        rectangle = pixShape.getBounds();
+        pixX = newPixX;
+        pixY = newPixY;
     }
     
     

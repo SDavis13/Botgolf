@@ -23,6 +23,16 @@ public class Wall extends Entity {
         fixture = body.createFixture(fd);
         fixture.setUserData(this);
     	
+        int[] xAry = new int[shape.m_count];
+        int[] yAry = new int[shape.m_count];
+        
+        for(int i = 0; i < xAry.length; i++){
+            xAry[i] = (int)(Utils.toPixX(shape.m_vertices[i].x + bd.position.x) + .5f);
+            yAry[i] = (int)(Utils.toPixY(shape.m_vertices[i].y + bd.position.y) + .5f);
+        }
+        pixShape = new Polygon(xAry, yAry, shape.m_count);
+        pixX = pixShape.getBounds().x;
+        pixY = pixShape.getBounds().y;
     }
 
     @Override
@@ -40,9 +50,11 @@ public class Wall extends Entity {
 
     @Override
     public void pixUpdate() {
-        // Auto-generated method stub
-        // Doesn't need code until (if) moving walls exist.
-        
+        float newPixX = Utils.toPixX(body.getPosition().x);
+        float newPixY = Utils.toPixY(body.getPosition().y);
+        pixShape.translate((int)(newPixX - pixX + .5f), (int)(newPixY - pixY + .5f));
+        pixX = newPixX;
+        pixY = newPixY;
     }
 
 }
