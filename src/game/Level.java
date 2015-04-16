@@ -30,7 +30,7 @@ public class Level {
     Hole hole;
     World world;
     
-    Level(World world, GameSpec specs, ArrayList<Wall> wallList, Ball theBall){
+    Level(World world, GameSpec specs, ArrayList<Wall> wallList, Ball theBall, Hole theHole){
         this.world = world;
         name = specs.levelName;
         id = specs.levelNum;

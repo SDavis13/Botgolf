@@ -15,7 +15,7 @@ public class Hole extends Entity{
     
     Image holeImage;
     
-    Hole(World world, BodyDef bd, FixtureDef fd, CircleShape shape, Vec2 position){
+    Hole(World world, BodyDef bd, FixtureDef fd){
 
         holeImage = Toolkit.getDefaultToolkit().getImage(Consts.IMG_HOLE);
         

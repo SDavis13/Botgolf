@@ -57,7 +57,7 @@ public class CreateLevel implements LevelFactory {
 		
 		
 		
-		Level theLevel = new Level(world, specs, wallList, createBall(world));
+		Level theLevel = new Level(world, specs, wallList, createBall(world), createHole(world));
 		return theLevel;
 	}
 	
@@ -73,5 +73,17 @@ public class CreateLevel implements LevelFactory {
         
         ball = new Ball(theWorld,ballBody,ballFix);
         return ball;
+	}
+	
+	private Hole createHole(World theWorld)
+	{
+		Hole hole;
+		FixtureDef holeFix = new FixtureDef();
+		//WIP
+		BodyDef holeBody = new BodyDef();
+		//WIP
+		
+		hole = new Hole(theWorld, holeBody, holeFix);
+		return hole;
 	}
 }
