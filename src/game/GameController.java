@@ -35,7 +35,7 @@ public class GameController {
     public void startGame(){
         state = tempState;
         tickRunner = new Timer();
-        tickRunner.schedule(new PhysicsLoop(), 0, Consts.TIMERTICK);
+        tickRunner.scheduleAtFixedRate(new PhysicsLoop(), 25, Consts.TIMERTICK);
     }
     public void pauseGame(){
         tempState = state;

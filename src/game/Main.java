@@ -47,7 +47,7 @@ public class Main extends JFrame{
 		
     	
         getContentPane().setPreferredSize(new Dimension(WIDTH, HEIGHT));
-        pack();        
+        pack();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Botgolf");
         this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.PAGE_AXIS));

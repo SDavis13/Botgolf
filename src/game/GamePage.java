@@ -23,6 +23,7 @@ public class GamePage extends View{
     protected GamePage(String name) {
         super(name);
         control = new GameController(this);
+        setDoubleBuffered(true);
     }
 
     protected void paintComponent(Graphics g1){
@@ -36,7 +37,7 @@ public class GamePage extends View{
     
     public void startRender(){
         tickRunner = new Timer();
-        tickRunner.schedule(new RenderLoop(), 0, Consts.TIMERTICK);
+        tickRunner.scheduleAtFixedRate(new RenderLoop(), 25, Consts.TIMERTICK);
     }
     
     public void pause(){
@@ -52,6 +53,7 @@ public class GamePage extends View{
             control.loadLevel(spec);
         }
         control.startGame();
+        startRender();
     }
     
     public void actionPerformed(ActionEvent e){
