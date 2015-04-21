@@ -53,7 +53,7 @@ public class Wall extends Entity {
     public void pixUpdate() {
         float newPixX = Utils.toPixX(body.getPosition().x);
         float newPixY = Utils.toPixY(body.getPosition().y);
-        pixShape.translate((int)(newPixX - pixX + .5f), (int)(newPixY - pixY + .5f));
+        pixShape.translate((int)(newPixX - pixX), (int)(newPixY - pixY));
         pixX = newPixX;
         pixY = newPixY;
     }
