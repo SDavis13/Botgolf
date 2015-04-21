@@ -35,6 +35,7 @@ public class GameController implements ContactListener{
                 curLevel = curFactory.createLevel(levelSpec);
         ball = curLevel.getBall();
         view.setLevel(curLevel);
+        curLevel.world.setContactListener(this);
     }
     public void startGame(){
         state = tempState;
