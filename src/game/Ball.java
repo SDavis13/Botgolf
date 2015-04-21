@@ -4,12 +4,17 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.geom.Ellipse2D;
+import java.awt.image.BufferedImage;
 
 import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
 
 import java.awt.Toolkit;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 
 public class Ball extends Entity{
@@ -21,11 +26,15 @@ public class Ball extends Entity{
     CircleShape shape;
     Ellipse2D.Float pixCircle;
     static final float IMPULSE_SCALE = 10; //TODO Should make this also a function of Consts.SCALE
-    Image ballImage;
+    BufferedImage ballImage;
 
     public Ball(World world, BodyDef bd, FixtureDef fd){
         
-        ballImage = Toolkit.getDefaultToolkit().getImage(Consts.IMG_BALL);
+        try {
+            ballImage = ImageIO.read(new File(Consts.IMG_BALL));
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
         
     	this.world = world;
         grabbed = false;

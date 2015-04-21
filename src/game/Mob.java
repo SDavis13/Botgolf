@@ -6,6 +6,11 @@ import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.dynamics.*;
@@ -16,14 +21,18 @@ public class Mob extends Entity{
     final int imgYOffset;
     PolygonShape shape;
 	Polygon pixShape;
-	Rectangle rectangle;
-	Image genericMob;
+	//Rectangle rectangle;
+	BufferedImage genericMob;
     int health = DEFAULT_HEALTH;
     int numOfSpacesMobCanMove;
     
     Mob(World world, BodyDef bd, FixtureDef fd, PolygonShape shape, float gridScale){
         
-        genericMob = Toolkit.getDefaultToolkit().getImage(Consts.IMG_GENROBO);
+        try {
+            genericMob = ImageIO.read(new File(Consts.IMG_GENROBO));
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
         
         this.world = world;
         this.shape = shape;
@@ -42,7 +51,7 @@ public class Mob extends Entity{
             yAry[i] = (int)(Utils.toPixY(shape.m_vertices[i].y + bd.position.y) + .5f);
         }
         pixShape = new Polygon(xAry, yAry, shape.m_count);
-        rectangle = pixShape.getBounds();
+        //rectangle = pixShape.getBounds();
         pixX = Utils.toPixX(body.getPosition().x);
         pixY = Utils.toPixY(body.getPosition().y);
         
@@ -66,7 +75,7 @@ public class Mob extends Entity{
 
     @Override
     public void render(Graphics g1) {
-        g1.drawImage(genericMob, (int)(pixX+.5f) + imgXOffset, (int)(pixY+.5f) + imgYOffset, null);
+        g1.drawImage(genericMob, (int)(pixX+.5f) - imgXOffset, (int)(pixY+.5f) - imgYOffset, null);
     }
 
     @Override
@@ -74,7 +83,7 @@ public class Mob extends Entity{
         float newPixX = Utils.toPixX(body.getPosition().x);
         float newPixY = Utils.toPixY(body.getPosition().y);
         pixShape.translate((int)(newPixX - pixX + .5f), (int)(newPixY - pixY + .5f));
-        rectangle = pixShape.getBounds();
+        //rectangle = pixShape.getBounds();
         pixX = newPixX;
         pixY = newPixY;
     }

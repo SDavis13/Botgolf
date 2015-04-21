@@ -78,7 +78,7 @@ public class GameController {
     }
     
     private class MouseInput extends MouseInputAdapter{
-        int xOrigin, yOrigin, oldXOffset, oldYOffset;
+        float xOrigin, yOrigin, oldXOffset, oldYOffset;
         @Override
         public void mouseDragged(MouseEvent e){
             if(state == GameState.READY){
@@ -89,8 +89,8 @@ public class GameController {
                     if(xOrigin == 0 && yOrigin == 0){
                         xOrigin = e.getX();
                         yOrigin = e.getY();
-                        oldXOffset = (int)(Consts.pxOffset + 0.5f);
-                        oldYOffset = (int)(Consts.pyOffset + 0.5f);
+                        oldXOffset = Consts.pxOffset;
+                        oldYOffset = Consts.pyOffset;
                     }
                     Consts.pxOffset = oldXOffset + (xOrigin - e.getX());
                     Consts.pyOffset = oldYOffset + (yOrigin - e.getY());
