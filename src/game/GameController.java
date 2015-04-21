@@ -57,7 +57,7 @@ public class GameController {
                     }
                     break;
                 case MOBTURN:
-                    curLevel.moveMobs();
+                    if(!curLevel.moveMobs()) state = GameState.READY;
                     break;
             }
         }
@@ -81,8 +81,11 @@ public class GameController {
         float xOrigin, yOrigin, oldXOffset, oldYOffset;
         @Override
         public void mouseDragged(MouseEvent e){
+            int mouseX = e.getX();
+            int mouseY = e.getY();
+            ball.setMouseLoc(mouseX,mouseY);
             if(state == GameState.READY){
-                if(ball.contains(e.getX(),e.getY()) && e.getButton() == 0){
+                if(ball.contains(mouseX,mouseY) && e.getButton() == 0){
                     state = GameState.GRAB;
                     ball.setGrabbed();
                 }else{
@@ -92,8 +95,8 @@ public class GameController {
                         oldXOffset = Consts.pxOffset;
                         oldYOffset = Consts.pyOffset;
                     }
-                    Consts.pxOffset = oldXOffset + (xOrigin - e.getX());
-                    Consts.pyOffset = oldYOffset + (yOrigin - e.getY());
+                    Consts.pxOffset = oldXOffset + (xOrigin - mouseX);
+                    Consts.pyOffset = oldYOffset + (yOrigin - mouseY);
                 }
             }
         }
@@ -102,8 +105,8 @@ public class GameController {
             xOrigin = 0;
             yOrigin = 0;
             if(state == GameState.GRAB && e.getButton() == 1){
-                state = GameState.LAUNCH;
                 ball.launch(Utils.toPhysX(e.getX()), Utils.toPhysY(e.getY()));
+                state = GameState.LAUNCH;
             }
         }
     }

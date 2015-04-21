@@ -46,7 +46,7 @@ public class Level {
 
     boolean moveMobs(){
         //TODO move the mobs
-        return true;
+        return false;
     }
 
     void step(){

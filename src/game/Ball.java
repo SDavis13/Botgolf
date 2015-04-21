@@ -44,7 +44,7 @@ public class Ball extends Entity{
         mouseX = 0;
         mouseY = 0;
         
-        int pixRad = ballImage.getWidth(null) / 2;
+        pixRad = ballImage.getWidth(null) / 2f;
         shape = new CircleShape();
         shape.m_radius = Utils.toPhysLength(pixRad);
              
@@ -61,6 +61,11 @@ public class Ball extends Entity{
     public void setGrabbed(){
         grabbed = true;
     }
+    
+    public void setMouseLoc(int mouseX, int mouseY){
+        this.mouseX = mouseX;
+        this.mouseY = mouseY;
+    }
 
     @Override
     public void hit(Entity otherEntity) {
@@ -71,6 +76,7 @@ public class Ball extends Entity{
     @Override
     public void render(Graphics2D g) {
         g.drawImage(ballImage, (int)pixCircle.x, (int)pixCircle.y, null);
+        g.setColor(Color.BLACK);
         g.draw(pixCircle);
         if(grabbed){
             int temp2 = (int)(pixRad + 0.5f);

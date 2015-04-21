@@ -20,6 +20,7 @@ public class Hole extends Entity{
     public Ellipse2D.Float pixShape;
     
     BufferedImage holeImage;
+    float pixRad;
     
     Hole(World world, BodyDef bd, FixtureDef fd){
 
@@ -33,7 +34,7 @@ public class Hole extends Entity{
         pixX = 0;
         pixY = 0;
         
-        int pixRad = holeImage.getWidth(null) / 2;
+        pixRad = holeImage.getWidth(null) / 2f;
         shape = new CircleShape();
         shape.m_radius = Utils.toPhysLength(pixRad);
              

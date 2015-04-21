@@ -22,7 +22,7 @@ public class Utils {
     //Convert a Swing pixel y coordinate to a JBox2D y coordinate
     public static float toPhysY(float pixY) {
         float physY = 100.0f - ((100 * (pixY + Consts.pyOffset)) / Consts.SCALE) ;
-        return physY;
+        return physY;//not entirely sure if this is correct.
     }
 
     //Convert a JBox2D width to pixel width
@@ -32,6 +32,6 @@ public class Utils {
     
     //Convert a JBox2D width to pixel width
     public static float toPhysLength(float pixLen) {
-        return Consts.SCALE*pixLen / 100.0f;
+        return  100f*pixLen / Consts.SCALE ;
     }
 }

@@ -69,7 +69,8 @@ public class CreateLevel implements LevelFactory {
         ballFix.density = BALL_DENSITY;
         ballFix.friction = BALL_FRICTION;
         ballFix.restitution = BALL_BOUNCE;
-        BodyDef ballBody = new BodyDef(); 
+        BodyDef ballBody = new BodyDef();
+        ballBody.type = BodyType.DYNAMIC;
         ballBody.position = BALL_CENTER;
         ballBody.linearDamping = Consts.rollingFriction;
         

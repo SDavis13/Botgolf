@@ -77,6 +77,7 @@ public class Mob extends Entity{
     @Override
     public void render(Graphics2D g) {
         g.drawImage(genericMob, (int)(pixX+.5f) - imgXOffset, (int)(pixY+.5f) - imgYOffset, null);
+        g.draw(pixShape);
     }
 
     @Override
