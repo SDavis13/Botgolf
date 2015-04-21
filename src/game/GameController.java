@@ -106,7 +106,7 @@ public class GameController {
             yOrigin = 0;
             if(state == GameState.GRAB && e.getButton() == 1){
                 ball.launch(Utils.toPhysX(e.getX()), Utils.toPhysY(e.getY()));
-                state = GameState.LAUNCH;
+                state = GameState.READY; //TEMP...FOR TESTING
             }
         }
     }

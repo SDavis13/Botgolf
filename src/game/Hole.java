@@ -64,9 +64,11 @@ public class Hole extends Entity{
 
     @Override
     public void pixUpdate() {
-        float temp = (Utils.toPixLength(shape.m_radius));
-        pixShape.x = pixX - temp;
-        pixShape.y = pixY - temp;
+    	pixX = Utils.toPixX(body.getPosition().x);
+        pixY = Utils.toPixY(body.getPosition().y);
+        pixRad = (Utils.toPixLength(shape.m_radius));
+        pixShape.x = pixX - pixRad;
+        pixShape.y = pixY - pixRad;
     }
 
 }
