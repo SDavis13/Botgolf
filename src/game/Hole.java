@@ -4,6 +4,11 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.geom.Ellipse2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.common.Vec2;
@@ -13,11 +18,15 @@ public class Hole extends Entity{
     public CircleShape shape;
     public Ellipse2D.Float pixShape;
     
-    Image holeImage;
+    BufferedImage holeImage;
     
     Hole(World world, BodyDef bd, FixtureDef fd){
 
-        holeImage = Toolkit.getDefaultToolkit().getImage(Consts.IMG_HOLE);
+    	try {
+            holeImage = ImageIO.read(new File(Consts.IMG_HOLE));
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
         
         this.world = world;
         pixX = 0;
