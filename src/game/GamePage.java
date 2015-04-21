@@ -10,6 +10,7 @@ import java.util.concurrent.ScheduledExecutorService;
 
 public class GamePage extends View{
     static GamePage page = new GamePage(Consts.GAME);
+    static final String THREAD_NAME = "RenderLoop";
     Level curLevel;
     GameSpec spec;
     GameController control;
@@ -36,7 +37,7 @@ public class GamePage extends View{
     }
     
     public void startRender(){
-        tickRunner = new Timer();
+        tickRunner = new Timer(THREAD_NAME);
         tickRunner.scheduleAtFixedRate(new RenderLoop(), 25, Consts.TIMERTICK);
     }
     

@@ -13,6 +13,7 @@ import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.contacts.Contact;
 
 public class GameController implements ContactListener{
+    static final String THREAD_NAME = "PhysicsLoop";
     GamePage view;
     Level curLevel;
     Ball ball;
@@ -39,7 +40,7 @@ public class GameController implements ContactListener{
     }
     public void startGame(){
         state = tempState;
-        tickRunner = new Timer();
+        tickRunner = new Timer(THREAD_NAME);
         tickRunner.scheduleAtFixedRate(new PhysicsLoop(), 25, Consts.TIMERTICK);
     }
     public void pauseGame(){
