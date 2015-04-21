@@ -23,7 +23,7 @@ public class CreateLevel implements LevelFactory {
     public static final float WALL_FRICTION = 0.1f;
     public static final float MOB_FRICTION = 0.1f;
     public static final float GRID_SIZE = 4f;
-    public static final float MOB_SIZE = 4f;
+    public static final float HALF_MOB_SIZE = 2f;
     
     public static final Vec2 BALL_CENTER = new Vec2(4,76);
     public static final Vec2 HOLE_POSITION = new Vec2(4,96);
@@ -40,13 +40,13 @@ public class CreateLevel implements LevelFactory {
         Ball ball = createBall(world);
         
         Mob mob;
-        mob = createMob(world, 20,76,MOB_SIZE,MOB_SIZE);
+        mob = createMob(world, 20,76,HALF_MOB_SIZE,HALF_MOB_SIZE);
         mob.setHealth(1);
         mobList.add(mob);
-        mob = createMob(world, 8,88,MOB_SIZE,MOB_SIZE);
+        mob = createMob(world, 8,88,HALF_MOB_SIZE,HALF_MOB_SIZE);
         mob.setHealth(3);
         mobList.add(mob);
-        mob = createMob(world, 32,92,MOB_SIZE,MOB_SIZE);
+        mob = createMob(world, 32,92,HALF_MOB_SIZE,HALF_MOB_SIZE);
         mob.setHealth(2);
         mobList.add(mob);
         

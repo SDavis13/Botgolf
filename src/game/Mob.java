@@ -22,15 +22,15 @@ public class Mob extends Entity{
     final int imgYOffset;
     PolygonShape shape;
 	Polygon pixShape;
-	//Rectangle rectangle;
-	BufferedImage genericMob;
+	Rectangle rectangle;
+	Image genericMob;
     int health = DEFAULT_HEALTH;
     int numOfSpacesMobCanMove;
     
     Mob(World world, BodyDef bd, FixtureDef fd, PolygonShape shape, float gridScale){
         
         try {
-            genericMob = ImageIO.read(new File(Consts.IMG_GENROBO));
+            genericMob = ImageIO.read(new File(Consts.IMG_GENROBO)).getScaledInstance(80, 98, Image.SCALE_DEFAULT);
         } catch (IOException e1) {
             e1.printStackTrace();
         }
@@ -52,12 +52,12 @@ public class Mob extends Entity{
             yAry[i] = (int)(Utils.toPixY(shape.m_vertices[i].y + bd.position.y) + .5f);
         }
         pixShape = new Polygon(xAry, yAry, shape.m_count);
-        //rectangle = pixShape.getBounds();
+        rectangle = pixShape.getBounds();
         pixX = Utils.toPixX(body.getPosition().x);
         pixY = Utils.toPixY(body.getPosition().y);
         
         imgXOffset = genericMob.getWidth(null)/2;
-        imgYOffset = genericMob.getHeight(null);
+        imgYOffset = genericMob.getHeight(null)-rectangle.height/2;
     }
     
     public void setHealth(int health){
