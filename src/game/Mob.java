@@ -1,6 +1,7 @@
 package game;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Polygon;
 import java.awt.Rectangle;
@@ -74,8 +75,8 @@ public class Mob extends Entity{
     }
 
     @Override
-    public void render(Graphics g1) {
-        g1.drawImage(genericMob, (int)(pixX+.5f) - imgXOffset, (int)(pixY+.5f) - imgYOffset, null);
+    public void render(Graphics2D g) {
+        g.drawImage(genericMob, (int)(pixX+.5f) - imgXOffset, (int)(pixY+.5f) - imgYOffset, null);
     }
 
     @Override

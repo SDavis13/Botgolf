@@ -1,6 +1,7 @@
 package game;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import org.jbox2d.dynamics.*;
 
@@ -12,7 +13,7 @@ public abstract class Entity {
     boolean remove = false;
 
     public abstract void hit(Entity otherEntity);
-    public abstract void render(Graphics g1);
+    public abstract void render(Graphics2D g);
     public abstract void pixUpdate();
 
 }

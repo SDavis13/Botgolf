@@ -2,6 +2,7 @@ package game;
 
 import java.awt.Graphics;
 import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.Polygon;
 
 import org.jbox2d.collision.shapes.PolygonShape;
@@ -42,10 +43,10 @@ public class Wall extends Entity {
     }
 
     @Override
-    public void render(Graphics g1) 
+    public void render(Graphics2D g) 
     {    	    	
-        g1.setColor(Color.ORANGE);
-        g1.fillPolygon(pixShape);      
+        g.setColor(Color.ORANGE);
+        g.fillPolygon(pixShape);      
     }
 
     @Override

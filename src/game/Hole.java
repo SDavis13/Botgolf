@@ -1,6 +1,7 @@
 package game;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.geom.Ellipse2D;
@@ -55,9 +56,9 @@ public class Hole extends Entity{
     }
 
     @Override
-    public void render(Graphics g1) 
+    public void render(Graphics2D g) 
     {
-        g1.drawImage(holeImage, (int)pixShape.x, (int)pixShape.y, null);
+        g.drawImage(holeImage, (int)pixShape.x, (int)pixShape.y, null);
     }
 
     @Override

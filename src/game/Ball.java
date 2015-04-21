@@ -2,6 +2,7 @@ package game;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
@@ -68,12 +69,13 @@ public class Ball extends Entity{
     }
 
     @Override
-    public void render(Graphics g1) {
-        g1.drawImage(ballImage, (int)pixCircle.x, (int)pixCircle.y, null);
+    public void render(Graphics2D g) {
+        g.drawImage(ballImage, (int)pixCircle.x, (int)pixCircle.y, null);
+        g.draw(pixCircle);
         if(grabbed){
             int temp2 = (int)(pixRad + 0.5f);
-            g1.drawLine((int)(pixX + .5f), (int)(pixY + .5f), mouseX, mouseY);
-            g1.drawOval((mouseX - temp2/2), (mouseY - temp2/2), temp2, temp2);
+            g.drawLine((int)(pixX + .5f), (int)(pixY + .5f), mouseX, mouseY);
+            g.drawOval((mouseX - temp2/2), (mouseY - temp2/2), temp2, temp2);
         }
     }
     
