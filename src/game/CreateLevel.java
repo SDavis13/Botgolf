@@ -39,16 +39,17 @@ public class CreateLevel implements LevelFactory {
         Hole hole = createHole(world);
         Ball ball = createBall(world);
         
-        Mob mob;
-        mob = createMob(world, 20,76,HALF_MOB_SIZE,HALF_MOB_SIZE);
-        mob.setHealth(1);
-        mobList.add(mob);
-        mob = createMob(world, 8,88,HALF_MOB_SIZE,HALF_MOB_SIZE);
-        mob.setHealth(3);
-        mobList.add(mob);
-        mob = createMob(world, 32,92,HALF_MOB_SIZE,HALF_MOB_SIZE);
-        mob.setHealth(2);
-        mobList.add(mob);
+        StandardBot stanMob;
+        ExplosionBot expMob;
+        stanMob = createStanMob(world, 20,76,HALF_MOB_SIZE,HALF_MOB_SIZE);
+        stanMob.setHealth(2);
+        mobList.add(stanMob);
+        expMob = createExpMob(world, 8,88,HALF_MOB_SIZE,HALF_MOB_SIZE);
+        expMob.setHealth(3);
+        mobList.add(expMob);
+        stanMob = createStanMob(world, 32,92,HALF_MOB_SIZE,HALF_MOB_SIZE);
+        stanMob.setHealth(2);
+        mobList.add(stanMob);
         
         //Exterior Walls
         wallList.add(createWall(world, 1,84,1,14,0));//West
@@ -120,5 +121,35 @@ public class CreateLevel implements LevelFactory {
         bd.type = BodyType.STATIC;
         
         return new Mob(theWorld, bd, fd, shape, GRID_SIZE);
+    }
+	
+	private StandardBot createStanMob(World theWorld, float posX, float posY, float halfWidth, float halfHeight){
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(halfWidth, halfHeight);
+        
+        FixtureDef fd = new FixtureDef();
+        fd.shape = shape;
+        fd.friction = MOB_FRICTION;
+        
+        BodyDef bd = new BodyDef();
+        bd.position.set(posX, posY);
+        bd.type = BodyType.STATIC;
+        
+        return new StandardBot(theWorld, bd, fd, shape, GRID_SIZE);
+    }
+	
+	private ExplosionBot createExpMob(World theWorld, float posX, float posY, float halfWidth, float halfHeight){
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(halfWidth, halfHeight);
+        
+        FixtureDef fd = new FixtureDef();
+        fd.shape = shape;
+        fd.friction = MOB_FRICTION;
+        
+        BodyDef bd = new BodyDef();
+        bd.position.set(posX, posY);
+        bd.type = BodyType.STATIC;
+        
+        return new ExplosionBot(theWorld, bd, fd, shape, GRID_SIZE);
     }
 }
