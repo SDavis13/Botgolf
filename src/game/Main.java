@@ -14,12 +14,19 @@ import java.text.ParseException;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+/**
+ * @authors     Spencer Davis
+ * @version     1.0
+ * @since       2015-03-31
+ */
 public class Main extends JFrame{
     static Main theMain = new Main();
     Hashtable<String,View> views = new Hashtable<String,View>();
     View curView;
     
-    //Screen width and height
+    /**
+     * Screen width and height of main window that opens
+     */
     public static final int WIDTH = 800;
     public static final int HEIGHT = 600;           
     
@@ -29,10 +36,22 @@ public class Main extends JFrame{
         frame.switchView("Main", null);
     }
     
+    /**
+     * Getting the instance of theMain.
+     *
+     * @return theMain
+     */
     public static Main getInstance(){
         return theMain;
     }
     
+    /**
+     * Creating.
+     * <p>
+     *
+     * @param  variable Description text text text.
+     * @return Description text text text.
+     */
     private Main(){
     	SynthLookAndFeel theme = new SynthLookAndFeel();
     	String projectDirectory = System.getProperty("user.dir");
@@ -55,10 +74,22 @@ public class Main extends JFrame{
         this.setVisible(true);
     }
     
+    /**
+     * Creates the views.
+     * <p>
+     * Creates the views or pages to view.
+     *
+     */
     public void addView(View view){
         views.put(view.name, view);
     }
     
+    /**
+     * Switches between the views.
+     * <p>
+     * This switches between the views.
+     *
+     */
     public void switchView(String name, Object message){
         View view = views.get(name);
         if(view != null){
@@ -74,11 +105,22 @@ public class Main extends JFrame{
         }
     }
     
+    /**
+     * Repaints the current view page selected.
+     * 
+     */
     public void repaint(){
         super.repaint();
         curView.repaint();
     }
     
+    
+    /**
+     * Creates the pages to use.
+     * <p>
+     * This creates pages to use between switching views.
+     *
+     */
     private void createPages(){
         addView(MainPage.getInstance());
         addView(GamePage.getInstance());
