@@ -19,6 +19,7 @@ public class Level {
      * Higher = more accuracy, less performance
      */
     final static int POSITION_ITERATIONS = 3;
+    final static String WINSTRING = "You win!";
     int id;
     String name;
     Ball ball;
@@ -29,6 +30,7 @@ public class Level {
     ArrayList<Wall> wDelete;
     Hole hole;
     World world;
+    boolean win = false;
     
     Level(World world, GameSpec specs, ArrayList<Wall> wallList, ArrayList<Mob> mobList, Ball theBall, Hole theHole){
         this.world = world;
@@ -95,6 +97,10 @@ public class Level {
             hole.render(g);
         }
         ball.render(g);
+        
+        if(win){
+            g.drawString(WINSTRING, 10, 10);
+        }
     }
 
     public Ball getBall(){

@@ -74,8 +74,12 @@ public class GameController implements ContactListener{
         public void keyPressed(KeyEvent e){
             int code = e.getKeyCode();
             if(code == Consts.pauseKey){
+                tempState = state;
+                state = GameState.PAUSED;
                 pauseGame();
             }else if(code == Consts.pauseMenuKey){
+                tempState = state;
+                state = GameState.PAUSED;
                 pauseGame();
                 view.pause();
             }

@@ -17,7 +17,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 public class Main extends JFrame{
     static Main theMain = new Main();
     Hashtable<String,View> views = new Hashtable<String,View>();
-    View curView;       
+    View curView;
     
     //Screen width and height
     public static final int WIDTH = 800;
@@ -36,7 +36,7 @@ public class Main extends JFrame{
     private Main(){
     	SynthLookAndFeel theme = new SynthLookAndFeel();
     	String projectDirectory = System.getProperty("user.dir");
-    	System.out.println(System.getProperty("user.dir"));    	
+    	System.out.println(System.getProperty("user.dir"));
     	try {
 			theme.load(new URL("file:///" + projectDirectory + "/resources/game/script/gui.xml"));
 			UIManager.setLookAndFeel(theme);

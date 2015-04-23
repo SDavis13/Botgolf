@@ -85,7 +85,7 @@ public class Mob extends Entity{
         float newPixX = Utils.toPixX(body.getPosition().x);
         float newPixY = Utils.toPixY(body.getPosition().y);
         pixShape.translate((int)(newPixX - pixX), (int)(newPixY - pixY));
-        //rectangle = pixShape.getBounds();
+        rectangle = pixShape.getBounds();
         pixX = newPixX;
         pixY = newPixY;
     }

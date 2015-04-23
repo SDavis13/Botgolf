@@ -85,7 +85,7 @@ public class SoundRepository {
 	}
 */
 	public static void playSound(String file) {
-		Clip clip = null;
+		/*Clip clip = null;
 		AudioInputStream audio = null;
 		if(soundBank.containsKey(file)){
 			clip = soundBank.get(file);
@@ -105,7 +105,7 @@ public class SoundRepository {
 			}
 			soundBank.put(file, clip);
 		}
-		clip.start();
+		clip.start();*/
 	}
 
 
