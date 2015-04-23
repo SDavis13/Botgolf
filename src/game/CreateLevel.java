@@ -44,12 +44,12 @@ public class CreateLevel implements LevelFactory {
         stanMob = createStanMob(world, 20,76,HALF_MOB_SIZE,HALF_MOB_SIZE);
         stanMob.setHealth(2);
         mobList.add(stanMob);
-        expMob = createExpMob(world, 8,88,HALF_MOB_SIZE,HALF_MOB_SIZE);
-        expMob.setHealth(3);
-        mobList.add(expMob);
-        stanMob = createStanMob(world, 32,92,HALF_MOB_SIZE,HALF_MOB_SIZE);
+        stanMob = createStanMob(world, 8,88,HALF_MOB_SIZE,HALF_MOB_SIZE);
         stanMob.setHealth(2);
         mobList.add(stanMob);
+        expMob = createExpMob(world, 32,92,HALF_MOB_SIZE,HALF_MOB_SIZE);
+        expMob.setHealth(3);
+        mobList.add(expMob);
         
         //Exterior Walls
         wallList.add(createWall(world, 1,84,1,14,0));//West
