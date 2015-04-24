@@ -44,28 +44,30 @@ public class SoundRepository {
      * loadSound method is used to load the sounds to play.
      */
     private void loadSound(){
-        File file;
-        Clip clip = null;
-        try {
-            clip = AudioSystem.getClip();
-        } catch (LineUnavailableException e1) {
-            e1.printStackTrace();
-        }
-        file = new File(Consts.SNDFILE_SCORE);
-        try {
-            if(file != null)
-                clip.open(AudioSystem.getAudioInputStream(file));
-        } catch (LineUnavailableException e) {
-            // Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // Auto-generated catch block
-            e.printStackTrace();
-        } catch (UnsupportedAudioFileException e) {
-            // Auto-generated catch block
-            e.printStackTrace();
-        }
-        soundBank.put(Consts.SND_SCORE, clip);
+    	for(int i = 0; i < Consts.SOUNDS.length; i++){
+	        File file;
+	        Clip clip = null;
+	        try {
+	            clip = AudioSystem.getClip();
+	        } catch (LineUnavailableException e1) {
+	            e1.printStackTrace();
+	        }
+	        file = new File(Consts.SOUNDFILES[i]);
+	        try {
+	            if(file != null)
+	                clip.open(AudioSystem.getAudioInputStream(file));
+	        } catch (LineUnavailableException e) {
+	            // Auto-generated catch block
+	            e.printStackTrace();
+	        } catch (IOException e) {
+	            // Auto-generated catch block
+	            e.printStackTrace();
+	        } catch (UnsupportedAudioFileException e) {
+	            // Auto-generated catch block
+	            e.printStackTrace();
+	        }
+	        soundBank.put(Consts.SOUNDS[i], clip);
+    	}
     }
 
     /**
