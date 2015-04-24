@@ -17,8 +17,8 @@ import org.jbox2d.dynamics.World;
  * This represents the specifications of the Hole for the game.
  * 
  * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
- * @version     1.0
- * @since       2015-04-21
+ * @version     2015-04-24
+ * @since       2015-04-24
  * @extends 	Entity
  */
 public class Hole extends Entity{
@@ -29,6 +29,13 @@ public class Hole extends Entity{
     BufferedImage holeImage;
     float pixRad;
 
+    /**
+     * Constructor for Hole
+     * 
+     * @param world		Object type of World passed
+     * @param bd		Object type of Body Definition passed
+     * @param fd		Object type of Fixture Definition passed
+     */
     Hole(World world, BodyDef bd, FixtureDef fd){
 
         try {
@@ -56,7 +63,9 @@ public class Hole extends Entity{
     }
 
     /**
-     * hit method created to play sound if ball entity hits hole.
+     * Hit method created to play sound if ball entity hits hole.
+     * 
+     * @param otherEntity	Object type of Entity passed
      */
     @Override
     public void hit(Entity otherEntity) {
@@ -67,7 +76,9 @@ public class Hole extends Entity{
     }
 
     /**
-     * render method used to draw the hole graphic to location.
+     * Render method used to draw the hole graphic to location.
+     * 
+     * @param g		Object type of Graphics2D passed
      */
     @Override
     public void render(Graphics2D g) 
@@ -76,7 +87,7 @@ public class Hole extends Entity{
     }
 
     /**
-     * pixUpdate method used to define where the graphic of hold is drawn.
+     * PixUpdate method used to define where the graphic of hole is drawn.
      */
     @Override
     public void pixUpdate() {
