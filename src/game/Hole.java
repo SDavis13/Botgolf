@@ -13,6 +13,14 @@ import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
+/**
+ * This represents the specifications of the Hole for the game.
+ * 
+ * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
+ * @version     1.0
+ * @since       2015-04-21
+ * @extends 	Entity
+ */
 public class Hole extends Entity{
     public CircleShape shape;
     public Ellipse2D.Float pixShape;
@@ -47,6 +55,9 @@ public class Hole extends Entity{
         pixShape = new Ellipse2D.Float((pixX - pixRad), (pixY - pixRad), pixRad*2, pixRad*2);
     }
 
+    /**
+     * hit method created to play sound if ball entity hits hole.
+     */
     @Override
     public void hit(Entity otherEntity) {
         if(otherEntity instanceof Ball){
@@ -55,12 +66,18 @@ public class Hole extends Entity{
         }
     }
 
+    /**
+     * render method used to draw the hole graphic to location.
+     */
     @Override
     public void render(Graphics2D g) 
     {
         g.drawImage(holeImage, (int)pixShape.x, (int)pixShape.y, null);
     }
 
+    /**
+     * pixUpdate method used to define where the graphic of hold is drawn.
+     */
     @Override
     public void pixUpdate() {
         pixX = Utils.toPixX(body.getPosition().x);
