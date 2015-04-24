@@ -14,8 +14,8 @@ import org.jbox2d.dynamics.World;
  * extends the Entity class and those specifications. 
  * 
  * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
- * @version     1.0
- * @since       2015-04-21
+ * @version     2015-04-24
+ * @since       2015-04-24
  * @extends		Entity
  */
 public class Wall extends Entity {
@@ -26,10 +26,10 @@ public class Wall extends Entity {
     /**
      * Constructor for Wall.
      * 
-     * @param world	passed world object
-     * @param bd	passed body definition object
-     * @param fd	passed fixture definition object
-     * @param shape	passed polygon shape object
+     * @param world		Passed world object
+     * @param bd		Passed body definition object
+     * @param fd		Passed fixture definition object
+     * @param shape		Passed polygon shape object
      */
     Wall(World world, BodyDef bd, FixtureDef fd, PolygonShape shape) 
     {
