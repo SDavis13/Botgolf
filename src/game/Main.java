@@ -119,6 +119,6 @@ public class Main extends JFrame{
     private void createPages(){
         addView(MainPage.getInstance());
         addView(GamePage.getInstance());
-        addView(LosePage.getInstance());
+        addView(GameMenuPage.getInstance());
     }
 }

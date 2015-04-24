@@ -29,6 +29,7 @@ public class Level {
     final static int POSITION_ITERATIONS = 3;
     final static String WINSTRING = "You win!";
     final static String LOSESTRING = "WUT ARE U DOIN? U LOSE!";
+    final static String PAUSESTRING = "Paused";
     int id;
     String name;
     Ball ball;
@@ -39,6 +40,7 @@ public class Level {
     ArrayList<Wall> wDelete;
     Hole hole;
     World world;    
+    boolean pause;
 
     Level(World world, GameSpec specs, ArrayList<Wall> wallList, ArrayList<Mob> mobList, Ball theBall, Hole theHole){
         this.world = world;
@@ -48,6 +50,7 @@ public class Level {
         mobs = mobList;
         ball = theBall;
         hole = theHole;
+        pause = false;
         mDelete = new ArrayList<Mob>();
         wDelete = new ArrayList<Wall>();
 
@@ -110,6 +113,10 @@ public class Level {
         g.setColor(Color.CYAN);
         g.drawString("Hits: " + ball.shotCount, 10, 40);
 
+        if(pause)
+        {
+        	g.drawString(PAUSESTRING, 400, 300);
+        }
         if(hole.win){             
             g.setColor(Color.CYAN);
             g.drawString(WINSTRING, 400, 100);                                   
@@ -121,6 +128,16 @@ public class Level {
             g.drawString(LOSESTRING, 50, 200);   
             
         }
+    }
+    
+    public void pause()
+    {
+    	pause = true;
+    }
+    
+    public void unPause()
+    {
+    	pause = false;
     }
 
     /**

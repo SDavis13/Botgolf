@@ -3,10 +3,10 @@ package game;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 
-public class LosePage extends View {
-	static LosePage page = new LosePage(Consts.LOSE);
+public class GameMenuPage extends View {
+	static GameMenuPage page = new GameMenuPage(Consts.GAMEMENUPAGE);
 
-	protected LosePage(String name) {
+	protected GameMenuPage(String name) {
         super(name);
         
         JPanel pausePanel = new JPanel();
@@ -54,7 +54,7 @@ public class LosePage extends View {
         pausePanel.add(exitMainButton);
     }	
 	
-	public static LosePage getInstance(){
+	public static GameMenuPage getInstance(){
         return page;
     }
 
