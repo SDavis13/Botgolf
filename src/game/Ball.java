@@ -36,7 +36,7 @@ public class Ball extends Entity{
     
     CircleShape shape;
     Ellipse2D.Float pixCircle;
-    static final float IMPULSE_SCALE = 10; //TODO Should make this also a function of Consts.SCALE
+    static final float IMPULSE_SCALE = Consts.SCALE/400;
     BufferedImage ballImage;
 /**
  * Constructor Ball creates a Ball.
