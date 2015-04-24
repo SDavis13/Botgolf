@@ -16,8 +16,9 @@ public class InstructionPage extends View{
     JButton jbBack;
     
     protected InstructionPage(Main frame){
-    	//copied from MainPage
         super(Consts.INSTRUCTION);
+        this.frame = frame;
+        active = false;
     	try{
             logo = new ImageIcon(ImageIO.read(new File(Consts.IMG_LOGO)));
             jlInstructions.setSize(logo.getIconWidth(), logo.getIconHeight());
@@ -27,10 +28,6 @@ public class InstructionPage extends View{
             System.out.println("Could not load main logo image.");
             e.printStackTrace();
         }
-    	/*
-    	super(Consts.INSTRUCTION);
-        this.frame = frame;
-        active = false;*/
     }
 
     @Override
