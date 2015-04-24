@@ -34,18 +34,19 @@ public class Consts {
     							GAMEMENUPAGE= "GameMenuPage";
     
                                 //Sound names
-    public static final String[] SOUNDS = {"Score", "Wall1", "Wall2", "RobotBoom", "RobotMove"};
+    public static final String[] SOUNDS = {"Score", "Wall1", "Wall2", "RobotBoom", "RobotMove", "Launch"};
     
     public static final int SNDIDX_SCORE = 0,
     						SNDIDX_WALL1 = 1,
     						SNDIDX_WALL2 = 2,
     						SNDIDX_ROBOTBOOM = 3,
-    						SNDIDX_ROBOTMOVE = 4;
+    						SNDIDX_ROBOTMOVE = 4,
+    						SNDIDX_LAUNCH = 5;
     
 
                                 //Sound locations
     public static final String[] SOUNDFILES = {SNDLOC+"score.wav", SNDLOC+"wall1.wav",
-    	SNDLOC+"wall2.wav", SNDLOC+"robotboom.wav", SNDLOC+"robotmove.wav"};
+    	SNDLOC+"wall2.wav", SNDLOC+"robotboom.wav", SNDLOC+"robotmove.wav", SNDLOC+"launch.wav"};
                                 
     
     public static final int SCALE = 2000;
