@@ -12,7 +12,7 @@ import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
 public class ExplosionBot extends Mob {		
-    
+
     static final float BLAST_POWER = 1000;
 
     ExplosionBot(World world, BodyDef bd, FixtureDef fd, PolygonShape shape, float gridScale)

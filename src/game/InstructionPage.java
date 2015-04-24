@@ -13,12 +13,12 @@ public class InstructionPage extends View{
     JLabel jlInstructions;
     ImageIcon logo;
     JButton jbBack;
-    
+
     protected InstructionPage(Main frame){
         super(Consts.INSTRUCTION);
         this.frame = frame;
         active = false;
-    	try{
+        try{
             logo = new ImageIcon(ImageIO.read(new File(Consts.IMG_LOGO)));
             jlInstructions.setSize(logo.getIconWidth(), logo.getIconHeight());
             jlInstructions.setIcon(logo);
@@ -32,8 +32,8 @@ public class InstructionPage extends View{
     @Override
     public void actionPerformed(ActionEvent arg0) {
         // TODO Auto-generated method stub
-    	
-        
+
+
     }
 
 }

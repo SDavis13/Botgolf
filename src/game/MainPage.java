@@ -25,8 +25,8 @@ public class MainPage extends View{
     static ImageIcon logo;
     JLabel jlTitle = new JLabel(); //Title logo
     JPanel jpShirt = new JPanel(); //Holds buttons
-        JPanel jpLeft = new JPanel();
-        JPanel jpRight = new JPanel();
+    JPanel jpLeft = new JPanel();
+    JPanel jpRight = new JPanel();
     static final int NUM_ROWS = 3;
     static final int NUM_COLS = 2;
     JButton jbCampaign = new JButton("Campaign");
@@ -36,7 +36,7 @@ public class MainPage extends View{
     JButton jbHighscore = new JButton("High Scores");
     JButton jbAbout = new JButton("About");
     JButton jbExit = new JButton("Exit");
-        
+
     /**
      * Creates a singleton instance of this view.
      * 
@@ -45,7 +45,7 @@ public class MainPage extends View{
     public static MainPage getInstance(){
         return page;
     }
-    
+
     /**
      * MainPage has Jframe information for this view.
      * 
@@ -53,13 +53,13 @@ public class MainPage extends View{
      * @exception  e 		if image not available display error to console.   
      */
     protected MainPage(String name) {
-    	super(name);
-     
-    	Insets insetDefinition = new Insets(15,20,15,20);
-        
-    	this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        
-    	try{
+        super(name);
+
+        Insets insetDefinition = new Insets(15,20,15,20);
+
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+        try{
             logo = new ImageIcon(ImageIO.read(new File(Consts.IMG_LOGO)));
             jlTitle.setSize(logo.getIconWidth(), logo.getIconHeight());
             jlTitle.setIcon(logo);
@@ -68,7 +68,7 @@ public class MainPage extends View{
             System.out.println("Could not load main logo image.");
             e.printStackTrace();
         }
-                
+
         jbCampaign.setMargin(insetDefinition);
         jbQuickplay.setMargin(insetDefinition);
         jbOptions.setMargin(insetDefinition);
@@ -76,15 +76,15 @@ public class MainPage extends View{
         jbHighscore.setMargin(insetDefinition);
         jbAbout.setMargin(insetDefinition);
         jbExit.setMargin(insetDefinition);
-        
+
         /**
          * Setup alignment of buttons and setup action listeners.
          */
         jlTitle.setAlignmentX(CENTER_ALIGNMENT);
         //jlTitle.setBorder(BorderFactory.createLineBorder(Color.black));
         //jpShirt.setLayout(new BoxLayout(jpShirt, BoxLayout.X_AXIS));
-            jpLeft.setLayout(new BoxLayout(jpLeft, BoxLayout.Y_AXIS));
-            jpRight.setLayout(new BoxLayout(jpRight, BoxLayout.Y_AXIS));
+        jpLeft.setLayout(new BoxLayout(jpLeft, BoxLayout.Y_AXIS));
+        jpRight.setLayout(new BoxLayout(jpRight, BoxLayout.Y_AXIS));
         jbCampaign.addActionListener(this);
         jbCampaign.setAlignmentX(RIGHT_ALIGNMENT);
         jbQuickplay.addActionListener(this);
@@ -99,14 +99,14 @@ public class MainPage extends View{
         jbAbout.setAlignmentX(LEFT_ALIGNMENT);
         jbExit.addActionListener(this);
         jbExit.setAlignmentX(CENTER_ALIGNMENT);
-        
+
         /**
          * Add the buttons to the panel views.
          */
         add(jlTitle);
         add(jpShirt);
-            jpShirt.add(jpLeft);
-            jpShirt.add(jpRight);
+        jpShirt.add(jpLeft);
+        jpShirt.add(jpRight);
         add(jbExit);
         jpLeft.add(jbCampaign);//column1
         jpRight.add(jbHighscore);//column2
@@ -142,7 +142,7 @@ public class MainPage extends View{
         if(e.getSource() == jbExit){
             System.exit(0);
         }
-        
+
     }
-    
+
 }

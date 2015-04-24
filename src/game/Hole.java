@@ -17,31 +17,31 @@ public class Hole extends Entity{
     public CircleShape shape;
     public Ellipse2D.Float pixShape;
     public boolean win = false;
-    
+
     BufferedImage holeImage;
     float pixRad;
-    
+
     Hole(World world, BodyDef bd, FixtureDef fd){
 
-    	try {
+        try {
             holeImage = ImageIO.read(new File(Consts.IMG_HOLE));
         } catch (IOException e1) {
             e1.printStackTrace();
         }
-        
+
         this.world = world;
         pixX = 0;
         pixY = 0;
-        
+
         pixRad = holeImage.getWidth(null) / 2f;
         shape = new CircleShape();
         shape.m_radius = Utils.toPhysLength(pixRad);
-             
+
         fd.shape = shape;
-        
+
         body = world.createBody(bd);
         body.createFixture(fd).setUserData(this);
-        
+
         pixX = Utils.toPixX(body.getPosition().x);
         pixY = Utils.toPixY(body.getPosition().y);
         pixShape = new Ellipse2D.Float((pixX - pixRad), (pixY - pixRad), pixRad*2, pixRad*2);
@@ -63,7 +63,7 @@ public class Hole extends Entity{
 
     @Override
     public void pixUpdate() {
-    	pixX = Utils.toPixX(body.getPosition().x);
+        pixX = Utils.toPixX(body.getPosition().x);
         pixY = Utils.toPixY(body.getPosition().y);
         pixRad = (Utils.toPixLength(shape.m_radius));
         pixShape.x = pixX - pixRad;

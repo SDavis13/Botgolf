@@ -32,7 +32,7 @@ public class GamePage extends View{
     public static GamePage getInstance(){
         return page;
     }
-    
+
     /**
      * GamePage is created with protected view.
      * Creates a new a new GameController object
@@ -56,10 +56,10 @@ public class GamePage extends View{
         Graphics2D g = (Graphics2D)g1;
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
         curLevel.render(g);
-        
+
         g.dispose();
     }
-    
+
     /**
      * This creates the tickRunner timer for swing side of things.
      */
@@ -67,17 +67,17 @@ public class GamePage extends View{
         tickRunner = new Timer(THREAD_NAME);
         tickRunner.scheduleAtFixedRate(new RenderLoop(), 25, Consts.TIMERTICK);
     }
-    
+
     /**
      * This is pause detection for when game play is paused.
      */
     public void pause(){
         tickRunner.cancel();
         frame.switchView(Consts.PAUSE, curLevel.name);
-            //TODO give curLevel a getName() method
-            //TODO Make all instance vars private, except for the obvious and GameSpec's stuff
+        //TODO give curLevel a getName() method
+        //TODO Make all instance vars private, except for the obvious and GameSpec's stuff
     }
-    
+
     /**
      * Activate method used to bring in the GameSpec.
      * 
@@ -92,7 +92,7 @@ public class GamePage extends View{
         control.startGame();
         startRender();
     }
-    
+
     /**
      * Action listener
      * 
@@ -100,9 +100,9 @@ public class GamePage extends View{
      */
     @Override
     public void actionPerformed(ActionEvent e){
-        
+
     }
-    
+
     /**
      * This sets the level for the GamePage.
      * 
@@ -111,7 +111,7 @@ public class GamePage extends View{
     public void setLevel(Level level){
         curLevel = level;
     }
-    
+
     /**
      * This is the RenderLoop that runs in order to continually repaints
      * the components on the GamePage view.

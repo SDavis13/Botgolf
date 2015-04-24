@@ -23,7 +23,7 @@ public class GameController implements ContactListener{
     GameState state;
     GameState tempState;
     LevelFactory curFactory = new CreateLevel(); //TODO This is hardcoded and will need to be changed.
-    
+
     public GameController(GamePage page){
         state = GameState.INACTIVE;
         tempState = GameState.READY;
@@ -35,7 +35,7 @@ public class GameController implements ContactListener{
     }
     public void loadLevel(GameSpec levelSpec){
         if(levelSpec.newGame)
-                curLevel = curFactory.createLevel(levelSpec);
+            curLevel = curFactory.createLevel(levelSpec);
         ball = curLevel.getBall();
         view.setLevel(curLevel);
         curLevel.world.setContactListener(this);
@@ -51,11 +51,11 @@ public class GameController implements ContactListener{
         state = GameState.PAUSED;
     }
     public void winGame(){
-    	
+
     }
     private class PhysicsLoop extends TimerTask{
         boolean launched = false;
-        
+
         @Override
         public void run(){
             curLevel.step();
@@ -72,12 +72,12 @@ public class GameController implements ContactListener{
                     if(!curLevel.moveMobs()) state = GameState.READY;
                     break;
                 case WIN:
-                	//TODO
-                	break;
+                    //TODO
+                    break;
             }
         }
     }
-    
+
     private class KeyboardInput extends KeyAdapter{
         @Override
         public void keyPressed(KeyEvent e){
@@ -92,10 +92,10 @@ public class GameController implements ContactListener{
                 pauseGame();
                 view.pause();
             }
-            
+
         }
     }
-    
+
     private class MouseInput extends MouseInputAdapter{
         float xOrigin, yOrigin, oldXOffset, oldYOffset;
         @Override
@@ -140,17 +140,17 @@ public class GameController implements ContactListener{
     @Override
     public void endContact(Contact contact) {
         // TODO Auto-generated method stub
-        
+
     }
     @Override
     public void preSolve(Contact contact, Manifold oldManifold) {
         // TODO Auto-generated method stub
-        
+
     }
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {
         // TODO Auto-generated method stub
-        
+
     }
-        
+
 }

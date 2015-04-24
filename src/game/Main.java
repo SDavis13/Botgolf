@@ -23,19 +23,19 @@ public class Main extends JFrame{
     static Main theMain = new Main();
     Hashtable<String,View> views = new Hashtable<String,View>();
     View curView;
-    
+
     /**
      * Screen width and height of main window that opens
      */
     public static final int WIDTH = 800;
     public static final int HEIGHT = 600;           
-    
+
     public static void main(String[] args){
         Main frame = theMain;
         frame.createPages();
         frame.switchView("Main", null);
     }
-    
+
     /**
      * Created a singleton instance of Main.
      *
@@ -44,7 +44,7 @@ public class Main extends JFrame{
     public static Main getInstance(){
         return theMain;
     }
-    
+
     /**
      * Main begins at this point.
      * <p>
@@ -52,17 +52,17 @@ public class Main extends JFrame{
      * pane and sets dimension of box.  Brings up the initial page where our buttons are.
      */
     private Main(){
-    	SynthLookAndFeel theme = new SynthLookAndFeel();
-    	String projectDirectory = System.getProperty("user.dir");
-    	System.out.println(System.getProperty("user.dir"));
-    	try {
-			theme.load(new URL("file:///" + projectDirectory + "/resources/game/script/gui.xml"));
-			UIManager.setLookAndFeel(theme);
-		} catch (ParseException | IOException | UnsupportedLookAndFeelException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		getContentPane().setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        SynthLookAndFeel theme = new SynthLookAndFeel();
+        String projectDirectory = System.getProperty("user.dir");
+        System.out.println(System.getProperty("user.dir"));
+        try {
+            theme.load(new URL("file:///" + projectDirectory + "/resources/game/script/gui.xml"));
+            UIManager.setLookAndFeel(theme);
+        } catch (ParseException | IOException | UnsupportedLookAndFeelException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        getContentPane().setPreferredSize(new Dimension(WIDTH, HEIGHT));
         pack();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Botgolf");
@@ -70,7 +70,7 @@ public class Main extends JFrame{
         this.setResizable(false);
         this.setVisible(true);
     }
-    
+
     /**
      * Add views to hash table.
      * <p>
@@ -81,7 +81,7 @@ public class Main extends JFrame{
     public void addView(View view){
         views.put(view.name, view);
     }
-    
+
     /**
      * Switches between the views.
      * <p>
@@ -104,7 +104,7 @@ public class Main extends JFrame{
             repaint();
         }
     }
-    
+
     /**
      * Repaints the current view page selected.
      */
@@ -113,8 +113,8 @@ public class Main extends JFrame{
         super.repaint();
         curView.repaint();
     }
-    
-    
+
+
     /**
      * Creates the pages to use.
      * <p>

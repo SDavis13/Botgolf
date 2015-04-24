@@ -9,7 +9,7 @@ import org.jbox2d.dynamics.Body;
  * 
  */
 public class Utils {
-    
+
     /**
      * Adapted from http://www.iforce2d.net/b2dtut/explosions
      * Applies an impulse to a jBox2d Body inversely proportional to its distance away, to simulate something similar to an explosion.
@@ -27,7 +27,7 @@ public class Utils {
         float impulseMag = blastPower * invDistance * invDistance;
         body.applyLinearImpulse(blastDir.mul(impulseMag), applyPoint);
     }
-    
+
     /**
      * Convert a JBox2D x coordinate to a Swing pixel x coordinate
      * @param physX
@@ -76,7 +76,7 @@ public class Utils {
     public static float toPixLength(float physLen) {
         return Consts.SCALE*physLen / 100.0f;
     }
-    
+
     /**
      * Convert a JBox2D width to pixel width
      * @param pixLen
