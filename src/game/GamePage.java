@@ -33,8 +33,7 @@ public class GamePage extends View{
     }
 
     /**
-     * GamePage is created with protected view.
-     * Creates a new a new GameController object
+     * GamePage constructor.
      * 
      * @param 	name	name of the GamePage for simplicity.		
      */

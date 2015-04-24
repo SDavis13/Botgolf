@@ -61,7 +61,7 @@ public class Hole extends Entity{
     @Override
     public void hit(Entity otherEntity) {
         if(otherEntity instanceof Ball){
-            SoundRepository.playSound(Consts.SND_SCORE);
+            SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_SCORE]);
             win = true;            
         }
     }

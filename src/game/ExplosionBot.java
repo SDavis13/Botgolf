@@ -12,7 +12,8 @@ import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
 /**
- * This is class to define ExplosionBot object.
+ * This class represents the explosion robot settings along with
+ * extending the Mob class.
  * 
  * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
  * @version     1.0

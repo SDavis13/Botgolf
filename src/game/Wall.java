@@ -9,11 +9,28 @@ import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
+/**
+ * This class represents specifications of Wall.  This also
+ * extends the Entity class and those specifications. 
+ * 
+ * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
+ * @version     1.0
+ * @since       2015-04-21
+ * @extends		Entity
+ */
 public class Wall extends Entity {
 
     PolygonShape shape;
     Polygon pixShape;
 
+    /**
+     * Constructor for Wall.
+     * 
+     * @param world	passed world object
+     * @param bd	passed body definition object
+     * @param fd	passed fixture definition object
+     * @param shape	passed polygon shape object
+     */
     Wall(World world, BodyDef bd, FixtureDef fd, PolygonShape shape) 
     {
         this.world = world;
@@ -37,12 +54,22 @@ public class Wall extends Entity {
         pixY = Utils.toPixY(body.getPosition().y);
     }
 
+    /**
+     * Hit method created when a hit is detected by another entity.
+     * 
+     * @param otherEntity	Object type of entity passed
+     */
     @Override
     public void hit(Entity otherEntity) {
         // TODO Auto-generated method stub
 
     }
 
+    /**
+     * Render method used to draw the wall.
+     * 
+     * @param g		Object type of Graphics2D passed
+     */
     @Override
     public void render(Graphics2D g) 
     {    	    	
@@ -50,6 +77,9 @@ public class Wall extends Entity {
         g.fillPolygon(pixShape);      
     }
 
+    /**
+     * PixUpdate method used to define pixel location of wall.
+     */
     @Override
     public void pixUpdate() {
         float newPixX = Utils.toPixX(body.getPosition().x);

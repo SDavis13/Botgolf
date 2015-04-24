@@ -8,6 +8,14 @@ import java.util.ArrayList;
 
 import org.jbox2d.dynamics.World;
 
+/**
+ * This class represents the level specifications including walls, hole
+ * and robots.
+ * 
+ * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
+ * @version     1.0
+ * @since       2015-04-21
+ */
 public class Level {
     /**
      * Velocity value accuracy.
@@ -115,16 +123,26 @@ public class Level {
         }
     }
 
+    /**
+     * getBall method used to return the Ball object.
+     * 
+     * @return		returns a Ball object
+     */
     public Ball getBall(){
         return ball;
     }
 
+    /**
+     * getHole method used to return the Hole object.
+     * 
+     * @return		returns a Hole object
+     */
     public Hole getHole()
     {
         return hole;
     }
 
-    class IterFlag{
-        boolean access;
-    }
+    	class IterFlag{
+    		boolean access;
+    	}
 }
