@@ -20,10 +20,10 @@ import org.jbox2d.dynamics.World;
  * creates a ball used in World
  * and sets its behavior.
  * 
- * @author Josh
- * @version 1.0
- * @since 4/23/14
- * @extends Entity class
+ * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
+ * @version     1.0
+ * @since       2015-04-21
+ * @extends 	Entity class
  */
 public class Ball extends Entity{
 
@@ -36,12 +36,13 @@ public class Ball extends Entity{
     Ellipse2D.Float pixCircle;
     static final float IMPULSE_SCALE = Consts.SCALE/400;
     BufferedImage ballImage;
+    
     /**
      * Constructor Ball creates a Ball.
      * 
-     * @param world sets physics to this world
-     * @param bd
-     * @param fd
+     * @param 	world 	sets physics to this world
+     * @param 	bd		BodyDef parameter
+     * @param 	fd		FixtureDef parameter
      */
     public Ball(World world, BodyDef bd, FixtureDef fd){
 
@@ -73,13 +74,17 @@ public class Ball extends Entity{
     }
     /**
      * setGrabbed method sets grabbed to true
-     * 
-     *
      */
     public void setGrabbed(){
         grabbed = true;
     }
 
+    /**
+     * setMouseLoc method sets mouse to a x,y coordinate on the playfield.
+     * 
+     * @param	mouseX	Set x value of mouse location.
+     * @param	mouseY	Set y value of mouse location.
+     */
     public void setMouseLoc(int mouseX, int mouseY){
         this.mouseX = mouseX;
         this.mouseY = mouseY;
@@ -90,12 +95,22 @@ public class Ball extends Entity{
     	shotCount = hits;
     }
 
+    /**
+     * hit method to identify when another entity is hit.
+     * 
+     * @param	otherEntity		Another entity like wall, or robot
+     */
     @Override
     public void hit(Entity otherEntity) {
         // TODO Auto-generated method stub
 
     }
 
+    /**
+     * render method to draw the ball image. 
+     * 
+     * @param	g		A Graphics2D object that is passed.
+     */
     @Override
     public void render(Graphics2D g) {
         g.drawImage(ballImage, (int)pixCircle.x, (int)pixCircle.y, null);
@@ -108,6 +123,9 @@ public class Ball extends Entity{
         }
     }
 
+    /**
+     * pixUpdate method to update the location of the object.
+     */
     @Override
     public void pixUpdate() {
         pixX = Utils.toPixX(body.getPosition().x);
@@ -117,6 +135,12 @@ public class Ball extends Entity{
         pixCircle.y = pixY - pixRad;
     }
 
+    /**
+     * launch method to launch the ball.
+     * 
+     * @param	impulseX	x coordinate for launching ball.
+     * @param	impulseY	y coordinate for launching ball.
+     */
     public void launch(float impulseX, float impulseY){
         grabbed = false;
         float xDif = body.getPosition().x - impulseX;
@@ -127,6 +151,9 @@ public class Ball extends Entity{
         body.applyLinearImpulse(temp,body.getPosition());
     }
 
+    /**
+     * postlaunch method to update the location of the object.
+     */
     public boolean postLaunch(){
         Vec2 vec = body.getLinearVelocity();
         if(Math.round(vec.x) == 0 && Math.round(vec.y)==0){
