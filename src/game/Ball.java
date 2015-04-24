@@ -84,6 +84,11 @@ public class Ball extends Entity{
         this.mouseX = mouseX;
         this.mouseY = mouseY;
     }
+    
+    public void setNumHits(int hits)
+    {
+    	shotCount = hits;
+    }
 
     @Override
     public void hit(Entity otherEntity) {

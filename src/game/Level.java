@@ -20,6 +20,7 @@ public class Level {
      */
     final static int POSITION_ITERATIONS = 3;
     final static String WINSTRING = "You win!";
+    final static String LOSESTRING = "WUT ARE U DOIN? U LOSE!";
     int id;
     String name;
     Ball ball;
@@ -29,8 +30,7 @@ public class Level {
     ArrayList<Wall> walls;
     ArrayList<Wall> wDelete;
     Hole hole;
-    World world;
-    boolean win = false;
+    World world;    
 
     Level(World world, GameSpec specs, ArrayList<Wall> wallList, ArrayList<Mob> mobList, Ball theBall, Hole theHole){
         this.world = world;
@@ -75,8 +75,9 @@ public class Level {
         }
     }
 
-    void render(Graphics2D g){    	
+    void render(Graphics2D g){     	
         Rectangle bounds = g.getClipBounds();
+        
         for(Wall wall : walls){
             if(wall.pixShape.intersects(bounds)){
                 wall.render(g);
@@ -97,11 +98,20 @@ public class Level {
             hole.render(g);
         }
         ball.render(g);
+        g.setFont(new Font("Comic Sans MS", Font.BOLD, 48));
+        g.setColor(Color.CYAN);
+        g.drawString("Hits: " + ball.shotCount, 10, 40);
 
-        if(hole.win){ 
-            g.setFont(new Font("Comic Sans MS", Font.BOLD, 48));
+        if(hole.win){             
             g.setColor(Color.CYAN);
             g.drawString(WINSTRING, 400, 100);                                   
+        }
+        
+        if(ball.shotCount == 0 && hole.win == false)
+        {        	
+            g.setColor(Color.CYAN);
+            g.drawString(LOSESTRING, 50, 200);   
+            
         }
     }
 
