@@ -1,5 +1,7 @@
 package game;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.Shape;
@@ -75,7 +77,7 @@ public class Level {
         }
     }
 
-    void render(Graphics2D g){
+    void render(Graphics2D g){    	
         Rectangle bounds = g.getClipBounds();
         for(Wall wall : walls){
             if(wall.pixShape.intersects(bounds)){
@@ -98,13 +100,20 @@ public class Level {
         }
         ball.render(g);
         
-        if(win){
-            g.drawString(WINSTRING, 10, 10);
+        if(hole.win){ 
+        	g.setFont(new Font("Comic Sans MS", Font.BOLD, 48));
+        	g.setColor(Color.CYAN);
+            g.drawString(WINSTRING, 400, 100);                                   
         }
     }
 
     public Ball getBall(){
         return ball;
+    }
+    
+    public Hole getHole()
+    {
+    	return hole;
     }
     
     class IterFlag{

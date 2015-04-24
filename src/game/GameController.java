@@ -17,6 +17,7 @@ public class GameController implements ContactListener{
     GamePage view;
     Level curLevel;
     Ball ball;
+    Hole hole;
     Timer tickRunner;
     GameState state;
     GameState tempState;
@@ -47,6 +48,9 @@ public class GameController implements ContactListener{
         tempState = state;
         tickRunner.cancel();
         state = GameState.PAUSED;
+    }
+    public void winGame(){
+    	
     }
     private class PhysicsLoop extends TimerTask{
         boolean launched = false;
