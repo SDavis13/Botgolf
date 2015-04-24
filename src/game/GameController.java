@@ -86,19 +86,14 @@ public class GameController implements ContactListener{
             if(code == Consts.pauseKey || code == Consts.pauseMenuKey){
                 
                 if(state == GameState.PAUSED){
-                	state = tempState;
                 	startGame();                	
                 }
                 else
                 {
-                	tempState = state;
-                    state = GameState.PAUSED;
                     pauseGame();
                 }
             }            
             /*else if(code == Consts.pauseMenuKey){
-                tempState = state;
-                state = GameState.PAUSED;
                 pauseGame();
                 view.pause();
             }*/
