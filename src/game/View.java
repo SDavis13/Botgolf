@@ -22,7 +22,7 @@ public abstract class View extends JPanel implements ActionListener{
     /**
      * Constructor for View.
      * 
-     * @param 	name	passed a name for for view
+     * @param name	passed a name for for view
      */
     protected View(String name){
         this.name = name;
@@ -33,7 +33,7 @@ public abstract class View extends JPanel implements ActionListener{
     /**
      * Activate method for the view.
      * 
-     * @param 	message		passed this object.
+     * @param message	this object is passed
      */
     public void activate(Object message){
         active = true;
