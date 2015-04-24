@@ -8,6 +8,10 @@ public class Grid {
     Vec2 ballLoc;
     HashMap<Vec2, Obstruction> obstructions;
     
+    public Grid(){
+        obstructions = new HashMap<Vec2, Obstruction>();
+    }
+    
     public Obstruction[] vnNeighborhood(int x, int y){
         Obstruction[] obs = new Obstruction[4];
         obs[0] = obstructions.get(new Vec2(x  ,y+1));

@@ -2,6 +2,7 @@ package game;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.HashMap;
 
 import javax.sound.sampled.AudioSystem;
@@ -57,5 +58,12 @@ public class SoundRepository {
         }
     }
 
-
+    @Override
+    protected void finalize(){
+        Collection<Clip> sounds = soundBank.values();
+        for(Clip clip : sounds){
+            clip.close();
+        }
+        sounds.clear();
+    }
 }
