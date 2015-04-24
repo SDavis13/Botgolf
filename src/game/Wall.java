@@ -57,7 +57,7 @@ public class Wall extends Entity {
     /**
      * Hit method created when a hit is detected by another entity.
      * 
-     * @param otherEntity	object type of entity passed
+     * @param otherEntity	Object type of entity passed
      */
     @Override
     public void hit(Entity otherEntity) {
@@ -68,7 +68,7 @@ public class Wall extends Entity {
     /**
      * Render method used to draw the wall.
      * 
-     * @param g	object type of Graphics2D passed
+     * @param g		Object type of Graphics2D passed
      */
     @Override
     public void render(Graphics2D g) 
