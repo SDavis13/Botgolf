@@ -16,14 +16,23 @@ import org.jbox2d.dynamics.World;
  * extending the Mob class.
  * 
  * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
- * @version     1.0
- * @since       2015-04-21
+ * @version     2015-04-24
+ * @since       2015-04-24
  * @extends		Mob
  */
 public class ExplosionBot extends Mob {		
 
     static final float BLAST_POWER = 1000;
 
+    /**
+     * Constructor for ExplosionBot
+     * 
+     * @param world			Object type of World passed
+     * @param bd			Object type of body definition passed
+     * @param fd			Object type of fixture definition passed
+     * @param shape			Object type of polygon shape passed
+     * @param gridScale		Float type of grid scale passed
+     */
     ExplosionBot(World world, BodyDef bd, FixtureDef fd, PolygonShape shape, float gridScale)
     {
         super(world, bd, fd, shape, gridScale);
@@ -39,6 +48,8 @@ public class ExplosionBot extends Mob {
     /**
      * this is the hit method that removes health and robot when 
      * health is down to zero.
+     * 
+     * @param otherEntity	Object type of Entity passed
      */
     @Override
     public void hit(Entity otherEntity) {
