@@ -14,6 +14,13 @@ import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
+/**
+ * This is the mob class that defines the robots as far as rendering and physics.
+ * 
+ * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
+ * @version     1.0
+ * @since       2015-04-21
+ */
 public class Mob extends Entity{
     public final static int DEFAULT_HEALTH = 2;
     final int imgXOffset;
@@ -58,10 +65,20 @@ public class Mob extends Entity{
         imgYOffset = mobGraphic.getHeight(null)-rectangle.height/2;
     }
 
+    /**
+     * setHealth method is used for setting health on robot.
+     * 
+     * @param 	health	this is the health defined for robot
+     */
     public void setHealth(int health){
         this.health = health;
     }
 
+    /**
+     * hit method used to decrement health when hit by ball object.
+     * 
+     * @param	otherEntity		object defined as another entity
+     */
     @Override
     public void hit(Entity otherEntity) {
         health--;
@@ -72,12 +89,20 @@ public class Mob extends Entity{
 
     }
 
+    /**
+     * render method is used to draw the image of the mob.
+     * 
+     * @param	g	this is an object of Graphics2D
+     */
     @Override
     public void render(Graphics2D g) {
         g.drawImage(mobGraphic, (int)(pixX+.5f) - imgXOffset, (int)(pixY+.5f) - imgYOffset, null);
         g.draw(pixShape);
     }
 
+    /**
+     * pixUpdate method used to update pixel location of mob.
+     */
     @Override
     public void pixUpdate() {
         float newPixX = Utils.toPixX(body.getPosition().x);
