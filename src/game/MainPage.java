@@ -9,8 +9,8 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 /**
- * MainPage represents all the Jframe information that displays on this
- * particular view.
+ * MainPage represents all the Jframe information that displays on
+ * the MainPage view.
  * 
  * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
  * @version     1.0
@@ -45,8 +45,8 @@ public class MainPage extends View{
     /**
      * MainPage has Jframe information for this view.
      * 
-     * @param      name  to represent this MainPage.
-     * @exception  e if image not available display error to console.   
+     * @param      name  	name of MainPage for simplicity.
+     * @exception  e 		if image not available display error to console.   
      */
     protected MainPage(String name) {
     	super(name);
