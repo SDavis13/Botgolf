@@ -15,10 +15,10 @@ import javax.swing.plaf.synth.SynthLookAndFeel;
 /**
  * This is the main class where everything starts.
  * 
- * 
  * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
- * @version     1.0
- * @since       2015-04-21
+ * @version     2015-04-24
+ * @since       2015-04-24
+ * @extends		JFrame
  */
 public class Main extends JFrame{
     static Main theMain = new Main();
@@ -40,15 +40,13 @@ public class Main extends JFrame{
     /**
      * Created a singleton instance of Main.
      *
-     * @return theMain
+     * @return 	Returns an instance of Main
      */
     public static Main getInstance(){
         return theMain;
     }
 
     /**
-     * Main begins at this point.
-     * <p>
      * Main begins with the look and feel of theme being loaded.  Gets the content
      * pane and sets dimension of box.  Brings up the initial page where our buttons are.
      */
@@ -73,23 +71,19 @@ public class Main extends JFrame{
     }
 
     /**
-     * Add views to hash table.
-     * <p>
      * Adds the views or pages to a hash table called 'views'.
      * 
-     * @param view   name given to the particular view
+     * @param view	Object of View passed
      */
     public void addView(View view){
         views.put(view.name, view);
     }
 
     /**
-     * Switches between the views.
-     * <p>
      * This switches between the views.
      * 
-     * @param name     key name for view in hash table
-     * @param message  message passed to view
+     * @param name		String passed for name
+     * @param message  	Object passed for message
      */
     public void switchView(String name, Object message){
         View view = views.get(name);
