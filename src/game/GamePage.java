@@ -43,6 +43,7 @@ public class GamePage extends View{
         super(name);
         control = new GameController(this);
         setDoubleBuffered(true);
+        setFocusable(true);
     }
 
     /**

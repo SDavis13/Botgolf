@@ -29,9 +29,10 @@ public class GameController implements ContactListener{
         tempState = GameState.READY;
         view = page;
         MouseInput mouseInput = new MouseInput();
+        KeyboardInput keyInput = new KeyboardInput();
         view.addMouseListener(mouseInput);
         view.addMouseMotionListener(mouseInput);
-        view.addKeyListener(new KeyboardInput());
+        view.addKeyListener(keyInput);
     }
     public void loadLevel(GameSpec levelSpec){
         if(levelSpec.newGame)
@@ -82,16 +83,25 @@ public class GameController implements ContactListener{
         @Override
         public void keyPressed(KeyEvent e){
             int code = e.getKeyCode();
-            if(code == Consts.pauseKey){
-                tempState = state;
-                state = GameState.PAUSED;
-                pauseGame();
-            }else if(code == Consts.pauseMenuKey){
+            if(code == Consts.pauseKey || code == Consts.pauseMenuKey){
+                
+                if(state == GameState.PAUSED){
+                	state = tempState;
+                	startGame();                	
+                }
+                else
+                {
+                	tempState = state;
+                    state = GameState.PAUSED;
+                    pauseGame();
+                }
+            }            
+            /*else if(code == Consts.pauseMenuKey){
                 tempState = state;
                 state = GameState.PAUSED;
                 pauseGame();
                 view.pause();
-            }
+            }*/
 
         }
     }
@@ -127,6 +137,9 @@ public class GameController implements ContactListener{
                 ball.launch(Utils.toPhysX(e.getX()), Utils.toPhysY(e.getY()));
                 state = GameState.LAUNCH;
             }
+        }
+        public void mousePressed(MouseEvent e){
+        	view.requestFocusInWindow();
         }
     }
 
