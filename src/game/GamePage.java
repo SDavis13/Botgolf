@@ -70,11 +70,17 @@ public class GamePage extends View{
     /**
      * This is pause detection for when game play is paused.
      */
-    public void pause(){
+    public void pause(String viewName){
+    	control.pauseGame();
         tickRunner.cancel();
-        frame.switchView(Consts.PAUSE, curLevel.name);
+        frame.switchView(/*Consts.PAUSE*/viewName, curLevel.name);
         //TODO give curLevel a getName() method
         //TODO Make all instance vars private, except for the obvious and GameSpec's stuff
+    }
+    
+    public void lose(){
+    	//TODO ERRTHING
+    	frame.switchView(Consts.LOSE, curLevel.name);
     }
 
     /**

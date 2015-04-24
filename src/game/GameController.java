@@ -51,6 +51,7 @@ public class GameController implements ContactListener{
         curLevel.world.setContactListener(this);
     }
     public void startGame(){
+    	curLevel.unPause();
         state = tempState;
         tickRunner = new Timer(THREAD_NAME);
         tickRunner.scheduleAtFixedRate(new PhysicsLoop(), 25, Consts.TIMERTICK);
@@ -58,10 +59,18 @@ public class GameController implements ContactListener{
     public void pauseGame(){
         tempState = state;
         tickRunner.cancel();
+        curLevel.pause();
         state = GameState.PAUSED;
     }
+    public void exitGame(){
+    	tempState = GameState.INACTIVE;
+    	state = GameState.INACTIVE;
+    	curLevel.pause();
+    	tickRunner.cancel();
+    }
     public void winGame(){
-
+    	exitGame();
+    	view.pause(Consts.LOSE);
     }
     private class PhysicsLoop extends TimerTask{
         boolean launched = false;
@@ -104,7 +113,7 @@ public class GameController implements ContactListener{
             }            
             /*else if(code == Consts.pauseMenuKey){
                 pauseGame();
-                view.pause();
+                view.pause(Consts.PAUSE);
             }*/
 
         }
