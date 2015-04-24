@@ -89,6 +89,11 @@ public class Ball extends Entity{
         this.mouseX = mouseX;
         this.mouseY = mouseY;
     }
+    
+    public void setNumHits(int hits)
+    {
+    	shotCount = hits;
+    }
 
     /**
      * hit method to identify when another entity is hit.

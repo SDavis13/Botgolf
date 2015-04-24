@@ -42,6 +42,7 @@ public class CreateLevel implements LevelFactory {
 
         Hole hole = createHole(world);
         Ball ball = createBall(world);
+        ball.setNumHits(4);
 
         StandardBot stanMob;
         ExplosionBot expMob;
