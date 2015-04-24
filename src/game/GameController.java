@@ -70,7 +70,7 @@ public class GameController implements ContactListener{
     }
     public void winGame(){
     	exitGame();
-    	view.pause(Consts.LOSE);
+    	view.pause(Consts.GAMEMENUPAGE);
     }
     private class PhysicsLoop extends TimerTask{
         boolean launched = false;

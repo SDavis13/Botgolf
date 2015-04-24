@@ -80,7 +80,7 @@ public class GamePage extends View{
     
     public void lose(){
     	//TODO ERRTHING
-    	frame.switchView(Consts.LOSE, curLevel.name);
+    	frame.switchView(Consts.GAMEMENUPAGE, curLevel.name);
     }
 
     /**

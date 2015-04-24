@@ -31,7 +31,7 @@ public class Consts {
                                 PAUSE       = "Pause",
                                 HIGHSCORE   = "HighScore",
                                 GAME        = "Game",
-    							LOSE        = "Lose";
+    							GAMEMENUPAGE= "GameMenuPage";
     
                                 //Sound names
     public static final String[] SOUNDS = {"Score", "Wall1", "Wall2", "RobotBoom", "RobotMove"};
