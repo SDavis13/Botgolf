@@ -18,7 +18,7 @@ import javax.swing.plaf.synth.SynthLookAndFeel;
  * 
  * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
  * @version     1.0
- * @since       2015-04-01
+ * @since       2015-04-21
  */
 public class Main extends JFrame{
     static Main theMain = new Main();
