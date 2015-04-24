@@ -11,6 +11,14 @@ import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
+/**
+ * This is class to define ExplosionBot object.
+ * 
+ * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
+ * @version     1.0
+ * @since       2015-04-21
+ * @extends		Mob
+ */
 public class ExplosionBot extends Mob {		
 
     static final float BLAST_POWER = 1000;
@@ -27,6 +35,10 @@ public class ExplosionBot extends Mob {
         }
     }
 
+    /**
+     * this is the hit method that removes health and robot when 
+     * health is down to zero.
+     */
     @Override
     public void hit(Entity otherEntity) {
         health--;
