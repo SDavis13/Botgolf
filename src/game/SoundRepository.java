@@ -13,18 +13,36 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 //import org.jbox2d.callbacks.ContactListener;
 //import org.jbox2d.dynamics.contacts.Contact;
 
+/**
+ * This class represents the sound repository for the game.
+ * 
+ * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
+ * @version     1.0
+ * @since       2015-04-21
+ */
 public class SoundRepository {
     HashMap<String,Clip> soundBank = new HashMap<String,Clip>();
     static SoundRepository repo = new SoundRepository();
 
+    /**
+     * Constructor for SoundRepository
+     */
     private SoundRepository(){
         loadSound();
     }
 
+    /**
+     * This is used to create a singleton instance.
+     * 
+     * @return		returns the repository
+     */
     public static SoundRepository getInstance(){
         return repo;
     }
 
+    /**
+     * loadSound method is used to load the sounds to play.
+     */
     private void loadSound(){
         File file;
         Clip clip = null;
@@ -50,6 +68,11 @@ public class SoundRepository {
         soundBank.put(Consts.SND_SCORE, clip);
     }
 
+    /**
+     * playSound method is used to play particular sounds.
+     * 
+     * @param 	soundName	parameter of soundName passed
+     */
     public static void playSound(String soundName) {
         Clip clip = repo.soundBank.get(soundName);
         if(clip != null){
@@ -58,6 +81,9 @@ public class SoundRepository {
         }
     }
 
+    /**
+     * finalize method is used to finalize the clip in collection.
+     */
     @Override
     protected void finalize(){
         Collection<Clip> sounds = soundBank.values();
