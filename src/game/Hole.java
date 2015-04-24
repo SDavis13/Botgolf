@@ -18,6 +18,7 @@ import org.jbox2d.dynamics.*;
 public class Hole extends Entity{
     public CircleShape shape;
     public Ellipse2D.Float pixShape;
+    public boolean win = false;
     
     BufferedImage holeImage;
     float pixRad;
@@ -52,7 +53,7 @@ public class Hole extends Entity{
     public void hit(Entity otherEntity) {
         if(otherEntity instanceof Ball){
             SoundRepository.playSound(Consts.SND_SCORE);
-            //TODO Need to figure out how to signal the game controller
+            win = true;            
         }
     }
 

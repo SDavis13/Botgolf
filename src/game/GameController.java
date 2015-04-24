@@ -17,6 +17,7 @@ public class GameController implements ContactListener{
     GamePage view;
     Level curLevel;
     Ball ball;
+    Hole hole;
     Timer tickRunner;
     GameState state;
     GameState tempState;
@@ -48,6 +49,9 @@ public class GameController implements ContactListener{
         tickRunner.cancel();
         state = GameState.PAUSED;
     }
+    public void winGame(){
+    	
+    }
     private class PhysicsLoop extends TimerTask{
         boolean launched = false;
         
@@ -55,7 +59,7 @@ public class GameController implements ContactListener{
             curLevel.step();
             switch(state){
                 case LAUNCH:
-                    if(ball.body.isAwake()){
+                    if(!ball.postLaunch()){
                         launched = true;
                     }else{
                         launched = false;
@@ -65,6 +69,9 @@ public class GameController implements ContactListener{
                 case MOBTURN:
                     if(!curLevel.moveMobs()) state = GameState.READY;
                     break;
+                case WIN:
+                	//TODO
+                	break;
             }
         }
     }
@@ -116,7 +123,7 @@ public class GameController implements ContactListener{
             yOrigin = 0;
             if(state == GameState.GRAB && e.getButton() == 1){
                 ball.launch(Utils.toPhysX(e.getX()), Utils.toPhysY(e.getY()));
-                state = GameState.READY; //TEMP...FOR TESTING
+                state = GameState.LAUNCH;
             }
         }
     }
