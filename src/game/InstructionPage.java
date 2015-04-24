@@ -13,8 +13,8 @@ import javax.swing.JLabel;
  * This page represents the InstructionPage page to be used from MainPage.
  * 
  * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
- * @version     1.0
- * @since       2015-04-21
+ * @version     2015-04-24
+ * @since       2015-04-24
  */
 public class InstructionPage extends View{
     JLabel jlInstructions;
@@ -24,7 +24,7 @@ public class InstructionPage extends View{
     /**
      * This is the instructionPage constructor.
      * 
-     * @param 	frame	passed a object of Main
+     * @param frame		Object type of Main passed
      */
     protected InstructionPage(Main frame){
         super(Consts.INSTRUCTION);
@@ -44,7 +44,7 @@ public class InstructionPage extends View{
     /**
      * Action listener
      * 
-     * @param	arg0	action listener event
+     * @param arg0		Action listener event
      */
     @Override
     public void actionPerformed(ActionEvent arg0) {
