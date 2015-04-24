@@ -18,8 +18,8 @@ import org.jbox2d.dynamics.World;
  * This is the mob class that defines the robots as far as rendering and physics.
  * 
  * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
- * @version     1.0
- * @since       2015-04-21
+ * @version     2015-04-24
+ * @since       2015-04-24
  */
 public class Mob extends Entity{
     public final static int DEFAULT_HEALTH = 2;
@@ -32,6 +32,15 @@ public class Mob extends Entity{
     int health = DEFAULT_HEALTH;
     int numOfSpacesMobCanMove;
 
+    /**
+     * Constructor for Mob object.
+     * 
+     * @param world			Object of World passed
+     * @param bd			Object of body definition passed
+     * @param fd			Object of fixture definition passed
+     * @param shape			Object of Polygon shape passed
+     * @param gridScale		Float gridscale passed
+     */
     Mob(World world, BodyDef bd, FixtureDef fd, PolygonShape shape, float gridScale){
 
         try {
@@ -66,18 +75,18 @@ public class Mob extends Entity{
     }
 
     /**
-     * setHealth method is used for setting health on robot.
+     * SetHealth method is used for setting health on robot.
      * 
-     * @param 	health	this is the health defined for robot
+     * @param health	Integer health passed
      */
     public void setHealth(int health){
         this.health = health;
     }
 
     /**
-     * hit method used to decrement health when hit by ball object.
+     * Hit method used to decrement health when hit by ball object.
      * 
-     * @param	otherEntity		object defined as another entity
+     * @param otherEntity	Object type of Entity passed
      */
     @Override
     public void hit(Entity otherEntity) {
@@ -90,9 +99,9 @@ public class Mob extends Entity{
     }
 
     /**
-     * render method is used to draw the image of the mob.
+     * Render method is used to draw the image of the mob.
      * 
-     * @param	g	this is an object of Graphics2D
+     * @param g		Object type of Graphics2D passed
      */
     @Override
     public void render(Graphics2D g) {
@@ -101,7 +110,7 @@ public class Mob extends Entity{
     }
 
     /**
-     * pixUpdate method used to update pixel location of mob.
+     * PixUpdate method used to update pixel location of mob.
      */
     @Override
     public void pixUpdate() {

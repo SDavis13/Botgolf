@@ -21,7 +21,7 @@ public class QuickplayPage extends View{
     /**
      * Create a GamePage instance.
      * 
-     * @return 	page	returns an instance of GamePage
+     * @return page		returns an instance of GamePage
      */
     public static QuickplayPage getInstance(){
         return page;
@@ -30,7 +30,7 @@ public class QuickplayPage extends View{
     /**
      * constructor for QuickplayPage.
      * 
-     * @param 	name	passed a string
+     * @param name		String name is passed
      */
     protected QuickplayPage(String name) {
         super(name);
@@ -40,7 +40,7 @@ public class QuickplayPage extends View{
     /**
      * Action listener
      * 
-     * @param	arg0	action listener event
+     * @param arg0		Action listener event
      */
     @Override
     public void actionPerformed(ActionEvent arg0) {
