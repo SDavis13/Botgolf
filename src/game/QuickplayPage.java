@@ -9,8 +9,8 @@ import javax.swing.JScrollPane;
  * QuickPlayPage represents the quick play button from Main page.
  * 
  * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
- * @version     1.0
- * @since       2015-04-21
+ * @version     2015-04-24
+ * @since       2015-04-24
  */
 public class QuickplayPage extends View{
     static QuickplayPage page = new QuickplayPage(Consts.QUICKPLAY);
@@ -21,14 +21,14 @@ public class QuickplayPage extends View{
     /**
      * Create a GamePage instance.
      * 
-     * @return page		returns an instance of GamePage
+     * @return page		Returns an instance of GamePage
      */
     public static QuickplayPage getInstance(){
         return page;
     }
     
     /**
-     * constructor for QuickplayPage.
+     * Constructor for QuickplayPage.
      * 
      * @param name		String name is passed
      */
