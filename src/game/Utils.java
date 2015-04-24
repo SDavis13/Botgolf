@@ -30,8 +30,9 @@ public class Utils {
 
     /**
      * Convert a JBox2D x coordinate to a Swing pixel x coordinate
-     * @param physX
-     * @return
+     * 
+     * @param physX	a x coordinate float value is passed.
+     * @return		returns a pixel x coordinate
      */
     public static float toPixX(float physX) {
         float pixX = Consts.SCALE*physX / 100.0f - Consts.pxOffset;
