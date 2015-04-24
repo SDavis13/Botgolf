@@ -85,17 +85,21 @@ public class Mob extends Entity{
 
     /**
      * Hit method used to decrement health when hit by ball object.
+     * and play hit sounds for robot.
      * 
      * @param otherEntity	Object type of Entity passed
      */
     @Override
     public void hit(Entity otherEntity) {
+        
+        if(otherEntity instanceof Ball){
+        	SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_ROBOTBOOM]);
+        }
         health--;
         if (health <= 0)
         {
             remove = true;
         }
-
     }
 
     /**

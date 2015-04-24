@@ -56,12 +56,23 @@ public class Wall extends Entity {
 
     /**
      * Hit method created when a hit is detected by another entity.
+     * Decides what sound to play and play it if ball contacts wall.
      * 
      * @param otherEntity	Object type of entity passed
      */
     @Override
     public void hit(Entity otherEntity) {
-        // TODO Auto-generated method stub
+    	boolean wallTemp = true;
+        if(otherEntity instanceof Ball){
+        	if(wallTemp == true){
+        	wallTemp = false;
+        	SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_WALL1]);
+        	}
+        	if(wallTemp == false){
+        	wallTemp = true;
+        	SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_WALL2]);
+        	}
+        }
 
     }
 
