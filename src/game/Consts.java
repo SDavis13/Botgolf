@@ -33,10 +33,18 @@ public class Consts {
                                 GAME        = "Game";
     
                                 //Sound names
-    public static final String  SND_SCORE   = "Score";
+    public static final String[] SOUNDS = {"Score", "Wall1", "Wall2", "RobotBoom", "RobotMove"};
+    
+    public static final int SNDIDX_SCORE = 0,
+    						SNDIDX_WALL1 = 1,
+    						SNDIDX_WALL2 = 2,
+    						SNDIDX_ROBOTBOOM = 3,
+    						SNDIDX_ROBOTMOVE = 4;
+    
 
                                 //Sound locations
-    public static final String  SNDFILE_SCORE   = SNDLOC + "score.wav";
+    public static final String[] SOUNDFILES = {SNDLOC+"score.wav", SNDLOC+"wall1.wav",
+    	SNDLOC+"wall2.wav", SNDLOC+"robotboom.wav", SNDLOC+"robotmove.wav"};
                                 
     
     public static final int SCALE = 2000;
