@@ -9,8 +9,8 @@ import javax.swing.JPanel;
  * extends the Jpanel and implements ActionListener.
  * 
  * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
- * @version     1.0
- * @since       2015-04-21
+ * @version     2015-04-24
+ * @since       2015-04-24
  * @extends		JPanel
  * @implements	ActionListener
  */
@@ -22,7 +22,7 @@ public abstract class View extends JPanel implements ActionListener{
     /**
      * Constructor for View.
      * 
-     * @param name	Passed a string
+     * @param name	String name has been passed
      */
     protected View(String name){
         this.name = name;
@@ -33,7 +33,7 @@ public abstract class View extends JPanel implements ActionListener{
     /**
      * Activate method for the view.
      * 
-     * @param message	This object is passed
+     * @param message	Object message is passed
      */
     public void activate(Object message){
         active = true;

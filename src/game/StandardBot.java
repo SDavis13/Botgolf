@@ -16,13 +16,22 @@ import org.jbox2d.dynamics.World;
  * extending the Mob class.
  * 
  * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
- * @version     1.0
- * @since       2015-04-21
+ * @version     2015-04-24
+ * @since       2015-04-24
  * @extends		Mob
  */
 public class StandardBot extends Mob {		
 
-    StandardBot(World world, BodyDef bd, FixtureDef fd, PolygonShape shape, float gridScale)
+    /**
+     * Constructor for Standard robot.
+     * 
+     * @param world			Object of world passed
+     * @param bd			Object of Body Definition passed
+     * @param fd			Object of Fixture Definition passed
+     * @param shape			Object of Polygon Shape passed
+     * @param gridScale		Float of grid scale is passed
+     */
+	StandardBot(World world, BodyDef bd, FixtureDef fd, PolygonShape shape, float gridScale)
     {
         super(world, bd, fd, shape, gridScale);
 

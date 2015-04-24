@@ -17,8 +17,8 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  * This class represents the sound repository for the game.
  * 
  * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
- * @version     1.0
- * @since       2015-04-21
+ * @version     2015-04-25
+ * @since       2015-04-25
  */
 public class SoundRepository {
     HashMap<String,Clip> soundBank = new HashMap<String,Clip>();
@@ -34,14 +34,14 @@ public class SoundRepository {
     /**
      * This is used to create a singleton instance.
      * 
-     * @return		returns the repository
+     * @return		Returns the repository object instance
      */
     public static SoundRepository getInstance(){
         return repo;
     }
 
     /**
-     * loadSound method is used to load the sounds to play.
+     * LoadSound method is used to load the sounds to play.
      */
     private void loadSound(){
     	for(int i = 0; i < Consts.SOUNDS.length; i++){
@@ -71,9 +71,9 @@ public class SoundRepository {
     }
 
     /**
-     * playSound method is used to play particular sounds.
+     * PlaySound method is used to play particular sounds.
      * 
-     * @param 	soundName	parameter of soundName passed
+     * @param soundName		String of sound name passed
      */
     public static void playSound(String soundName) {
         Clip clip = repo.soundBank.get(soundName);
@@ -84,7 +84,7 @@ public class SoundRepository {
     }
 
     /**
-     * finalize method is used to finalize the clip in collection.
+     * Finalize method is used to finalize the clip in collection.
      */
     @Override
     protected void finalize(){
