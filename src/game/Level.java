@@ -13,8 +13,8 @@ import org.jbox2d.dynamics.World;
  * and robots.
  * 
  * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
- * @version     1.0
- * @since       2015-04-21
+ * @version     2015-04-24
+ * @since       2015-04-24
  */
 public class Level {
     /**
@@ -42,6 +42,16 @@ public class Level {
     World world;    
     boolean pause;
 
+    /**
+     * Constructor for Level
+     * 
+     * @param world		Object type of World passed
+     * @param specs		Object type of GameSpec passed
+     * @param wallList	Object type of ArrayList passed
+     * @param mobList	Object type of ArrayList passed
+     * @param theBall	Object type of Ball passed
+     * @param theHole	Object type of Hole passed
+     */
     Level(World world, GameSpec specs, ArrayList<Wall> wallList, ArrayList<Mob> mobList, Ball theBall, Hole theHole){
         this.world = world;
         name = specs.levelName;
@@ -57,11 +67,19 @@ public class Level {
         mobIterFlag.access = true;
     }
 
+    /**
+     * Method to check is Mob has moved.
+     * 
+     * @return		boolean value of true or false
+     */
     boolean moveMobs(){
         //TODO move the mobs
         return false;
     }
 
+    /**
+     * Step method to update pixel location of world, ball, hole.
+     */
     void step(){
         world.step(Consts.TIMESTEP, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
         ball.pixUpdate();
@@ -86,6 +104,10 @@ public class Level {
         }
     }
 
+    /**
+     * 
+     * @param g
+     */
     void render(Graphics2D g){     	
         Rectangle bounds = g.getClipBounds();
         
