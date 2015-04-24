@@ -33,6 +33,11 @@ public class GameController implements ContactListener{
     GameState tempState;
     LevelFactory curFactory = new CreateLevel(); //TODO This is hardcoded and will need to be changed.
 
+    /**
+     * Constructor for GameController.
+     * 
+     * @param page	Object type of GamePage passed
+     */
     public GameController(GamePage page){
         state = GameState.INACTIVE;
         tempState = GameState.READY;
@@ -43,6 +48,12 @@ public class GameController implements ContactListener{
         view.addMouseMotionListener(mouseInput);
         view.addKeyListener(keyInput);
     }
+    
+    /**
+     * LoadLevel method creates the specs and levels.
+     * 
+     * @param levelSpec		Object type of GameSpec passed
+     */
     public void loadLevel(GameSpec levelSpec){
         if(levelSpec.newGame)
             curLevel = curFactory.createLevel(levelSpec);
@@ -50,28 +61,50 @@ public class GameController implements ContactListener{
         view.setLevel(curLevel);
         curLevel.world.setContactListener(this);
     }
+    
+    /**
+     * StartGame method used to start the game in unpaused and with time.
+     */
     public void startGame(){
     	curLevel.unPause();
         state = tempState;
         tickRunner = new Timer(THREAD_NAME);
         tickRunner.scheduleAtFixedRate(new PhysicsLoop(), 25, Consts.TIMERTICK);
     }
+   
+    /**
+     * PauseGame used to pause the game state of the current game.
+     */
     public void pauseGame(){
         tempState = state;
         tickRunner.cancel();
         curLevel.pause();
         state = GameState.PAUSED;
     }
+    
+    /**
+     * ExitGame used to change game state and then exit.
+     */
     public void exitGame(){
     	tempState = GameState.INACTIVE;
     	state = GameState.INACTIVE;
     	curLevel.pause();
     	tickRunner.cancel();
     }
+    
+    /**
+     * WinGame method used when game is won.
+     */
     public void winGame(){
     	exitGame();
     	view.pause(Consts.GAMEMENUPAGE);
     }
+    
+    /**
+     * 
+     * @author ctswanson
+     *
+     */
     private class PhysicsLoop extends TimerTask{
         boolean launched = false;
 
@@ -97,6 +130,7 @@ public class GameController implements ContactListener{
         }
     }
 
+    
     private class KeyboardInput extends KeyAdapter{
         @Override
         public void keyPressed(KeyEvent e){
