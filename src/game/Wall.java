@@ -1,12 +1,13 @@
 package game;
 
-import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
 
 import org.jbox2d.collision.shapes.PolygonShape;
-import org.jbox2d.dynamics.*;
+import org.jbox2d.dynamics.BodyDef;
+import org.jbox2d.dynamics.FixtureDef;
+import org.jbox2d.dynamics.World;
 
 public class Wall extends Entity {
 	

@@ -8,7 +8,6 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JTextPane;
 
 public class InstructionPage extends View{
     JLabel jlInstructions;

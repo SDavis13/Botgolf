@@ -1,18 +1,16 @@
 package game;
 
 import java.awt.Dimension;
-import java.net.URL;
-import java.util.*;
-
-import javax.swing.*;
-import javax.swing.plaf.synth.SynthLookAndFeel;
-
 import java.io.IOException;
-import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.ParseException;
+import java.util.Hashtable;
 
+import javax.swing.BoxLayout;
+import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.plaf.synth.SynthLookAndFeel;
 
 /**
  * This is the main class where everything starts.
@@ -110,6 +108,7 @@ public class Main extends JFrame{
     /**
      * Repaints the current view page selected.
      */
+    @Override
     public void repaint(){
         super.repaint();
         curView.repaint();

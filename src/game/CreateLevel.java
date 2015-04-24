@@ -4,7 +4,10 @@ import java.util.ArrayList;
 
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.*;
+import org.jbox2d.dynamics.BodyDef;
+import org.jbox2d.dynamics.BodyType;
+import org.jbox2d.dynamics.FixtureDef;
+import org.jbox2d.dynamics.World;
 
 public class CreateLevel implements LevelFactory {
     /**
@@ -29,7 +32,8 @@ public class CreateLevel implements LevelFactory {
     public static final Vec2 HOLE_POSITION = new Vec2(4,96);
     
     
-	public Level createLevel(GameSpec specs){
+	@Override
+    public Level createLevel(GameSpec specs){
 					
 		World world = new World(new Vec2(0.0f, 0.0f));
         

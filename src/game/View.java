@@ -2,7 +2,7 @@ package game;
 
 import java.awt.event.ActionListener;
 
-import javax.swing.*;
+import javax.swing.JPanel;
 
 public abstract class View extends JPanel implements ActionListener{
     String name;

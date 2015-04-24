@@ -4,11 +4,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.Shape;
 import java.util.ArrayList;
-import java.util.Iterator;
 
-import org.jbox2d.dynamics.*;
+import org.jbox2d.dynamics.World;
 
 public class Level {
     /**

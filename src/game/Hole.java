@@ -1,9 +1,6 @@
 package game;
 
-import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -12,8 +9,9 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import org.jbox2d.collision.shapes.CircleShape;
-import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.*;
+import org.jbox2d.dynamics.BodyDef;
+import org.jbox2d.dynamics.FixtureDef;
+import org.jbox2d.dynamics.World;
 
 public class Hole extends Entity{
     public CircleShape shape;

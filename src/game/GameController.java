@@ -1,6 +1,8 @@
 package game;
 
-import java.awt.event.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -9,7 +11,6 @@ import javax.swing.event.MouseInputAdapter;
 import org.jbox2d.callbacks.ContactImpulse;
 import org.jbox2d.callbacks.ContactListener;
 import org.jbox2d.collision.Manifold;
-import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.contacts.Contact;
 
 public class GameController implements ContactListener{
@@ -55,6 +56,7 @@ public class GameController implements ContactListener{
     private class PhysicsLoop extends TimerTask{
         boolean launched = false;
         
+        @Override
         public void run(){
             curLevel.step();
             switch(state){

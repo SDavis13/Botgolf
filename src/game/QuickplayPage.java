@@ -2,7 +2,8 @@ package game;
 
 import java.awt.event.ActionEvent;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JScrollPane;
 
 public class QuickplayPage extends View{
     static QuickplayPage page = new QuickplayPage(Consts.QUICKPLAY);

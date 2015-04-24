@@ -3,10 +3,9 @@ package game;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.ScheduledExecutorService;
 
 /**
  * GamePage represents the GamePage view for the jbox2d physics rendering
@@ -51,6 +50,7 @@ public class GamePage extends View{
      * 
      * @param	g1	component name of Graphics
      */
+    @Override
     protected void paintComponent(Graphics g1){
         super.paintComponent(g1);
         Graphics2D g = (Graphics2D)g1;
@@ -83,6 +83,7 @@ public class GamePage extends View{
      * 
      * @param	message		Object passed to compare with GameSpec object
      */
+    @Override
     public void activate(Object message){
         if(message instanceof GameSpec){
             spec = (GameSpec) message;
@@ -97,6 +98,7 @@ public class GamePage extends View{
      * 
      * @param	e	action listener event
      */
+    @Override
     public void actionPerformed(ActionEvent e){
         
     }
@@ -115,6 +117,7 @@ public class GamePage extends View{
      * the components on the GamePage view.
      */
     private class RenderLoop extends TimerTask{
+        @Override
         public void run(){
             repaint();
         }
