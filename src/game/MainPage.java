@@ -8,6 +8,14 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+/**
+ * MainPage represents all the Jframe information that displays on this
+ * particular view.
+ * 
+ * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
+ * @version     1.0
+ * @since       2015-04-01
+ */
 public class MainPage extends View{
     static MainPage page = new MainPage(Consts.MAIN);
     static ImageIcon logo;
@@ -25,19 +33,29 @@ public class MainPage extends View{
     JButton jbAbout = new JButton("About");
     JButton jbExit = new JButton("Exit");
         
-    
+    /**
+     * Creates a singleton instance of this view.
+     * 
+     * @return  page returns an instance of this view
+     */
     public static MainPage getInstance(){
         return page;
     }
     
+    /**
+     * MainPage has Jframe information for this view.
+     * 
+     * @param      name  to represent this MainPage.
+     * @exception  e if image not available display error to console.   
+     */
     protected MainPage(String name) {
-            	    
     	super(name);
-    	
+     
     	Insets insetDefinition = new Insets(15,20,15,20);
-    	
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        try{
+        
+    	this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        
+    	try{
             logo = new ImageIcon(ImageIO.read(new File(Consts.IMG_LOGO)));
             jlTitle.setSize(logo.getIconWidth(), logo.getIconHeight());
             jlTitle.setIcon(logo);
@@ -55,6 +73,9 @@ public class MainPage extends View{
         jbAbout.setMargin(insetDefinition);
         jbExit.setMargin(insetDefinition);
         
+        /**
+         * Setup alignment of buttons and setup action listeners.
+         */
         jlTitle.setAlignmentX(CENTER_ALIGNMENT);
         //jlTitle.setBorder(BorderFactory.createLineBorder(Color.black));
         //jpShirt.setLayout(new BoxLayout(jpShirt, BoxLayout.X_AXIS));
@@ -75,6 +96,9 @@ public class MainPage extends View{
         jbExit.addActionListener(this);
         jbExit.setAlignmentX(CENTER_ALIGNMENT);
         
+        /**
+         * Add the buttons to the panel views.
+         */
         add(jlTitle);
         add(jpShirt);
             jpShirt.add(jpLeft);
@@ -88,6 +112,9 @@ public class MainPage extends View{
         jpRight.add(jbAbout);//column2
     }
 
+    /**
+     * Action listener for each button on the MainPage view.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == jbQuickplay){

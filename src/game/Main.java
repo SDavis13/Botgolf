@@ -15,9 +15,11 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 /**
- * @authors     Spencer Davis
+ * This is the main class where everything starts.
+ * 
+ * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
  * @version     1.0
- * @since       2015-03-31
+ * @since       2015-04-01
  */
 public class Main extends JFrame{
     static Main theMain = new Main();
@@ -37,7 +39,7 @@ public class Main extends JFrame{
     }
     
     /**
-     * Getting the instance of theMain.
+     * Created a singleton instance of Main.
      *
      * @return theMain
      */
@@ -46,11 +48,10 @@ public class Main extends JFrame{
     }
     
     /**
-     * Creating.
+     * Main begins at this point.
      * <p>
-     *
-     * @param  variable Description text text text.
-     * @return Description text text text.
+     * Main begins with the look and feel of theme being loaded.  Gets the content
+     * pane and sets dimension of box.  Brings up the initial page where our buttons are.
      */
     private Main(){
     	SynthLookAndFeel theme = new SynthLookAndFeel();
@@ -63,9 +64,7 @@ public class Main extends JFrame{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-    	
-        getContentPane().setPreferredSize(new Dimension(WIDTH, HEIGHT));
+		getContentPane().setPreferredSize(new Dimension(WIDTH, HEIGHT));
         pack();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Botgolf");
@@ -75,10 +74,11 @@ public class Main extends JFrame{
     }
     
     /**
-     * Creates the views.
+     * Add views to hash table.
      * <p>
-     * Creates the views or pages to view.
-     *
+     * Adds the views or pages to a hash table called 'views'.
+     * 
+     * @param view   name given to the particular view
      */
     public void addView(View view){
         views.put(view.name, view);
@@ -88,7 +88,9 @@ public class Main extends JFrame{
      * Switches between the views.
      * <p>
      * This switches between the views.
-     *
+     * 
+     * @param name     key name for view in hash table
+     * @param message  message passed to view
      */
     public void switchView(String name, Object message){
         View view = views.get(name);
@@ -107,7 +109,6 @@ public class Main extends JFrame{
     
     /**
      * Repaints the current view page selected.
-     * 
      */
     public void repaint(){
         super.repaint();
@@ -118,7 +119,7 @@ public class Main extends JFrame{
     /**
      * Creates the pages to use.
      * <p>
-     * This creates pages to use between switching views.
+     * This creates pages to use between switching views.  These are singleton views.
      *
      */
     private void createPages(){
