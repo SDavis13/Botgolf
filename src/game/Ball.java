@@ -17,7 +17,16 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-
+/**
+ * Class Ball extends Entity and 
+ * creates a ball used in World
+ * and sets its behavior.
+ * 
+ * @author Josh
+ * @version 1.0
+ * @since 4/23/14
+ * @extends Entity class
+ */
 public class Ball extends Entity{
     
     int mouseX,mouseY;
@@ -29,7 +38,13 @@ public class Ball extends Entity{
     Ellipse2D.Float pixCircle;
     static final float IMPULSE_SCALE = 10; //TODO Should make this also a function of Consts.SCALE
     BufferedImage ballImage;
-
+/**
+ * Constructor Ball creates a Ball.
+ * 
+ * @param world sets physics to this world
+ * @param bd
+ * @param fd
+ */
     public Ball(World world, BodyDef bd, FixtureDef fd){
         
         try {
@@ -58,7 +73,11 @@ public class Ball extends Entity{
         pixY = Utils.toPixY(body.getPosition().y);
         pixCircle = new Ellipse2D.Float((pixX - pixRad), (pixY - pixRad), pixRad*2, pixRad*2);
     }
-    
+    /**
+     * setGrabbed method sets grabbed to true
+     * 
+     *
+     */
     public void setGrabbed(){
         grabbed = true;
     }
