@@ -17,8 +17,8 @@ import javax.swing.JPanel;
  * the MainPage view.
  * 
  * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
- * @version     1.0
- * @since       2015-04-01
+ * @version     2015-04-24
+ * @since       2015-04-24
  */
 public class MainPage extends View{
     static MainPage page = new MainPage(Consts.MAIN);
@@ -40,7 +40,7 @@ public class MainPage extends View{
     /**
      * Creates a singleton instance of this view.
      * 
-     * @return  page returns an instance of this view
+     * @return page		Returns an instance of MainPage
      */
     public static MainPage getInstance(){
         return page;
@@ -49,8 +49,8 @@ public class MainPage extends View{
     /**
      * MainPage has Jframe information for this view.
      * 
-     * @param      name  	name of MainPage for simplicity.
-     * @exception  e 		if image not available display error to console.   
+     * @param name		Name of MainPage for simplicity.
+     * @exception e 	If image not available display error to console.   
      */
     protected MainPage(String name) {
         super(name);
@@ -118,6 +118,8 @@ public class MainPage extends View{
 
     /**
      * Action listener for each button on the MainPage view.
+     * 
+     * @param e		Object type of ActionEvent passed
      */
     @Override
     public void actionPerformed(ActionEvent e) {
