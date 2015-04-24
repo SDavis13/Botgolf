@@ -13,6 +13,15 @@ import org.jbox2d.callbacks.ContactListener;
 import org.jbox2d.collision.Manifold;
 import org.jbox2d.dynamics.contacts.Contact;
 
+/**
+ * GameController represents the game play.  This keeps track of keyboard and
+ * mouse input as well as recognizes game state changes.
+ * 
+ * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
+ * @version     1.0
+ * @since       2015-04-21
+ * @implements	ContactListener
+ */
 public class GameController implements ContactListener{
     static final String THREAD_NAME = "PhysicsLoop";
     GamePage view;
