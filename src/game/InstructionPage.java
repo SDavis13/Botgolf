@@ -21,6 +21,11 @@ public class InstructionPage extends View{
     ImageIcon logo;
     JButton jbBack;
 
+    /**
+     * This is the instructionPage constructor.
+     * 
+     * @param 	frame	passed a object of Main
+     */
     protected InstructionPage(Main frame){
         super(Consts.INSTRUCTION);
         this.frame = frame;
