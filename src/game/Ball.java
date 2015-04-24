@@ -162,6 +162,13 @@ public class Ball extends Entity{
         }
         return false;
     }
+    
+    /**
+     * contains method to see if x and y coordinates are contained in pixCircle.
+     * 
+     * @param	pixX	x coordinate of x coordinate of .
+     * @param	pixY	y coordinate for launching ball.
+     */
     public boolean contains(int pixX, int pixY){
         return pixCircle.contains(pixX, pixY);
     }

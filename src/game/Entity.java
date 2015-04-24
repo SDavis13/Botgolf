@@ -6,6 +6,13 @@ import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.World;
 
+/**
+ * This is the class to create an Entity.
+ * 
+ * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
+ * @version     1.0
+ * @since       2015-04-21
+ */
 public abstract class Entity {
     Body body;
     Fixture fixture;
