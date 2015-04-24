@@ -33,7 +33,10 @@ public class Consts {
                                 GAME        = "Game";
     
                                 //Sound names
-    public static final String  SND_SCORE   = SNDLOC + "score.wav";
+    public static final String  SND_SCORE   = "Score";
+
+                                //Sound locations
+    public static final String  SNDFILE_SCORE   = SNDLOC + "score.wav";
                                 
     
     public static final int SCALE = 2000;

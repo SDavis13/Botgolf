@@ -10,102 +10,48 @@ import javax.sound.sampled.*;
 //import org.jbox2d.dynamics.contacts.Contact;
 
 public class SoundRepository {
-
-
-	 /*    private class SoundPlayer implements ContactListener{
-
-        @Override
-        public void beginContact(Contact contact) {
-            Object object1 = contact.getFixtureA().getUserData();
-            Object object2 = contact.getFixtureB().getUserData();
-            
-            if(object1 instanceof Clip){
-                Clip clip = (Clip)(object1);
-                if(clip.getFramePosition() != 0) clip.setFramePosition(0);
-                (clip).start();
-                clip.close();
-            }
-            if(object2 instanceof Clip){
-                Clip clip = (Clip)(object2);
-                if(clip.getFramePosition() != 0) clip.setFramePosition(0);
-                (clip).start();
-                clip.close();
-            }
+	HashMap<String,Clip> soundBank = new HashMap<String,Clip>();
+	static SoundRepository repo = new SoundRepository();
+	
+	private SoundRepository(){
+	    loadSound();
+	}
+	
+	public static SoundRepository getInstance(){
+	    return repo;
+	}
+	
+	private void loadSound(){
+	    File file;
+	    Clip clip = null;
+        try {
+            clip = AudioSystem.getClip();
+        } catch (LineUnavailableException e1) {
+            e1.printStackTrace();
         }
-        */
-	
-	//create hashtable
-	//Hashtable<String, Object> soundBank = new Hashtable<String,Object>();
-
-	static HashMap<String,Clip> soundBank = new HashMap<String,Clip>();
-	//String key;
-	//Object File;
-	
-	
-	
-	//soundBank.put("zap2", new Clip();
-	
-/*
-	public SoundRepository(String fileName){
-		try{
-			File file = new File(fileName);
-			if(file.exists()){
-				AudioInputStream sound = AudioSystem.getAudioInputStream(file);
-				clip = AudioSystem.getClip();
-				clip.open(sound);
-			}
-			else{
-				throw new RuntimeException("Sound: file not found: " +fileName);
-			}
-		}
-		catch(UnsupportedAudioFileException e){
-			e.printStackTrace();
-			throw new RuntimeException("Sound: Malformed URL: " +e);
-		} catch (LineUnavailableException e) {
-			
-			e.printStackTrace();
-		} catch (IOException e) {
-		
-			e.printStackTrace();
-		}
-		
+	    file = new File(Consts.SNDFILE_SCORE);
+	    try {
+            if(file != null)
+                    clip.open(AudioSystem.getAudioInputStream(file));
+        } catch (LineUnavailableException e) {
+            // Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // Auto-generated catch block
+            e.printStackTrace();
+        } catch (UnsupportedAudioFileException e) {
+            // Auto-generated catch block
+            e.printStackTrace();
+        }
+	    soundBank.put(Consts.SND_SCORE, clip);
 	}
 	
-	public void play(){
-		clip.setFramePosition(0);
-		clip.start();
-	}
-	
-	public void loop(){
-		clip.loop(Clip.LOOP_CONTINUOUSLY);
-	}
-	
-	public void stop(){
-		clip.stop();
-	}
-*/
-	public static void playSound(String file) {
-		/*Clip clip = null;
-		AudioInputStream audio = null;
-		if(soundBank.containsKey(file)){
-			clip = soundBank.get(file);
-			clip.setFramePosition(0);
+	public static void playSound(String soundName) {
+		Clip clip = repo.soundBank.get(soundName);
+		if(clip != null){
+    		if(clip.getFramePosition() != 0) clip.setFramePosition(0);
+            clip.start();
 		}
-		else{
-			audio = AudioSystem.getAudioInputStream(clip.getFormat(), audio);//getClass().getResource("/resources/game/sounds/" + file + ".wav"));
-			clip = soundBank.put("zap2", clip);//AudioSystem.getClip();
-			try {
-				clip.open(audio);
-			} catch (LineUnavailableException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			soundBank.put(file, clip);
-		}
-		clip.start();*/
 	}
 
 
