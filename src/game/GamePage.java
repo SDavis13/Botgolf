@@ -11,8 +11,8 @@ import java.util.TimerTask;
  * GamePage represents the GamePage view from the MainPage.
  * 
  * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
- * @version     1.0
- * @since       2015-04-21
+ * @version     2015-04-24
+ * @since       2015-04-24
  */
 public class GamePage extends View{
     static GamePage page = new GamePage(Consts.GAME);
@@ -26,7 +26,7 @@ public class GamePage extends View{
     /**
      * Create a GamePage instance.
      * 
-     * @return 	page	returns an instance of GamePage
+     * @return page		Returns an instance of GamePage
      */
     public static GamePage getInstance(){
         return page;
@@ -35,7 +35,7 @@ public class GamePage extends View{
     /**
      * GamePage constructor.
      * 
-     * @param 	name	name of the GamePage for simplicity.		
+     * @param name	String of name passed		
      */
     protected GamePage(String name) {
         super(name);
@@ -47,7 +47,7 @@ public class GamePage extends View{
     /**
      * Method for rendering the graphic portion of components on GamePage.
      * 
-     * @param	g1	component name of Graphics
+     * @param g1	Object of Graphics passed
      */
     @Override
     protected void paintComponent(Graphics g1){
@@ -69,6 +69,8 @@ public class GamePage extends View{
 
     /**
      * This is pause detection for when game play is paused.
+     * 
+     * @param viewName	String of the view name passed
      */
     public void pause(String viewName){
     	control.pauseGame();
@@ -78,15 +80,18 @@ public class GamePage extends View{
         //TODO Make all instance vars private, except for the obvious and GameSpec's stuff
     }
     
+    /**
+     * Lose method for when the player loses.
+     */
     public void lose(){
     	//TODO ERRTHING
-    	frame.switchView(Consts.LOSE, curLevel.name);
+    	frame.switchView(Consts.GAMEMENUPAGE, curLevel.name);
     }
 
     /**
      * Activate method used to bring in the GameSpec.
      * 
-     * @param	message		Object passed to compare with GameSpec object
+     * @param message	Object of message passed to compare
      */
     @Override
     public void activate(Object message){
@@ -99,9 +104,9 @@ public class GamePage extends View{
     }
 
     /**
-     * Action listener
+     * Action listener.
      * 
-     * @param	e	action listener event
+     * @param e		Action listener event
      */
     @Override
     public void actionPerformed(ActionEvent e){
@@ -111,7 +116,7 @@ public class GamePage extends View{
     /**
      * This sets the level for the GamePage.
      * 
-     * @param 	level	This is the level that is passed to GamePage
+     * @param level		Object type of Level passed
      */
     public void setLevel(Level level){
         curLevel = level;
