@@ -8,8 +8,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- * GamePage represents the GamePage view for the jbox2d physics rendering
- * as well as the Jframe rendering over the top.
+ * GamePage represents the GamePage view from the MainPage.
  * 
  * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
  * @version     1.0

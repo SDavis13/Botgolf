@@ -9,6 +9,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+/**
+ * This page represents the InstructionPage page to be used from MainPage.
+ * 
+ * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
+ * @version     1.0
+ * @since       2015-04-21
+ */
 public class InstructionPage extends View{
     JLabel jlInstructions;
     ImageIcon logo;
@@ -29,6 +36,11 @@ public class InstructionPage extends View{
         }
     }
 
+    /**
+     * Action listener
+     * 
+     * @param	arg0	action listener event
+     */
     @Override
     public void actionPerformed(ActionEvent arg0) {
         // TODO Auto-generated method stub
