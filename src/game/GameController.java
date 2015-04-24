@@ -59,7 +59,7 @@ public class GameController implements ContactListener{
             curLevel.step();
             switch(state){
                 case LAUNCH:
-                    if(ball.body.isAwake()){
+                    if(!ball.postLaunch()){
                         launched = true;
                     }else{
                         launched = false;
@@ -120,7 +120,7 @@ public class GameController implements ContactListener{
             yOrigin = 0;
             if(state == GameState.GRAB && e.getButton() == 1){
                 ball.launch(Utils.toPhysX(e.getX()), Utils.toPhysY(e.getY()));
-                state = GameState.READY; //TEMP...FOR TESTING
+                state = GameState.LAUNCH;
             }
         }
     }

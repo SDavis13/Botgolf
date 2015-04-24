@@ -23,7 +23,8 @@ public class Ball extends Entity{
     int mouseX,mouseY;
     boolean grabbed;
     float pixRad;
-
+    int shotCount = 3;
+    
     CircleShape shape;
     Ellipse2D.Float pixCircle;
     static final float IMPULSE_SCALE = 10; //TODO Should make this also a function of Consts.SCALE
@@ -104,6 +105,14 @@ public class Ball extends Entity{
         body.applyLinearImpulse(temp,body.getPosition());
     }
     
+    public boolean postLaunch(){
+    	Vec2 vec = body.getLinearVelocity();
+    	if(Math.round(vec.x) == 0 && Math.round(vec.y)==0){
+    		shotCount--;
+    		return true;
+    	}
+    	return false;
+    }
     public boolean contains(int pixX, int pixY){
         return pixCircle.contains(pixX, pixY);
     }
