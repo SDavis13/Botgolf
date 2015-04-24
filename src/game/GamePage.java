@@ -3,10 +3,9 @@ package game;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.ScheduledExecutorService;
 
 /**
  * GamePage represents the GamePage view for the jbox2d physics rendering
@@ -33,7 +32,7 @@ public class GamePage extends View{
     public static GamePage getInstance(){
         return page;
     }
-    
+
     /**
      * GamePage is created with protected view.
      * Creates a new a new GameController object
@@ -51,15 +50,16 @@ public class GamePage extends View{
      * 
      * @param	g1	component name of Graphics
      */
+    @Override
     protected void paintComponent(Graphics g1){
         super.paintComponent(g1);
         Graphics2D g = (Graphics2D)g1;
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
         curLevel.render(g);
-        
+
         g.dispose();
     }
-    
+
     /**
      * This creates the tickRunner timer for swing side of things.
      */
@@ -67,22 +67,23 @@ public class GamePage extends View{
         tickRunner = new Timer(THREAD_NAME);
         tickRunner.scheduleAtFixedRate(new RenderLoop(), 25, Consts.TIMERTICK);
     }
-    
+
     /**
      * This is pause detection for when game play is paused.
      */
     public void pause(){
         tickRunner.cancel();
         frame.switchView(Consts.PAUSE, curLevel.name);
-            //TODO give curLevel a getName() method
-            //TODO Make all instance vars private, except for the obvious and GameSpec's stuff
+        //TODO give curLevel a getName() method
+        //TODO Make all instance vars private, except for the obvious and GameSpec's stuff
     }
-    
+
     /**
      * Activate method used to bring in the GameSpec.
      * 
      * @param	message		Object passed to compare with GameSpec object
      */
+    @Override
     public void activate(Object message){
         if(message instanceof GameSpec){
             spec = (GameSpec) message;
@@ -91,16 +92,17 @@ public class GamePage extends View{
         control.startGame();
         startRender();
     }
-    
+
     /**
      * Action listener
      * 
      * @param	e	action listener event
      */
+    @Override
     public void actionPerformed(ActionEvent e){
-        
+
     }
-    
+
     /**
      * This sets the level for the GamePage.
      * 
@@ -109,12 +111,13 @@ public class GamePage extends View{
     public void setLevel(Level level){
         curLevel = level;
     }
-    
+
     /**
      * This is the RenderLoop that runs in order to continually repaints
      * the components on the GamePage view.
      */
     private class RenderLoop extends TimerTask{
+        @Override
         public void run(){
             repaint();
         }

@@ -1,6 +1,8 @@
 package game;
 
-import java.awt.event.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -9,7 +11,6 @@ import javax.swing.event.MouseInputAdapter;
 import org.jbox2d.callbacks.ContactImpulse;
 import org.jbox2d.callbacks.ContactListener;
 import org.jbox2d.collision.Manifold;
-import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.contacts.Contact;
 
 public class GameController implements ContactListener{
@@ -22,7 +23,7 @@ public class GameController implements ContactListener{
     GameState state;
     GameState tempState;
     LevelFactory curFactory = new CreateLevel(); //TODO This is hardcoded and will need to be changed.
-    
+
     public GameController(GamePage page){
         state = GameState.INACTIVE;
         tempState = GameState.READY;
@@ -34,7 +35,7 @@ public class GameController implements ContactListener{
     }
     public void loadLevel(GameSpec levelSpec){
         if(levelSpec.newGame)
-                curLevel = curFactory.createLevel(levelSpec);
+            curLevel = curFactory.createLevel(levelSpec);
         ball = curLevel.getBall();
         view.setLevel(curLevel);
         curLevel.world.setContactListener(this);
@@ -50,11 +51,12 @@ public class GameController implements ContactListener{
         state = GameState.PAUSED;
     }
     public void winGame(){
-    	
+
     }
     private class PhysicsLoop extends TimerTask{
         boolean launched = false;
-        
+
+        @Override
         public void run(){
             curLevel.step();
             switch(state){
@@ -70,12 +72,12 @@ public class GameController implements ContactListener{
                     if(!curLevel.moveMobs()) state = GameState.READY;
                     break;
                 case WIN:
-                	//TODO
-                	break;
+                    //TODO
+                    break;
             }
         }
     }
-    
+
     private class KeyboardInput extends KeyAdapter{
         @Override
         public void keyPressed(KeyEvent e){
@@ -90,10 +92,10 @@ public class GameController implements ContactListener{
                 pauseGame();
                 view.pause();
             }
-            
+
         }
     }
-    
+
     private class MouseInput extends MouseInputAdapter{
         float xOrigin, yOrigin, oldXOffset, oldYOffset;
         @Override
@@ -138,17 +140,17 @@ public class GameController implements ContactListener{
     @Override
     public void endContact(Contact contact) {
         // TODO Auto-generated method stub
-        
+
     }
     @Override
     public void preSolve(Contact contact, Manifold oldManifold) {
         // TODO Auto-generated method stub
-        
+
     }
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {
         // TODO Auto-generated method stub
-        
+
     }
-        
+
 }

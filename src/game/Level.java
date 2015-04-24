@@ -4,11 +4,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.Shape;
 import java.util.ArrayList;
-import java.util.Iterator;
 
-import org.jbox2d.dynamics.*;
+import org.jbox2d.dynamics.World;
 
 public class Level {
     /**
@@ -33,7 +31,7 @@ public class Level {
     Hole hole;
     World world;
     boolean win = false;
-    
+
     Level(World world, GameSpec specs, ArrayList<Wall> wallList, ArrayList<Mob> mobList, Ball theBall, Hole theHole){
         this.world = world;
         name = specs.levelName;
@@ -44,7 +42,7 @@ public class Level {
         hole = theHole;
         mDelete = new ArrayList<Mob>();
         wDelete = new ArrayList<Wall>();
-        
+
         mobIterFlag.access = true;
     }
 
@@ -84,25 +82,25 @@ public class Level {
                 wall.render(g);
             }
         }
-        
+
         synchronized(mobIterFlag){
             mobIterFlag.access = false;
         }
-            for(Mob mob : mobs){
-                if(mob.pixShape.intersects(bounds)){
-                    mob.render(g);
-                }
+        for(Mob mob : mobs){
+            if(mob.pixShape.intersects(bounds)){
+                mob.render(g);
             }
+        }
         mobIterFlag.access = true;
-        
+
         if(hole.pixShape.intersects(bounds)){
             hole.render(g);
         }
         ball.render(g);
-        
+
         if(hole.win){ 
-        	g.setFont(new Font("Comic Sans MS", Font.BOLD, 48));
-        	g.setColor(Color.CYAN);
+            g.setFont(new Font("Comic Sans MS", Font.BOLD, 48));
+            g.setColor(Color.CYAN);
             g.drawString(WINSTRING, 400, 100);                                   
         }
     }
@@ -110,12 +108,12 @@ public class Level {
     public Ball getBall(){
         return ball;
     }
-    
+
     public Hole getHole()
     {
-    	return hole;
+        return hole;
     }
-    
+
     class IterFlag{
         boolean access;
     }
