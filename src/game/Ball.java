@@ -21,8 +21,8 @@ import org.jbox2d.dynamics.World;
  * and sets its behavior.
  * 
  * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
- * @version     1.0
- * @since       2015-04-21
+ * @version     2015-04-24
+ * @since       2015-04-24
  * @extends 	Entity class
  */
 public class Ball extends Entity{
@@ -40,9 +40,9 @@ public class Ball extends Entity{
     /**
      * Constructor Ball creates a Ball.
      * 
-     * @param 	world 	sets physics to this world
-     * @param 	bd		BodyDef parameter
-     * @param 	fd		FixtureDef parameter
+     * @param world		Object type of World passed
+     * @param bd		Object type of body definition passed
+     * @param fd		Object type of fixture definition passed
      */
     public Ball(World world, BodyDef bd, FixtureDef fd){
 
@@ -73,14 +73,14 @@ public class Ball extends Entity{
         pixCircle = new Ellipse2D.Float((pixX - pixRad), (pixY - pixRad), pixRad*2, pixRad*2);
     }
     /**
-     * setGrabbed method sets grabbed to true
+     * SetGrabbed method sets grabbed to true
      */
     public void setGrabbed(){
         grabbed = true;
     }
 
     /**
-     * setMouseLoc method sets mouse to a x,y coordinate on the playfield.
+     * SetMouseLoc method sets mouse to a x,y coordinate on the world.
      * 
      * @param	mouseX	Set x value of mouse location.
      * @param	mouseY	Set y value of mouse location.
@@ -90,15 +90,20 @@ public class Ball extends Entity{
         this.mouseY = mouseY;
     }
     
+    /**
+     * SetNumHits method keeps track of number of hits.
+     * 
+     * @param hits	Integer type of number of hits
+     */
     public void setNumHits(int hits)
     {
     	shotCount = hits;
     }
 
     /**
-     * hit method to identify when another entity is hit.
+     * Hit method to identify when another entity is hit.
      * 
-     * @param	otherEntity		Another entity like wall, or robot
+     * @param otherEntity	Object type of entity passed
      */
     @Override
     public void hit(Entity otherEntity) {
@@ -107,9 +112,9 @@ public class Ball extends Entity{
     }
 
     /**
-     * render method to draw the ball image. 
+     * Render method to draw the ball image. 
      * 
-     * @param	g		A Graphics2D object that is passed.
+     * @param g		Object type of Graphics2D passed
      */
     @Override
     public void render(Graphics2D g) {
@@ -124,7 +129,7 @@ public class Ball extends Entity{
     }
 
     /**
-     * pixUpdate method to update the location of the object.
+     * PixUpdate method to update the location of the object.
      */
     @Override
     public void pixUpdate() {
@@ -136,10 +141,10 @@ public class Ball extends Entity{
     }
 
     /**
-     * launch method to launch the ball.
+     * Launch method to launch the ball.
      * 
-     * @param	impulseX	x coordinate for launching ball.
-     * @param	impulseY	y coordinate for launching ball.
+     * @param impulseX	Float type passed for x-coordinate
+     * @param impulseY	Float type passed for y-coordinate
      */
     public void launch(float impulseX, float impulseY){
         grabbed = false;
@@ -153,7 +158,7 @@ public class Ball extends Entity{
     }
 
     /**
-     * postlaunch method to update the location of the object.
+     * Postlaunch method to update the location of the object.
      */
     public boolean postLaunch(){
         Vec2 vec = body.getLinearVelocity();
@@ -165,10 +170,10 @@ public class Ball extends Entity{
     }
     
     /**
-     * contains method to see if x and y coordinates are contained in pixCircle.
+     * Contains method to see if x and y coordinates are contained in pixCircle.
      * 
-     * @param	pixX	x coordinate of x coordinate of .
-     * @param	pixY	y coordinate for launching ball.
+     * @param pixX	Integer type of pixel x-coordinate passed
+     * @param pixY	Integer type of pixel y-coordinate passed
      */
     public boolean contains(int pixX, int pixY){
         return pixCircle.contains(pixX, pixY);
