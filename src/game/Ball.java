@@ -149,6 +149,7 @@ public class Ball extends Entity{
                 new Vec2( xDif * IMPULSE_SCALE,
                         yDif * IMPULSE_SCALE );
         body.applyLinearImpulse(temp,body.getPosition());
+        SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_LAUNCH]);
     }
 
     /**
