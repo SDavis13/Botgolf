@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -17,38 +18,48 @@ import javax.swing.JLabel;
  * @since       2015-04-24
  */
 public class InstructionPage extends View{
-    JLabel jlInstructions;
-    ImageIcon logo;
-    JButton jbBack;
+    JLabel jlInstructions = new JLabel();
+    ImageIcon instr;
+    JButton jbBack = new JButton("Back");
+    static InstructionPage page = new InstructionPage(Consts.INSTRUCTION);
 
     /**
      * This is the instructionPage constructor.
      * 
      * @param frame		Object type of Main passed
      */
-    protected InstructionPage(Main frame){
-        super(Consts.INSTRUCTION);
-        this.frame = frame;
+    protected InstructionPage(String name){
+        super(name);
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         active = false;
         try{
-            logo = new ImageIcon(ImageIO.read(new File(Consts.IMG_LOGO)));
-            jlInstructions.setSize(logo.getIconWidth(), logo.getIconHeight());
-            jlInstructions.setIcon(logo);
+            instr = new ImageIcon(ImageIO.read(new File(Consts.IMG_INSTR)));
+            jlInstructions.setSize(instr.getIconWidth(), instr.getIconHeight());
+            jlInstructions.setIcon(instr);
         }catch(IOException e){
-            jlInstructions.setText("BotGolf");;
-            System.out.println("Could not load main logo image.");
+            jlInstructions.setText("Could not load instructions image.");
             e.printStackTrace();
         }
+        
+        jbBack.addActionListener(this);
+        add(jlInstructions);
+        add(jbBack);
+        
     }
-
+    public static InstructionPage getInstance(){
+        return page;
+    }
+    
     /**
      * Action listener
      * 
      * @param arg0		Action listener event
      */
     @Override
-    public void actionPerformed(ActionEvent arg0) {
-        // TODO Auto-generated method stub
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == jbBack){
+            frame.switchView(Consts.MAIN, null);
+        }
 
 
     }

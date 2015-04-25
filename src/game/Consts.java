@@ -18,7 +18,8 @@ public class Consts {
                                 IMG_HOLE    = IMGLOC + "Hole.png",
                                 IMG_GENROBO = IMGLOC + "BotGeneric.png",
                                 IMG_STANDROBO = IMGLOC + "BotStandard.png",
-                                IMG_MADROBO = IMGLOC + "BotMad.png";
+                                IMG_MADROBO = IMGLOC + "BotMad.png",
+    							IMG_INSTR = IMGLOC + "instructionsRobot.png";
                                 
                                 //Page names
     public static final String  MAIN        = "Main",

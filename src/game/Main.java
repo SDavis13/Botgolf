@@ -120,5 +120,6 @@ public class Main extends JFrame{
         addView(MainPage.getInstance());
         addView(GamePage.getInstance());
         addView(GameMenuPage.getInstance());
+        addView(InstructionPage.getInstance());
     }
 }

@@ -137,6 +137,7 @@ public class Ball extends Entity{
 
     /**
      * launch method to launch the ball.
+     * Plays sound after mouse is released.
      * 
      * @param	impulseX	x coordinate for launching ball.
      * @param	impulseY	y coordinate for launching ball.
