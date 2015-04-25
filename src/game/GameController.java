@@ -13,8 +13,6 @@ import org.jbox2d.callbacks.ContactListener;
 import org.jbox2d.collision.Manifold;
 import org.jbox2d.dynamics.contacts.Contact;
 
-import com.sun.javafx.event.EventQueue;
-
 /**
  * GameController represents the game play.  This keeps track of keyboard and
  * mouse input as well as recognizes game state changes.
@@ -137,6 +135,7 @@ public class GameController implements ContactListener{
                         launched = true;
                     }else{
                         launched = false;
+                        curLevel.getGrid().addObstruction(ball.getPosition(), Obstruction.KILL);
                         state = GameState.MOBTURN;
                     }
                     break;
@@ -213,6 +212,7 @@ public class GameController implements ContactListener{
             xOrigin = 0;
             yOrigin = 0;
             if(state == GameState.GRAB && e.getButton() == 1){
+                curLevel.getGrid().removeObstruction(ball.getPosition(), Obstruction.KILL);
                 ball.launch(Utils.toPhysX(e.getX()), Utils.toPhysY(e.getY()));
                 state = GameState.LAUNCH;
             }

@@ -182,8 +182,12 @@ public class Level {
     {
         return hole;
     }
+    
+    public Grid getGrid(){
+        return grid;
+    }
 
-    	class IterFlag{
-    		boolean access;
-    	}
+	class IterFlag{
+		boolean access;
+	}
 }

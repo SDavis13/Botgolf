@@ -80,7 +80,30 @@ public class CreateLevel implements LevelFactory {
         wallList.add(createWall(world, 24,88,6,2,(float)Math.toRadians(-45)));//Diagonal
         
         Grid grid = new Grid(GRID_SIZE, GRID_SIZE/2, GRID_SIZE/2);
+        for(int i = -1; i <= 9; i++){
+            grid.addObstruction(i, 25, Obstruction.STATIC);
+            grid.addObstruction(i, 17, Obstruction.STATIC);
+        }
+        for(int j = 18; j <= 24; j++){
+            grid.addObstruction(-1, j, Obstruction.STATIC);
+            grid.addObstruction(9, j, Obstruction.STATIC);
+        }
+        grid.addObstruction(0, 21, Obstruction.STATIC);
+        grid.addObstruction(1, 21, Obstruction.STATIC);
+        grid.addObstruction(2, 21, Obstruction.STATIC);
+        grid.addObstruction(4, 23, Obstruction.STATIC);
+        grid.addObstruction(5, 23, Obstruction.STATIC);
+        grid.addObstruction(4, 22, Obstruction.STATIC);
+        grid.addObstruction(5, 22, Obstruction.STATIC);
+        grid.addObstruction(6, 22, Obstruction.STATIC);
+        grid.addObstruction(5, 21, Obstruction.STATIC);
+        grid.addObstruction(6, 21, Obstruction.STATIC);
         
+        grid.addObstruction(hole.getPosition(), Obstruction.STATIC);
+        for(Mob mob : mobList){
+            grid.addObstruction(mob.getPosition(), Obstruction.DYNAMIC);
+        }
+        grid.addObstruction(ball.getPosition(), Obstruction.KILL);
 
         Level theLevel = new Level(world, specs, wallList, mobList, ball, hole, grid);
         return theLevel;

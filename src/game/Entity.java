@@ -2,6 +2,7 @@ package game;
 
 import java.awt.Graphics2D;
 
+import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.World;
@@ -39,4 +40,11 @@ public abstract class Entity {
      */
     public abstract void pixUpdate();
 
+    /**
+     * Gets the jbox2d position of the Entity.
+     * @return a Vec2 position.
+     */
+    public Vec2 getPosition(){
+        return body.getPosition();
+    }
 }
