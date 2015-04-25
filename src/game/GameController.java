@@ -90,6 +90,7 @@ public class GameController implements ContactListener{
     	state = GameState.INACTIVE;
     	curLevel.pause();
     	tickRunner.cancel();
+    	view.exit();
     }
     
     /**

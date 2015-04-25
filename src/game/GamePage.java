@@ -80,6 +80,11 @@ public class GamePage extends View{
         //TODO Make all instance vars private, except for the obvious and GameSpec's stuff
     }
     
+    public void exit(){
+    	tickRunner.cancel();
+    	frame.switchView(Consts.GAMEMENUPAGE, null);
+    }
+    
     /**
      * Lose method for when the player loses.
      */
