@@ -127,7 +127,7 @@ public class MainPage extends View{
             frame.switchView(Consts.GAME, new GameSpec("Test"));
         }
         if(e.getSource() == jbCampaign){
-            frame.switchView(Consts.CAMPAIGN, null);
+            frame.switchView(Consts.GAMEMENUPAGE, null);
         }
         if(e.getSource() == jbOptions){
             frame.switchView(Consts.OPTIONS, null);
