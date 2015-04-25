@@ -95,7 +95,7 @@ public class GameController implements ContactListener{
     }
     
     /**
-     * WinGame method used when game is won.
+     * EndGame method used when game has ended.
      */
     public void endGame(){
     	new Timer().schedule(
