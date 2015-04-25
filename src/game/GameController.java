@@ -13,6 +13,8 @@ import org.jbox2d.callbacks.ContactListener;
 import org.jbox2d.collision.Manifold;
 import org.jbox2d.dynamics.contacts.Contact;
 
+import com.sun.javafx.event.EventQueue;
+
 /**
  * GameController represents the game play.  This keeps track of keyboard and
  * mouse input as well as recognizes game state changes.
@@ -58,6 +60,7 @@ public class GameController implements ContactListener{
         if(levelSpec.newGame)
             curLevel = curFactory.createLevel(levelSpec);
         ball = curLevel.getBall();
+        hole = curLevel.getHole();
         view.setLevel(curLevel);
         curLevel.world.setContactListener(this);
     }
@@ -86,7 +89,7 @@ public class GameController implements ContactListener{
      * ExitGame used to change game state and then exit.
      */
     public void exitGame(){
-    	tempState = GameState.INACTIVE;
+    	tempState = GameState.READY;
     	state = GameState.INACTIVE;
     	curLevel.pause();
     	tickRunner.cancel();
@@ -97,8 +100,15 @@ public class GameController implements ContactListener{
      * WinGame method used when game is won.
      */
     public void winGame(){
-    	exitGame();
-    	view.pause(Consts.GAMEMENUPAGE);
+    	new Timer().schedule(
+    		new TimerTask(){
+    			@Override
+    			public void run(){
+		    		exitGame();
+    			}
+    		},
+    		5000
+    	);
     }
     
     /**
@@ -108,10 +118,15 @@ public class GameController implements ContactListener{
      */
     private class PhysicsLoop extends TimerTask{
         boolean launched = false;
+        boolean ranWin = false;
 
         @Override
         public void run(){
             curLevel.step();
+            if (hole.win)
+            {
+            	state = GameState.WIN;
+            }
             switch(state){
                 case LAUNCH:
                     if(!ball.postLaunch()){
@@ -125,7 +140,10 @@ public class GameController implements ContactListener{
                     if(!curLevel.moveMobs()) state = GameState.READY;
                     break;
                 case WIN:
-                    //TODO
+                    if(!ranWin){
+                    	ranWin = true;
+                    	winGame();
+                    }
                     break;
             }
         }
