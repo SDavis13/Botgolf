@@ -83,9 +83,9 @@ public class Wall extends Entity {
      */
     @Override
     public void render(Graphics2D g) 
-    {    	    	
-        g.setColor(Color.ORANGE);
-        g.fillPolygon(pixShape);      
+    {
+        g.setColor(Color.GREEN);
+        g.fillPolygon(pixShape);
     }
 
     /**

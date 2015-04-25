@@ -78,8 +78,11 @@ public class CreateLevel implements LevelFactory {
         //Interior Walls
         wallList.add(createWall(world, 8,84,6,2,0));//Horizontal
         wallList.add(createWall(world, 24,88,6,2,(float)Math.toRadians(-45)));//Diagonal
+        
+        Grid grid = new Grid(GRID_SIZE, GRID_SIZE/2, GRID_SIZE/2);
+        
 
-        Level theLevel = new Level(world, specs, wallList, mobList, ball, hole);
+        Level theLevel = new Level(world, specs, wallList, mobList, ball, hole, grid);
         return theLevel;
     }
 

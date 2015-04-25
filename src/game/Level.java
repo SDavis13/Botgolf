@@ -39,7 +39,8 @@ public class Level {
     ArrayList<Wall> walls;
     ArrayList<Wall> wDelete;
     Hole hole;
-    World world;    
+    World world;
+    Grid grid;
     boolean pause;
 
     /**
@@ -52,7 +53,7 @@ public class Level {
      * @param theBall	Object type of Ball passed
      * @param theHole	Object type of Hole passed
      */
-    Level(World world, GameSpec specs, ArrayList<Wall> wallList, ArrayList<Mob> mobList, Ball theBall, Hole theHole){
+    Level(World world, GameSpec specs, ArrayList<Wall> wallList, ArrayList<Mob> mobList, Ball theBall, Hole theHole, Grid theGrid){
         this.world = world;
         name = specs.levelName;
         id = specs.levelNum;
@@ -60,6 +61,7 @@ public class Level {
         mobs = mobList;
         ball = theBall;
         hole = theHole;
+        grid = theGrid;
         pause = false;
         mDelete = new ArrayList<Mob>();
         wDelete = new ArrayList<Wall>();

@@ -8,10 +8,14 @@ public class Grid {
     Vec2 ballLoc;
     HashMap<Vec2, Obstruction> obstructions;
     float gridSize;
+    float xOffset;
+    float yOffset;
     
-    public Grid(float gridSize){
+    public Grid(float gridSize, float xOffset, float yOffset){
         obstructions = new HashMap<Vec2, Obstruction>();
         this.gridSize = gridSize;
+        this.xOffset = xOffset;
+        this.yOffset = yOffset;
     }
     
     public boolean addObstruction(int gridX, int gridY, int obstructionType){
@@ -29,8 +33,8 @@ public class Grid {
     }
     
     public boolean addObstruction(Vec2 position, int obstructionType){
-        int gridX = (int)(position.x/4);
-        int gridY = (int)(position.y/4);
+        int gridX = (int)((position.x - xOffset)/gridSize);
+        int gridY = (int)((position.y - xOffset)/gridSize);
         return addObstruction(gridX,gridY,obstructionType);
     }
     
@@ -45,8 +49,8 @@ public class Grid {
     }
     
     public boolean removeObstruction(Vec2 position, int obstructionType){
-        int gridX = (int)(position.x/4);
-        int gridY = (int)(position.y/4);
+        int gridX = (int)((position.x - xOffset)/gridSize);
+        int gridY = (int)((position.y - xOffset)/gridSize);
         return removeObstruction(gridX,gridY,obstructionType);
     }
     
