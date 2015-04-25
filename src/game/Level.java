@@ -42,7 +42,9 @@ public class Level {
     World world;
     Grid grid;
     boolean pause;
-
+    public int scoreCount = 0;  // added by CTS
+    public int scoreWinBool = 0;  // added by CTS
+    
     /**
      * Constructor for Level
      * 
@@ -90,6 +92,7 @@ public class Level {
             mob.pixUpdate();
             if(mob.remove){
                 mDelete.add(mob);
+
             }
         }
         synchronized(mobIterFlag){
@@ -97,6 +100,7 @@ public class Level {
                 for(Mob mob : mDelete){
                     world.destroyBody(mob.body);
                     mobs.remove(mob);
+                    scoreCount = scoreCount + (mob.getOrigHealthAmount() * 1000); //added by CTS
                 }
                 mDelete.clear();
             }
@@ -137,7 +141,7 @@ public class Level {
         g.setFont(new Font("Comic Sans MS", Font.BOLD, 48));
         g.setColor(Color.CYAN);
         g.drawString("Hits: " + ball.shotCount, 10, 40);
-        g.drawString("Score: " + ball.SCORE_COUNT, 400, 40);
+        g.drawString("Score: " + scoreCount, 400, 40);  //added by CTS
 
         if(pause)
         {
@@ -145,7 +149,9 @@ public class Level {
         }
         if(hole.win){             
             g.setColor(Color.CYAN);
-            g.drawString(WINSTRING, 400, 100);                                   
+            g.drawString(WINSTRING, 400, 100);
+            scoreWin();
+       
         }
         
         if(ball.shotCount == 0 && hole.win == false)
@@ -154,6 +160,14 @@ public class Level {
             g.drawString(LOSESTRING, 50, 200);   
             
         }
+    }
+    
+    // added by CTS
+    public void scoreWin() {  
+    	if (scoreWinBool == 0) {
+    		scoreCount = scoreCount + 10000;
+    	}
+    	scoreWinBool = 1;
     }
     
     /**

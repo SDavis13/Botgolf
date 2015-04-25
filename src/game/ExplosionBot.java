@@ -62,7 +62,9 @@ public class ExplosionBot extends Mob {
                         otherEntity.body.getPosition(), BLAST_POWER);
             }
             remove = true;
+            
         }
 
     }
+    
 }

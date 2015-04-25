@@ -31,7 +31,7 @@ public class Ball extends Entity{
     boolean grabbed;
     float pixRad;
     int shotCount = 3;
-    public final int SCORE_COUNT = 0;
+
     
 
     CircleShape shape;

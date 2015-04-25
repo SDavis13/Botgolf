@@ -30,7 +30,9 @@ public class Mob extends Entity{
     Rectangle rectangle;
     Image mobGraphic;
     int health = DEFAULT_HEALTH;
+    int origHealth = 0;  // added by CTS
     int numOfSpacesMobCanMove;
+
 
     /**
      * Constructor for Mob object.
@@ -80,7 +82,8 @@ public class Mob extends Entity{
      * @param health	Integer health passed
      */
     public void setHealth(int health){
-        this.health = health;
+    	this.health = health;
+    	origHealth = health; //added by CTS
     }
 
     /**
@@ -94,14 +97,22 @@ public class Mob extends Entity{
         
         if(otherEntity instanceof Ball){
         	SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_ROBOTBOOM]);
+        	System.out.println("this worked");
         }
         health--;
         if (health <= 0)
         {
             remove = true;
+            
         }
     }
 
+   
+    // added by CTS
+    public int getOrigHealthAmount(){
+    	return origHealth;
+    }
+    
     /**
      * Render method is used to draw the image of the mob.
      * 
