@@ -107,7 +107,7 @@ public class Level {
     }
 
     /**
-     * Render method to create the wall in world.
+     * Render method to render the wall, mob, ball and hole in world.
      * 
      * @param g		Object type of Graphics2D passed.
      */
@@ -137,6 +137,7 @@ public class Level {
         g.setFont(new Font("Comic Sans MS", Font.BOLD, 48));
         g.setColor(Color.CYAN);
         g.drawString("Hits: " + ball.shotCount, 10, 40);
+        g.drawString("Score: " + ball.SCORE_COUNT, 400, 40);
 
         if(pause)
         {
