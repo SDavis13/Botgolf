@@ -2,17 +2,29 @@ package game;
 
 import java.awt.event.KeyEvent;
 
+/**
+ * This is where all constants and variable globals are saved for organizing.
+ * 
+ * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
+ * @version     2015-04-24
+ * @since       2015-04-24
+ */
 public class Consts {
     private Consts(){}
     
-    //Constants
-                                //File locations
+    // Constants
+    
+    /**
+     * File locations
+     */
     public static final String  RESLOC = "resources/game/",
                                 IMGLOC = RESLOC + "images/",
                                 SNDLOC = RESLOC + "sound/",
                                 LVLLOC = RESLOC + "levels/";
                                 
-                                //Image names/locations
+    /**
+     * Image names/locations
+     */
     public static final String  IMG_LOGO    = IMGLOC + "Logo.png",
                                 IMG_BALL    = IMGLOC + "Ball.png",
                                 IMG_HOLE    = IMGLOC + "Hole.png",
@@ -21,7 +33,9 @@ public class Consts {
                                 IMG_MADROBO = IMGLOC + "BotMad.png",
     							IMG_INSTR = IMGLOC + "instructionsRobot.png";
                                 
-                                //Page names
+    /**
+     * Page Names
+     */
     public static final String  MAIN        = "Main",
                                 QUICKPLAY   = "Quickplay",
                                 INSTRUCTION = "Instruction",
@@ -34,10 +48,21 @@ public class Consts {
                                 GAME        = "Game",
     							GAMEMENUPAGE= "GameMenuPage";
     
-                                //Sound names
-    public static final String[] SOUNDS = {"Score", "Wall1", "Wall2", "RobotBoom", "RobotMove", "Launch",
-    		"Pause", "Boing"};
+    /**
+     * Sound Names
+     */
+    public static final String[] SOUNDS =  {"Score", 
+    										"Wall1", 
+    										"Wall2", 
+    										"RobotBoom", 
+    										"RobotMove", 
+    										"Launch",
+    										"Pause", 
+    										"Boing"};
     
+    /**
+     * Sound names with position number
+     */
     public static final int SNDIDX_SCORE = 0,
     						SNDIDX_WALL1 = 1,
     						SNDIDX_WALL2 = 2,
@@ -47,13 +72,21 @@ public class Consts {
     						SNDIDX_PAUSE = 6,
     						SNDIDX_BOING = 7;
     
-
-                                //Sound locations
-    public static final String[] SOUNDFILES = {SNDLOC+"score.wav", SNDLOC+"wall1.wav",
-    	SNDLOC+"wall2.wav", SNDLOC+"robotboom.wav", SNDLOC+"robotmove.wav", SNDLOC+"launch.wav",
-    	SNDLOC+"zap2.wav", SNDLOC+"boing.wav"};
+    /**
+     * Sound Locations
+     */
+    public static final String[] SOUNDFILES =  {SNDLOC+"score.wav", 
+    											SNDLOC+"wall1.wav",
+    											SNDLOC+"wall2.wav", 
+    											SNDLOC+"robotboom.wav", 
+    											SNDLOC+"robotmove.wav", 
+    											SNDLOC+"launch.wav",
+    											SNDLOC+"zap2.wav", 
+    											SNDLOC+"boing.wav"};
                                 
-    
+    /**
+     * Constants for Scale, Timestep andTimerTick
+     */
     public static final int SCALE = 2000;
     public static final float TIMESTEP = 1.f/60.f;
     public static final long TIMERTICK = (long)(1000 * TIMESTEP + 0.5f);
@@ -61,12 +94,16 @@ public class Consts {
     
     //Variable globals
     
-                      //Keyboard shortcuts
+    /**
+     * Keyboard Shortcuts
+     */
     public static int pauseMenuKey = KeyEvent.VK_ESCAPE, //goes to pause menu
                       pauseKey = KeyEvent.VK_PAUSE; //simply pauses the game
                       //TODO Make a way to save and load key preferences to/from a file
     
-                        //Physics globals
+    /**
+     * Physics Globals
+     */
     public static float rollingFriction = 1.5f,
                         pxOffset        = 0,
                         pyOffset        = 0;

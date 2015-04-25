@@ -5,13 +5,27 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.*;
 
+/**
+ * Class of GameMenuPage used to return back to main menu or exit game after
+ * the game has been played.
+ * 
+ * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
+ * @version     2015-04-24
+ * @since       2015-04-24
+ * @extends		View
+ */
 public class GameMenuPage extends View {
 	static GameMenuPage page = new GameMenuPage(Consts.GAMEMENUPAGE);
 	JPanel pausePanel = new JPanel();
     JButton restartButton = new JButton("Restart");
     JButton exitMainButton = new JButton("Exit To Main Menu");
 
-	protected GameMenuPage(String name) {
+	/**
+	 * Constructor for GameMenuPage.
+	 * 
+	 * @param name		String type of name passed
+	 */
+    protected GameMenuPage(String name) {
         super(name);
         
         Insets insetDefinition = new Insets(15,20,15,20);
@@ -52,11 +66,19 @@ public class GameMenuPage extends View {
         add(pausePanel);
     }	
 	
-	public static GameMenuPage getInstance(){
+	/**
+	 * GetInstance returns a singleton instance of this page.
+	 * 
+	 * @return	Returns a page instance of this view
+	 */
+    public static GameMenuPage getInstance(){
         return page;
     }
 
-	@Override
+	/**
+	 * ActionPerformed method to listen for mouse clicks for buttons on page.
+	 */
+    @Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == restartButton){
 			frame.switchView(Consts.GAME, new GameSpec("Test"));

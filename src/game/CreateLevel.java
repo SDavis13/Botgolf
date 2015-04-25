@@ -14,8 +14,8 @@ import org.jbox2d.dynamics.World;
  * defined in this.
  * 
  * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
- * @version     1.0
- * @since       2015-04-21
+ * @version     2015-04-24
+ * @since       2015-04-24
  * @implements 	LevelFactory
  */
 public class CreateLevel implements LevelFactory {
@@ -42,9 +42,9 @@ public class CreateLevel implements LevelFactory {
 
 
     /**
-     * createLevel method creates a level to the specs defined.
+     * CreateLevel method creates a level to the specs defined.
      * 
-     * @param	specs	specs that are passed to level in order to create
+     * @param specs		Object type of game specs passed
      */
     @Override
     public Level createLevel(GameSpec specs){
@@ -110,10 +110,10 @@ public class CreateLevel implements LevelFactory {
     }
 
     /**
-     * createBall method used to define variables of the Ball.
+     * CreateBall method used to define variables of the Ball.
      * 
-     * @param 		theWorld	world that ball is created in
-     * @return					the ball object created
+     * @param theWorld		Object type of the world passed
+     * @return				The ball object created
      */
     private Ball createBall(World theWorld){
         Ball ball;
@@ -131,10 +131,10 @@ public class CreateLevel implements LevelFactory {
     }
 
     /**
-     * createHole method used to create the physics for the Hole.
+     * CreateHole method used to create the physics for the Hole.
      * 
-     * @param 	theWorld	world where hole is created in
-     * @return				the Hole object that is created
+     * @param theWorld		Object type of the world passed
+     * @return				Returns a hole object
      */
     private Hole createHole(World theWorld)
     {
@@ -151,15 +151,15 @@ public class CreateLevel implements LevelFactory {
     }
 
     /**
-     * createWall method for creating a wall in the world.
+     * CreateWall method for creating a wall in the world.
      * 
-     * @param theWorld		the world where wall is created
-     * @param posX			x coordinate of where wall starts
-     * @param posY			y coordinate of where wall starts
-     * @param halfWidth		half the width of wall
-     * @param halfHeight	half the height of the wall
-     * @param rotation		rotation of the position for wall
-     * @return				returns a wall object
+     * @param theWorld		Object type of the world passed
+     * @param posX			Float type of x-coordinate passed
+     * @param posY			Float type of y-coordinate passed
+     * @param halfWidth		Float type of half the width passed
+     * @param halfHeight	Float type of half the height passed
+     * @param rotation		Float type of rotation passed
+     * @return				returns a Wall object
      */
     private Wall createWall(World theWorld, float posX, float posY, float halfWidth, float halfHeight, float rotation){
         PolygonShape shape = new PolygonShape();
@@ -177,14 +177,14 @@ public class CreateLevel implements LevelFactory {
     }
 
     /**
-     * createMob is the method used to create the robot in the world.
+     * CreateMob is the method used to create the robot in the world.
      * 
-     * @param theWorld		the world where the robot is created
-     * @param posX			x coordinate of the robot position
-     * @param posY			y coordinate of the robot position
-     * @param halfWidth		half the width of the mob
-     * @param halfHeight	half the height of the mob
-     * @return				returns a Mob object to the world
+     * @param theWorld		Object type of the world passed
+     * @param posX			Float type of x-coordinate passed
+     * @param posY			Float type of y-coordinate passed
+     * @param halfWidth		Float type of half the width passed
+     * @param halfHeight	Float type of half the height passed
+     * @return				returns a Mob object
      */
     private Mob createMob(World theWorld, float posX, float posY, float halfWidth, float halfHeight){
         PolygonShape shape = new PolygonShape();
@@ -202,14 +202,14 @@ public class CreateLevel implements LevelFactory {
     }
 
     /**
-     * createStanMob is creating the position of standard robot in world.
+     * CreateStanMob is creating the position of standard robot in world.
      * 
-     * @param theWorld		the world where standard robot is defined
-     * @param posX			x coordinate of the standard robot
-     * @param posY			y coordinate of the standard robot
-     * @param halfWidth		half width of the standard robot
-     * @param halfHeight	half height of the standard robot
-     * @return				returns a standard robot object
+     * @param theWorld		Object type of the world passed
+     * @param posX			Float type of x-coordinate passed
+     * @param posY			Float type of y-coordinate passed
+     * @param halfWidth		Float type of half the width passed
+     * @param halfHeight	Float type of half the height passed
+     * @return				returns a Mob object
      */
     private StandardBot createStanMob(World theWorld, float posX, float posY, float halfWidth, float halfHeight){
         PolygonShape shape = new PolygonShape();
@@ -227,14 +227,14 @@ public class CreateLevel implements LevelFactory {
     }
 
     /**
-     * createExpMob is creating the position of explosion robot in world.
+     * CreateExpMob is creating the position of explosion robot in world.
      * 
-     * @param theWorld		the world where explosion robot is defined
-     * @param posX			x coordinate of the explosion robot
-     * @param posY			y coordinate of the explosion robot
-     * @param halfWidth		half width of the explosion robot
-     * @param halfHeight	half height of the explosion robot
-     * @return				returns a explosion robot object
+     * @param theWorld		Object type of the world passed
+     * @param posX			Float type of x-coordinate passed
+     * @param posY			Float type of y-coordinate passed
+     * @param halfWidth		Float type of half the width passed
+     * @param halfHeight	Float type of half the height passed
+     * @return				returns a Mob object
      */
     private ExplosionBot createExpMob(World theWorld, float posX, float posY, float halfWidth, float halfHeight){
         PolygonShape shape = new PolygonShape();

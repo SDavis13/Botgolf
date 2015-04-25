@@ -18,8 +18,8 @@ import org.jbox2d.dynamics.contacts.Contact;
  * mouse input as well as recognizes game state changes.
  * 
  * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
- * @version     1.0
- * @since       2015-04-21
+ * @version     2015-04-24
+ * @since       2015-04-24
  * @implements	ContactListener
  */
 public class GameController implements ContactListener{
@@ -64,7 +64,7 @@ public class GameController implements ContactListener{
     }
     
     /**
-     * StartGame method used to start the game in unpaused and with time.
+     * StartGame method used to start the game.
      */
     public void startGame(){
     	curLevel.unPause();
@@ -110,14 +110,17 @@ public class GameController implements ContactListener{
     }
     
     /**
+     * PhysicsLoop class created extends TimerTask
      * 
-     * @author ctswanson
-     *
+     * @extends		TimerTask
      */
     private class PhysicsLoop extends TimerTask{
         boolean launched = false;
         boolean ranWin = false;
 
+        /**
+         * Run method to step thru current states
+         */
         @Override
         public void run(){
             curLevel.step();
@@ -158,6 +161,11 @@ public class GameController implements ContactListener{
     }
 
     
+    /**
+     * KeyboardInput class created extends the KeyAdapter to detect keyboard input.
+     * 
+     * @extends		KeyAdapter
+     */
     private class KeyboardInput extends KeyAdapter{
         @Override
         public void keyPressed(KeyEvent e){
@@ -184,6 +192,11 @@ public class GameController implements ContactListener{
         }
     }
 
+    /**
+     * MouseInput class extends MouseInputAdapter to detect mouse input.
+     *
+     * @extends		MouseInputAdapter
+     */
     private class MouseInput extends MouseInputAdapter{
         float xOrigin, yOrigin, oldXOffset, oldYOffset;
         @Override
@@ -207,6 +220,12 @@ public class GameController implements ContactListener{
                 }
             }
         }
+        
+        /**
+         * MouseReleased method used to indicate mouse button release to launch ball.
+         * 
+         * @param e		Object type of mouse event passed
+         */
         @Override
         public void mouseReleased(MouseEvent e){
             xOrigin = 0;
@@ -217,11 +236,22 @@ public class GameController implements ContactListener{
                 state = GameState.LAUNCH;
             }
         }
+        
+        /**
+         * MousePressed method used to request focus in window.
+         * 
+         * @param e		Object type of mouse event passed
+         */
         public void mousePressed(MouseEvent e){
         	view.requestFocusInWindow();
         }
     }
 
+    /**
+     * BeginContact method to determine if contact was made between entities.
+     * 
+     * @param contact	Object type of Contact passed
+     */
     @Override
     public void beginContact(Contact contact) {
         Entity entity1 = (Entity)contact.getFixtureA().getUserData();
@@ -229,16 +259,36 @@ public class GameController implements ContactListener{
         entity1.hit(entity2);
         entity2.hit(entity1);
     }
+    
+    /**
+     * EndContact method used to break contact with entities touching.
+     * 
+     * @param contact	Object type of contact passed
+     */
     @Override
     public void endContact(Contact contact) {
         // TODO Auto-generated method stub
 
     }
+   
+    /**
+     * PreSolve method 
+     * 
+     * @param contact		Object type of contact passed
+     * @param oldManifold	Object type of old manifold passed
+     */
     @Override
     public void preSolve(Contact contact, Manifold oldManifold) {
         // TODO Auto-generated method stub
 
     }
+    
+    /**
+     * PostSolve method
+     * 
+     * @param contact		Object type of contact passed
+     * @param impulse		Object type of Contact Impulse passed
+     */
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {
         // TODO Auto-generated method stub

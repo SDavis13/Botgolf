@@ -42,6 +42,7 @@ public abstract class Entity {
 
     /**
      * Gets the jbox2d position of the Entity.
+     * 
      * @return a Vec2 position.
      */
     public Vec2 getPosition(){
