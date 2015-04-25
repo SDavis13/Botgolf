@@ -166,13 +166,17 @@ public class GameController implements ContactListener{
             if(code == Consts.pauseKey || code == Consts.pauseMenuKey){
                 
                 if(state == GameState.PAUSED){
+                	SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_PAUSE]);
                 	startGame();                	
                 }
                 else
                 {
                     pauseGame();
                 }
-            }            
+            }
+            else{
+            	SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_BOING]);
+            }          
             /*else if(code == Consts.pauseMenuKey){
                 pauseGame();
                 view.pause(Consts.PAUSE);
