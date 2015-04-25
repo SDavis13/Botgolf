@@ -99,7 +99,7 @@ public class GameController implements ContactListener{
     /**
      * WinGame method used when game is won.
      */
-    public void winGame(){
+    public void endGame(){
     	new Timer().schedule(
     		new TimerTask(){
     			@Override
@@ -127,6 +127,10 @@ public class GameController implements ContactListener{
             {
             	state = GameState.WIN;
             }
+            if (ball.shotCount == 0)
+            {
+            	state = GameState.LOSE;
+            }
             switch(state){
                 case LAUNCH:
                     if(!ball.postLaunch()){
@@ -142,9 +146,14 @@ public class GameController implements ContactListener{
                 case WIN:
                     if(!ranWin){
                     	ranWin = true;
-                    	winGame();
+                    	endGame();
                     }
                     break;
+                case LOSE:
+                	if(!ranWin){
+                		endGame();
+                	}
+                	break;
             }
         }
     }

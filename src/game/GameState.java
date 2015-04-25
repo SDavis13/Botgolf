@@ -9,5 +9,5 @@ package game;
  * @since       2015-04-24
  */
 public enum GameState {
-    INACTIVE, PAUSED, READY, GRAB, LAUNCH, MOBTURN, BUILD, WIN
+    INACTIVE, PAUSED, READY, GRAB, LAUNCH, MOBTURN, BUILD, WIN, LOSE
 }
