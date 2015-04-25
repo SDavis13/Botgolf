@@ -107,8 +107,9 @@ public class Level {
     }
 
     /**
+     * Render method to create the wall in world.
      * 
-     * @param g
+     * @param g		Object type of Graphics2D passed.
      */
     void render(Graphics2D g){     	
         Rectangle bounds = g.getClipBounds();
@@ -154,11 +155,17 @@ public class Level {
         }
     }
     
+    /**
+     * Pause method to indicate pause is true.
+     */
     public void pause()
     {
     	pause = true;
     }
     
+    /**
+     * Unpause method to indicate pause is false.
+     */
     public void unPause()
     {
     	pause = false;
@@ -167,7 +174,7 @@ public class Level {
     /**
      * getBall method used to return the Ball object.
      * 
-     * @return		returns a Ball object
+     * @return		Returns a Ball object
      */
     public Ball getBall(){
         return ball;
@@ -176,18 +183,26 @@ public class Level {
     /**
      * getHole method used to return the Hole object.
      * 
-     * @return		returns a Hole object
+     * @return		Returns a Hole object
      */
     public Hole getHole()
     {
         return hole;
     }
     
+    /**
+     * GetGrid method used to return a Grid object.
+     * 
+     * @return		Returns a Grid object
+     */
     public Grid getGrid(){
         return grid;
     }
 
-	class IterFlag{
+	/**
+	 * Class type of IterFlag
+	 */
+    class IterFlag{
 		boolean access;
 	}
 }

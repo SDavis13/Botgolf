@@ -82,8 +82,8 @@ public class Main extends JFrame{
     /**
      * This switches between the views.
      * 
-     * @param name		String passed for name
-     * @param message  	Object passed for message
+     * @param name		String type name passed
+     * @param message  	Object type of message passed
      */
     public void switchView(String name, Object message){
         View view = views.get(name);
@@ -111,10 +111,8 @@ public class Main extends JFrame{
 
 
     /**
-     * Creates the pages to use.
-     * <p>
-     * This creates pages to use between switching views.  These are singleton views.
-     *
+     * This creates pages to use between switching views.  
+     * These are singleton views.
      */
     private void createPages(){
         addView(MainPage.getInstance());
