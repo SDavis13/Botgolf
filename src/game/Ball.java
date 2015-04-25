@@ -141,12 +141,8 @@ public class Ball extends Entity{
     }
 
     /**
-<<<<<<< HEAD
-     * launch method to launch the ball.
-     * Plays sound after mouse is released.
-=======
      * Launch method to launch the ball.
->>>>>>> branch 'master' of https://github.com/sdavis13/botgolf.git
+     * Plays sound after mouse is released.
      * 
      * @param impulseX	Float type passed for x-coordinate
      * @param impulseY	Float type passed for y-coordinate
