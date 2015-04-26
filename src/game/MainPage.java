@@ -55,8 +55,6 @@ public class MainPage extends View{
     protected MainPage(String name) {
         super(name);
 
-        Insets insetDefinition = new Insets(15,20,15,20);
-
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         try{
@@ -69,13 +67,13 @@ public class MainPage extends View{
             e.printStackTrace();
         }
 
-        jbCampaign.setMargin(insetDefinition);
-        jbQuickplay.setMargin(insetDefinition);
-        jbOptions.setMargin(insetDefinition);
-        jbInstructions.setMargin(insetDefinition);
-        jbHighscore.setMargin(insetDefinition);
-        jbAbout.setMargin(insetDefinition);
-        jbExit.setMargin(insetDefinition);
+        jbCampaign.setMargin(Consts.BUTTON_MARGIN);
+        jbQuickplay.setMargin(Consts.BUTTON_MARGIN);
+        jbOptions.setMargin(Consts.BUTTON_MARGIN);
+        jbInstructions.setMargin(Consts.BUTTON_MARGIN);
+        jbHighscore.setMargin(Consts.BUTTON_MARGIN);
+        jbAbout.setMargin(Consts.BUTTON_MARGIN);
+        jbExit.setMargin(Consts.BUTTON_MARGIN);
 
         /**
          * Setup alignment of buttons and setup action listeners.

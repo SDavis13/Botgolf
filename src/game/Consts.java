@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.Insets;
 import java.awt.event.KeyEvent;
 
 /**
@@ -93,6 +94,7 @@ public class Consts {
     public static final int SCALE = 2000;
     public static final float TIMESTEP = 1.f/60.f;
     public static final long TIMERTICK = (long)(1000 * TIMESTEP + 0.5f);
+    public static final Insets BUTTON_MARGIN = new Insets(10,20,15,20);
 
     
     //Variable globals

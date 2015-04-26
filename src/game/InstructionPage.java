@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
@@ -43,9 +44,9 @@ public class InstructionPage extends View{
         }
         
         jbBack.addActionListener(this);
+        jbBack.setMargin(Consts.BUTTON_MARGIN);
         add(jlInstructions);
         add(jbBack);
-        
     }
     public static InstructionPage getInstance(){
         return page;
