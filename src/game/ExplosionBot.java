@@ -33,9 +33,9 @@ public class ExplosionBot extends Mob {
      * @param shape			Object type of polygon shape passed
      * @param gridScale		Float type of grid scale passed
      */
-    ExplosionBot(World world, BodyDef bd, FixtureDef fd, PolygonShape shape, float gridScale)
+    ExplosionBot(World world, BodyDef bd, FixtureDef fd, PolygonShape shape, Grid grid)
     {
-        super(world, bd, fd, shape, gridScale);
+        super(world, bd, fd, shape, grid);
 
         try {
             mobGraphic = ImageIO.read(

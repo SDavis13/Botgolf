@@ -14,7 +14,7 @@ import org.jbox2d.common.Vec2;
 public class Grid {
     Vec2 ballLoc;
     HashMap<Vec2, Obstruction> obstructions;
-    float gridSize;
+    final float gridSize;
     float xOffset;
     float yOffset;
     
@@ -30,6 +30,18 @@ public class Grid {
         this.gridSize = gridSize;
         this.xOffset = xOffset;
         this.yOffset = yOffset;
+    }
+    
+    public int findGridX(Vec2 position){
+        return (int)((position.x - xOffset)/gridSize);
+    }
+    
+    public int findGridY(Vec2 position){
+        return (int)((position.y - yOffset)/gridSize);
+    }
+    
+    public Vec2 findCellCenter(int gridX, int gridY){
+        return new Vec2((gridX*gridSize + xOffset + gridSize/2), (gridY*gridSize + yOffset + gridSize/2));
     }
     
     /**
@@ -62,9 +74,7 @@ public class Grid {
      * @return					Returns a boolean value
      */
     public boolean addObstruction(Vec2 position, int obstructionType){
-        int gridX = (int)((position.x - xOffset)/gridSize);
-        int gridY = (int)((position.y - xOffset)/gridSize);
-        return addObstruction(gridX,gridY,obstructionType);
+        return addObstruction(findGridX(position),findGridY(position),obstructionType);
     }
     
     /**
@@ -93,9 +103,7 @@ public class Grid {
      * @return					Returns a boolean value
      */
     public boolean removeObstruction(Vec2 position, int obstructionType){
-        int gridX = (int)((position.x - xOffset)/gridSize);
-        int gridY = (int)((position.y - xOffset)/gridSize);
-        return removeObstruction(gridX,gridY,obstructionType);
+        return removeObstruction(findGridX(position),findGridY(position),obstructionType);
     }
     
     /**
@@ -113,6 +121,24 @@ public class Grid {
         obs[2] = obstructions.get(new Vec2(gridX  ,gridY-1));
         obs[3] = obstructions.get(new Vec2(gridX-1,gridY  ));
         return obs;
+    }
+    
+    public Obstruction[] vnNeighborhood(Vec2 position){
+        return vnNeighborhood(findGridX(position),findGridY(position));
+    }
+    
+    
+    public Vec2[] vnNeighborLocs(int gridX, int gridY){
+        Vec2[] locs = new Vec2[4];
+        locs[0] = findCellCenter(gridX  ,gridY+1);
+        locs[1] = findCellCenter(gridX+1,gridY  );
+        locs[2] = findCellCenter(gridX  ,gridY-1);
+        locs[3] = findCellCenter(gridX-1,gridY  );
+        return locs;
+    }
+    
+    public Vec2[] vnNeighborLocs(Vec2 position){
+        return vnNeighborLocs(findGridX(position), findGridY(position));
     }
 
     /**
@@ -134,5 +160,9 @@ public class Grid {
         obs[6] = obstructions.get(new Vec2(gridX-1,gridY  ));
         obs[7] = obstructions.get(new Vec2(gridX-1,gridY+1));
         return obs;
+    }
+    
+    public Obstruction[] mooreNeighborhood(Vec2 position){
+        return vnNeighborhood(findGridX(position),findGridY(position));
     }
 }

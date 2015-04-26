@@ -72,12 +72,14 @@ public class Level {
     }
 
     /**
-     * Method to check is Mob has moved.
+     * Tells all the mobs to move. As of the current version, it will only return true because the mobs move all at once.
      * 
-     * @return		boolean value of true or false
+     * @return true if mobs are done moving, false if they are in the middle.
      */
     boolean moveMobs(){
-        //TODO move the mobs
+        for(Mob mob : mobs){
+            mob.move();
+        }
         return false;
     }
 

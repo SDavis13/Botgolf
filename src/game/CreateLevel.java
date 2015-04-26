@@ -39,6 +39,8 @@ public class CreateLevel implements LevelFactory {
 
     public static final Vec2 BALL_CENTER = new Vec2(4,76);
     public static final Vec2 HOLE_POSITION = new Vec2(4,96);
+    
+    private static Grid grid;
 
 
     /**
@@ -57,6 +59,8 @@ public class CreateLevel implements LevelFactory {
         Hole hole = createHole(world);
         Ball ball = createBall(world);
         ball.setNumHits(4);
+        
+        grid = new Grid(GRID_SIZE, GRID_SIZE/2, GRID_SIZE/2);
 
         StandardBot stanMob;
         ExplosionBot expMob;
@@ -79,7 +83,6 @@ public class CreateLevel implements LevelFactory {
         wallList.add(createWall(world, 8,84,6,2,0));//Horizontal
         wallList.add(createWall(world, 24,88,6,2,(float)Math.toRadians(-45)));//Diagonal
         
-        Grid grid = new Grid(GRID_SIZE, GRID_SIZE/2, GRID_SIZE/2);
         for(int i = -1; i <= 9; i++){
             grid.addObstruction(i, 25, Obstruction.STATIC);
             grid.addObstruction(i, 17, Obstruction.STATIC);
@@ -198,7 +201,7 @@ public class CreateLevel implements LevelFactory {
         bd.position.set(posX, posY);
         bd.type = BodyType.STATIC;
 
-        return new Mob(theWorld, bd, fd, shape, GRID_SIZE);
+        return new Mob(theWorld, bd, fd, shape, grid);
     }
 
     /**
@@ -223,7 +226,7 @@ public class CreateLevel implements LevelFactory {
         bd.position.set(posX, posY);
         bd.type = BodyType.STATIC;
 
-        return new StandardBot(theWorld, bd, fd, shape, GRID_SIZE);
+        return new StandardBot(theWorld, bd, fd, shape, grid);
     }
 
     /**
@@ -248,6 +251,6 @@ public class CreateLevel implements LevelFactory {
         bd.position.set(posX, posY);
         bd.type = BodyType.STATIC;
 
-        return new ExplosionBot(theWorld, bd, fd, shape, GRID_SIZE);
+        return new ExplosionBot(theWorld, bd, fd, shape, grid);
     }
 }

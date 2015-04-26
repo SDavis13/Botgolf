@@ -6,10 +6,13 @@ import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.imageio.ImageIO;
 
 import org.jbox2d.collision.shapes.PolygonShape;
+import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
@@ -29,6 +32,7 @@ public class Mob extends Entity{
     Polygon pixShape;
     Rectangle rectangle;
     Image mobGraphic;
+    Grid grid;
     int health = DEFAULT_HEALTH;
     int origHealth = 0;  // added by CTS
     int numOfSpacesMobCanMove;
@@ -43,8 +47,8 @@ public class Mob extends Entity{
      * @param shape			Object of Polygon shape passed
      * @param gridScale		Float gridscale passed
      */
-    Mob(World world, BodyDef bd, FixtureDef fd, PolygonShape shape, float gridScale){
-
+    Mob(World world, BodyDef bd, FixtureDef fd, PolygonShape shape, Grid grid){
+        
         try {
             mobGraphic = ImageIO.read(new File(Consts.IMG_GENROBO)).getScaledInstance(80, 98, Image.SCALE_SMOOTH);
         } catch (IOException e1) {
@@ -53,7 +57,8 @@ public class Mob extends Entity{
 
         this.world = world;
         this.shape = shape;
-
+        this.grid = grid;
+        
         fd.shape = shape;
 
         body = world.createBody(bd);
@@ -107,6 +112,39 @@ public class Mob extends Entity{
         }
     }
 
+    public boolean move(){
+        Obstruction[] obs = grid.vnNeighborhood(body.getPosition());
+        int idxMoveTo = -1;
+        ArrayList<Integer> idxs = new ArrayList<Integer>();
+        for(int i = 0; i < obs.length; i++){
+            if(obs[i] != null){
+                if(obs[i].freeSpace()){
+                    if(obs[i].hasItem(Obstruction.KILL)){
+                        idxMoveTo = i;
+                        break;
+                    }else idxs.add(i);
+                }
+            }else idxs.add(i);
+        }
+        Vec2[] destinations = grid.vnNeighborLocs(body.getPosition());
+        if(idxMoveTo != -1){
+            moveTo(destinations[idxMoveTo]);
+            return true;
+        }
+        if(!idxs.isEmpty()){
+            Collections.shuffle(idxs);
+            moveTo(destinations[idxs.get(0)]);
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    protected void moveTo(Vec2 position){
+        grid.removeObstruction(body.getPosition(), Obstruction.DYNAMIC);
+        grid.addObstruction(position, Obstruction.DYNAMIC);
+        body.setTransform(position, 0);
+    }
    
     // added by CTS
     public int getOrigHealthAmount(){

@@ -15,7 +15,7 @@ public class Obstruction {
                             DYNAMIC = 2,
                             STATIC  = 3;
     public static final int NUMTYPES= 4;
-    int[] obs;
+    final int[] obs;
     
     /**
      * First constructor for Obstruction
@@ -33,6 +33,22 @@ public class Obstruction {
         obs = new int[NUMTYPES];
         if(type < NUMTYPES && type >= 0)
             obs[type]++;
+    }
+    
+    public boolean hasItem(int type){
+        if(type < NUMTYPES && type >= 0){
+            if(obs[type] > 0) return true;
+        }
+        return false;
+    }
+    
+    public boolean freeSpace(){
+        for(int i = DYNAMIC; i < NUMTYPES; i++){
+            if(obs[i] > 0){
+                return false;
+            }
+        }
+        return true;
     }
     
     /**

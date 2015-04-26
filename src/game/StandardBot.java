@@ -31,9 +31,9 @@ public class StandardBot extends Mob {
      * @param shape			Object of Polygon Shape passed
      * @param gridScale		Float of grid scale is passed
      */
-	StandardBot(World world, BodyDef bd, FixtureDef fd, PolygonShape shape, float gridScale)
+	StandardBot(World world, BodyDef bd, FixtureDef fd, PolygonShape shape, Grid grid)
     {
-        super(world, bd, fd, shape, gridScale);
+        super(world, bd, fd, shape, grid);
 
         try {
             mobGraphic = ImageIO.read(new File(Consts.IMG_STANDROBO)).getScaledInstance(80, 98, Image.SCALE_SMOOTH);
