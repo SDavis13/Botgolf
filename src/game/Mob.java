@@ -103,7 +103,6 @@ public class Mob extends Entity{
         if (health <= 0)
         {
             remove = true;
-            
         }
     }
 
