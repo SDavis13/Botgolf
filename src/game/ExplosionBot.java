@@ -54,17 +54,21 @@ public class ExplosionBot extends Mob {
     @Override
     public void hit(Entity otherEntity) {
         health--;
-        if (health <= 0)
-        {
-            if(otherEntity instanceof Ball)
-            {
-                Utils.applyBlastImpulse(otherEntity.body, body.getPosition(), 
+        
+        if (health > 0) {
+        	if(otherEntity instanceof Ball){
+        		SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_ROBOTMOVE]);
+        	}
+        }
+        
+        if (health <= 0) {
+            if(otherEntity instanceof Ball) {
+            	SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_ROBOTBOOM]);
+            	
+            	Utils.applyBlastImpulse(otherEntity.body, body.getPosition(), 
                         otherEntity.body.getPosition(), BLAST_POWER);
             }
             remove = true;
-            
         }
-
     }
-    
 }

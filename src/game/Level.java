@@ -102,7 +102,8 @@ public class Level {
                 for(Mob mob : mDelete){
                     world.destroyBody(mob.body);
                     mobs.remove(mob);
-                    scoreCount = scoreCount + (mob.getOrigHealthAmount() * 1000); //added by CTS
+                    // added by CTS
+                    scoreCount = scoreCount + (mob.getOrigHealthAmount() * 1000); 
                 }
                 mDelete.clear();
             }
@@ -152,7 +153,12 @@ public class Level {
         if(hole.win){             
             g.setColor(Color.CYAN);
             g.drawString(WINSTRING, 400, 100);
-            scoreWin();
+        	
+            //added by CTS
+            if (scoreWinBool == 0) {
+        		scoreCount = scoreCount + hole.getScoreHoleWin();
+        	}
+            scoreWinBool = 1;
        
         }
         
@@ -164,13 +170,6 @@ public class Level {
         }
     }
     
-    // added by CTS
-    public void scoreWin() {  
-    	if (scoreWinBool == 0) {
-    		scoreCount = scoreCount + 10000;
-    	}
-    	scoreWinBool = 1;
-    }
     
     /**
      * Pause method to indicate pause is true.
