@@ -18,10 +18,11 @@ import javax.swing.JLabel;
  * @since       2015-04-24
  */
 public class InstructionPage extends View{
-    JLabel jlInstructions = new JLabel();
+	static InstructionPage page = new InstructionPage(Consts.INSTRUCTION);
+	JLabel jlInstructions = new JLabel();
     ImageIcon instr;
     JButton jbBack = new JButton("Back");
-    static InstructionPage page = new InstructionPage(Consts.INSTRUCTION);
+    
 
     /**
      * This is the instructionPage constructor.
