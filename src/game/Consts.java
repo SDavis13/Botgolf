@@ -31,8 +31,8 @@ public class Consts {
                                 IMG_GENROBO = IMGLOC + "BotGeneric.png",
                                 IMG_STANDROBO = IMGLOC + "BotStandard.png",
                                 IMG_MADROBO = IMGLOC + "BotMad.png",
-    						//	IMG_INSTR = IMGLOC + "instructionsRobot.png";
-    							IMG_INSTR = IMGLOC + "instructionsRobot2.png";
+                                IMG_INSTR = IMGLOC + "instructionsRobot.png";
+
     /**
      * Page Names
      */

@@ -28,7 +28,7 @@ public class Level {
      */
     final static int POSITION_ITERATIONS = 3;
     final static String WINSTRING = "You win!";
-    final static String LOSESTRING = "WUT ARE U DOIN? U LOSE!";
+    final static String LOSESTRING = "You lose.";
     final static String PAUSESTRING = "Paused";
     int id;
     String name;
@@ -42,8 +42,10 @@ public class Level {
     World world;
     Grid grid;
     boolean pause;
+    int pointsForWin;
+    int pointsPerShot;
     public int scoreCount = 0;  // added by CTS
-    public int scoreWinBool = 0;  // added by CTS
+    public boolean winTalliedToScore = false;  // added by CTS
     
     /**
      * Constructor for Level
@@ -111,6 +113,13 @@ public class Level {
         for(Wall wall : walls){
             wall.pixUpdate();
         }
+        //added by CTS
+        if (hole.win) {
+            if(!winTalliedToScore){
+                winTalliedToScore = true;
+                scoreCount += pointsForWin;
+            }
+        }
     }
 
     /**
@@ -153,13 +162,6 @@ public class Level {
         if(hole.win){             
             g.setColor(Color.CYAN);
             g.drawString(WINSTRING, 400, 100);
-        	
-            //added by CTS
-            if (scoreWinBool == 0) {
-        		scoreCount = scoreCount + hole.getScoreHoleWin();
-        	}
-            scoreWinBool = 1;
-       
         }
         
         if(ball.shotCount == 0 && hole.win == false)
@@ -204,6 +206,12 @@ public class Level {
     public Hole getHole()
     {
         return hole;
+    }
+    
+    public void tallyShots(){
+       for(; ball.shotCount > 0; ball.shotCount--){
+            scoreCount += pointsPerShot;
+        }
     }
     
     /**

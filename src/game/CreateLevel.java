@@ -39,6 +39,8 @@ public class CreateLevel implements LevelFactory {
 
     public static final Vec2 BALL_CENTER = new Vec2(4,76);
     public static final Vec2 HOLE_POSITION = new Vec2(4,96);
+    public static final int WINPOINTS = 3000;
+    public static final int SHOTPOINTS = 500;
     
     private static Grid grid;
 
@@ -109,6 +111,8 @@ public class CreateLevel implements LevelFactory {
         grid.addObstruction(ball.getPosition(), Obstruction.KILL);
 
         Level theLevel = new Level(world, specs, wallList, mobList, ball, hole, grid);
+        theLevel.pointsForWin = WINPOINTS;
+        theLevel.pointsPerShot = SHOTPOINTS;
         return theLevel;
     }
 

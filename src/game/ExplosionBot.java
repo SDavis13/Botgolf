@@ -57,7 +57,7 @@ public class ExplosionBot extends Mob {
         
         if (health > 0) {
         	if(otherEntity instanceof Ball){
-        		SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_ROBOTMOVE]);
+        		SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_ROBOTCLANG]);
         	}
         }
         

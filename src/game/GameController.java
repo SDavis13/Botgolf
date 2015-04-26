@@ -102,7 +102,8 @@ public class GameController implements ContactListener{
     		new TimerTask(){
     			@Override
     			public void run(){
-		    		exitGame();
+    			    curLevel.tallyShots();
+    			    exitGame();
     			}
     		},
     		5000
