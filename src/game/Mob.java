@@ -23,6 +23,7 @@ import org.jbox2d.dynamics.World;
  */
 public class Mob extends Entity{
     public final static int DEFAULT_HEALTH = 2;
+    static final float BLAST_POWER = 1000;
     final int imgXOffset;
     final int imgYOffset;
     PolygonShape shape;
@@ -94,15 +95,22 @@ public class Mob extends Entity{
      */
     @Override
     public void hit(Entity otherEntity) {
-        
-        if(otherEntity instanceof Ball){
-        	SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_ROBOTBOOM]);
-        	System.out.println("this worked");
-        }
         health--;
-        if (health <= 0)
-        {
-            remove = true;
+        
+        if (health > 0) {
+        	if(otherEntity instanceof Ball){
+        		SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_ROBOTCLANG]);
+        	}
+        }
+        
+        if (health <= 0) {
+            if(otherEntity instanceof Ball){
+            	SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_ROBOTBOOM]);
+            	
+            	Utils.applyBlastImpulse(otherEntity.body, body.getPosition(), 
+                        otherEntity.body.getPosition(), BLAST_POWER);
+            }
+        	remove = true;
         }
     }
 

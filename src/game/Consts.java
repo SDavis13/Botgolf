@@ -58,7 +58,8 @@ public class Consts {
     										"RobotMove", 
     										"Launch",
     										"Pause", 
-    										"Boing"};
+    										"Boing",
+    										"RobotClang"};
     
     /**
      * Sound names with position number
@@ -70,7 +71,8 @@ public class Consts {
     						SNDIDX_ROBOTMOVE = 4,
     						SNDIDX_LAUNCH = 5,
     						SNDIDX_PAUSE = 6,
-    						SNDIDX_BOING = 7;
+    						SNDIDX_BOING = 7,
+    						SNDIDX_ROBOTCLANG = 8;
     
     /**
      * Sound Locations
@@ -82,7 +84,8 @@ public class Consts {
     											SNDLOC+"robotmove.wav", 
     											SNDLOC+"launch.wav",
     											SNDLOC+"zap2.wav", 
-    											SNDLOC+"boing.wav"};
+    											SNDLOC+"boing.wav",
+    											SNDLOC+"robotclang"};
                                 
     /**
      * Constants for Scale, Timestep andTimerTick
