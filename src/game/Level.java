@@ -100,7 +100,8 @@ public class Level {
                 for(Mob mob : mDelete){
                     world.destroyBody(mob.body);
                     mobs.remove(mob);
-                    scoreCount = scoreCount + (mob.getOrigHealthAmount() * 1000); //added by CTS
+                    // added by CTS
+                    scoreCount = scoreCount + (mob.getOrigHealthAmount() * 1000); 
                 }
                 mDelete.clear();
             }
