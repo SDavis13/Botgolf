@@ -85,7 +85,7 @@ public class Consts {
     											SNDLOC+"launch.wav",
     											SNDLOC+"zap2.wav", 
     											SNDLOC+"boing.wav",
-    											SNDLOC+"robotclang"};
+    											SNDLOC+"robotclang.wav"};
                                 
     /**
      * Constants for Scale, Timestep andTimerTick
