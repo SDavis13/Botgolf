@@ -30,7 +30,7 @@ public class Level {
     final static String WINSTRING = "You win!";
     final static String LOSESTRING = "You lose.";
     final static String PAUSESTRING = "Paused";
-    final static Color TEXTCOLOR = new Color(0x85ae2a);
+    final static Color TEXTCOLOR = new Color(0x659e0a);
     int id;
     String name;
     Ball ball;
