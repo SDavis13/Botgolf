@@ -20,8 +20,8 @@ import org.jbox2d.dynamics.World;
  * @since       2015-04-24
  * @extends		Mob
  */
-public class ExplosionBot extends Mob {		
-
+public class ExplosionBot extends Mob {
+    
     static final float BLAST_POWER = 1000;
 
     /**

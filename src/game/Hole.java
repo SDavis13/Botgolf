@@ -71,7 +71,7 @@ public class Hole extends Entity{
     public void hit(Entity otherEntity) {
         if(otherEntity instanceof Ball){
             SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_SCORE]);
-            win = true;            
+            win = true;       
         }
     }
 

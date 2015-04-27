@@ -29,19 +29,21 @@ public class GameMenuPage extends View {
         super(name);
         
         Insets insetDefinition = new Insets(15,20,15,20);
-                
-        restartButton.setMargin(insetDefinition);
-        exitMainButton.setMargin(insetDefinition);
-
-        pausePanel = new javax.swing.JPanel();
+        //pausePanel = new javax.swing.JPanel();
         restartButton = new javax.swing.JButton();
         exitMainButton = new javax.swing.JButton();
+        
+        restartButton.setMargin(insetDefinition);
+        exitMainButton.setMargin(insetDefinition);
 
         restartButton.setText("Restart");
         restartButton.addActionListener(this);
         exitMainButton.setText("Exit To Main Menu");
         exitMainButton.addActionListener(this);
+        add(restartButton);
+        add(exitMainButton);
 
+        /*
         GroupLayout pausePanelLayout = new GroupLayout(pausePanel);
         pausePanel.setLayout(pausePanelLayout);
         pausePanelLayout.setHorizontalGroup(
@@ -61,9 +63,9 @@ public class GameMenuPage extends View {
                     .addComponent(restartButton, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
                     .addComponent(exitMainButton, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE))
                 .addGap(54, 54, 54))
-        );
+        );*/
         
-        add(pausePanel);
+        //add(pausePanel);
     }	
 	
 	/**

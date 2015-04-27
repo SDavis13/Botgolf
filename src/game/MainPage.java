@@ -106,12 +106,12 @@ public class MainPage extends View{
         jpShirt.add(jpLeft);
         jpShirt.add(jpRight);
         add(jbExit);
-        jpLeft.add(jbCampaign);//column1
-        jpRight.add(jbHighscore);//column2
+        //jpLeft.add(jbCampaign);//column1
+        //jpRight.add(jbHighscore);//column2
         jpLeft.add(jbQuickplay);//column1
         jpRight.add(jbInstructions);//column2
-        jpLeft.add(jbOptions);//column1
-        jpRight.add(jbAbout);//column2
+        //jpLeft.add(jbOptions);//column1
+        //jpRight.add(jbAbout);//column2
     }
 
     /**

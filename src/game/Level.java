@@ -119,6 +119,7 @@ public class Level {
             if(!winTalliedToScore){
                 winTalliedToScore = true;
                 scoreCount += pointsForWin;
+                tallyShots();
             }
         }
     }
@@ -151,6 +152,10 @@ public class Level {
             hole.render(g);
         }
         ball.render(g);
+        
+        g.setColor(new Color(0x80000030, true));
+        g.fillRect(0, 0, g.getClipBounds().width, 48);
+        
         g.setFont(new Font("Comic Sans MS", Font.BOLD, 48));
         g.setColor(TEXTCOLOR);
         g.drawString("Hits: " + ball.shotCount, 10, 40);
@@ -161,13 +166,11 @@ public class Level {
         	g.drawString(PAUSESTRING, 400, 300);
         }
         if(hole.win){             
-            g.setColor(TEXTCOLOR);
             g.drawString(WINSTRING, 400, 100);
         }
         
         if(ball.shotCount == 0 && hole.win == false)
         {        	
-            g.setColor(TEXTCOLOR);
             g.drawString(LOSESTRING, 50, 200);   
             
         }

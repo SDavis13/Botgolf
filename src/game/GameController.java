@@ -102,7 +102,6 @@ public class GameController implements ContactListener{
     		new TimerTask(){
     			@Override
     			public void run(){
-    			    curLevel.tallyShots();
     			    exitGame();
     			}
     		},
@@ -154,6 +153,7 @@ public class GameController implements ContactListener{
                     break;
                 case LOSE:
                 	if(!ranWin){
+                	    ranWin = true;
                 		endGame();
                 	}
                 	break;
