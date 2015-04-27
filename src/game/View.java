@@ -15,7 +15,6 @@ import javax.swing.JPanel;
  * @implements	ActionListener
  */
 public abstract class View extends JPanel implements ActionListener{
-    String name;
     Main frame;
     boolean active;
 
@@ -25,7 +24,8 @@ public abstract class View extends JPanel implements ActionListener{
      * @param name	String name has been passed
      */
     protected View(String name){
-        this.name = name;
+        super();
+        setName(name);
         frame = Main.getInstance();
         active = false;
     }

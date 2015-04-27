@@ -76,7 +76,7 @@ public class Main extends JFrame{
      * @param view	Object of View passed
      */
     public void addView(View view){
-        views.put(view.name, view);
+        views.put(view.getName(), view);
     }
 
     /**
