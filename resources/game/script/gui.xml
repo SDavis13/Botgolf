@@ -7,6 +7,13 @@
 </style>
 <bind style="jPanel1" type="region" key=".*"/>
 
+<style id="jPanel2">
+   <opaque value="false"/>   
+   <imagePainter method="panelBackground" path="..\images\Back2.png"
+      sourceInsets="0 0 0 0" paintCenter="true"/>
+</style>
+<bind style="jPanel2" type="name" key="Game"/>
+
 <style id="playButton">
    <opaque value="true"/>
    <state>
