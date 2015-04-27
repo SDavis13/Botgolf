@@ -126,6 +126,7 @@ public class Ball extends Entity{
         g.setColor(Color.BLACK);
         g.draw(pixCircle);
         if(grabbed){
+            g.setColor(Color.LIGHT_GRAY);
             int temp2 = (int)(pixRad + 0.5f);
             g.drawLine((int)(pixX + .5f), (int)(pixY + .5f), mouseX, mouseY);
             g.drawOval((mouseX - temp2/2), (mouseY - temp2/2), temp2, temp2);
