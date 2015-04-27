@@ -36,6 +36,7 @@ public class Ball extends Entity{
 
     CircleShape shape;
     Ellipse2D.Float pixCircle;
+    Ellipse2D.Float grabCircle;
     static final float IMPULSE_SCALE = Consts.SCALE/400;
     BufferedImage ballImage;
     
@@ -73,6 +74,7 @@ public class Ball extends Entity{
         pixX = Utils.toPixX(body.getPosition().x);
         pixY = Utils.toPixY(body.getPosition().y);
         pixCircle = new Ellipse2D.Float((pixX - pixRad), (pixY - pixRad), pixRad*2, pixRad*2);
+        grabCircle = new Ellipse2D.Float(pixCircle.x - pixRad, pixCircle.y - pixRad, pixCircle.width*2, pixCircle.height*2);
     }
     /**
      * SetGrabbed method sets grabbed to true
@@ -140,6 +142,8 @@ public class Ball extends Entity{
         pixRad = (Utils.toPixLength(shape.m_radius));
         pixCircle.x = pixX - pixRad;
         pixCircle.y = pixY - pixRad;
+        grabCircle.x = pixCircle.x - pixRad;
+        grabCircle.y = pixCircle.y - pixRad;
     }
 
     /**
@@ -180,5 +184,9 @@ public class Ball extends Entity{
      */
     public boolean contains(int pixX, int pixY){
         return pixCircle.contains(pixX, pixY);
+    }
+    
+    public boolean containsDoubleSize(int pixX, int pixY){
+        return grabCircle.contains(pixX, pixY);
     }
 }

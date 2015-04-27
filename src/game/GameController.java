@@ -206,7 +206,7 @@ public class GameController implements ContactListener{
             int mouseY = e.getY();
             ball.setMouseLoc(mouseX,mouseY);
             if(state == GameState.READY){
-                if(ball.contains(mouseX,mouseY) && e.getButton() == 0){
+                if(ball.containsDoubleSize(mouseX,mouseY) && e.getButton() == 0){
                     state = GameState.GRAB;
                     ball.setGrabbed();
                 }else{
