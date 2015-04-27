@@ -30,6 +30,7 @@ public class Level {
     final static String WINSTRING = "You win!";
     final static String LOSESTRING = "You lose.";
     final static String PAUSESTRING = "Paused";
+    final static Color TEXTCOLOR = new Color(0x85ae2a);
     int id;
     String name;
     Ball ball;
@@ -151,7 +152,7 @@ public class Level {
         }
         ball.render(g);
         g.setFont(new Font("Comic Sans MS", Font.BOLD, 48));
-        g.setColor(Color.CYAN);
+        g.setColor(TEXTCOLOR);
         g.drawString("Hits: " + ball.shotCount, 10, 40);
         g.drawString("Score: " + scoreCount, 400, 40);  //added by CTS
 
@@ -160,13 +161,13 @@ public class Level {
         	g.drawString(PAUSESTRING, 400, 300);
         }
         if(hole.win){             
-            g.setColor(Color.CYAN);
+            g.setColor(TEXTCOLOR);
             g.drawString(WINSTRING, 400, 100);
         }
         
         if(ball.shotCount == 0 && hole.win == false)
         {        	
-            g.setColor(Color.CYAN);
+            g.setColor(TEXTCOLOR);
             g.drawString(LOSESTRING, 50, 200);   
             
         }

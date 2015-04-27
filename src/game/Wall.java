@@ -19,7 +19,7 @@ import org.jbox2d.dynamics.World;
  * @extends		Entity
  */
 public class Wall extends Entity {
-
+    static final Color DEFAULTCOLOR = new Color(0x3f6e93);
     PolygonShape shape;
     Polygon pixShape;
 
@@ -84,7 +84,7 @@ public class Wall extends Entity {
     @Override
     public void render(Graphics2D g) 
     {
-        g.setColor(Color.GREEN);
+        g.setColor(DEFAULTCOLOR);
         g.fillPolygon(pixShape);
     }
 
