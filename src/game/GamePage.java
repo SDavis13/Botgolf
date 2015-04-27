@@ -80,19 +80,14 @@ public class GamePage extends View{
         //TODO Make all instance vars private, except for the obvious and GameSpec's stuff
     }
     
+    /**
+     * Exit method for when the player loses.
+     */
     public void exit(){
     	tickRunner.cancel();
-    	frame.switchView(Consts.GAMEMENUPAGE, null);
+    	frame.switchView(Consts.GAMEMENUPAGE, curLevel.scoreCount);
     }
     
-    /**
-     * Lose method for when the player loses.
-     */
-    public void lose(){
-    	//TODO ERRTHING
-    	frame.switchView(Consts.GAMEMENUPAGE, null);
-    }
-
     /**
      * Activate method used to bring in the GameSpec.
      * 

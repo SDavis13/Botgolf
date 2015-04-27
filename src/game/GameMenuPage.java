@@ -1,5 +1,8 @@
 package game;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 
@@ -19,6 +22,7 @@ public class GameMenuPage extends View {
 	JPanel pausePanel = new JPanel();
     JButton restartButton = new JButton("Restart");
     JButton exitMainButton = new JButton("Exit To Main Menu");
+    JLabel label = new JLabel();
 
 	/**
 	 * Constructor for GameMenuPage.
@@ -27,23 +31,19 @@ public class GameMenuPage extends View {
 	 */
     protected GameMenuPage(String name) {
         super(name);
-        
         Insets insetDefinition = new Insets(15,20,15,20);
-        //pausePanel = new javax.swing.JPanel();
-        restartButton = new javax.swing.JButton();
-        exitMainButton = new javax.swing.JButton();
+        
+        label.setFont(new Font("Comic Sans MS", Font.BOLD, 48));
+        label.setForeground(Color.BLACK);
         
         restartButton.setMargin(insetDefinition);
         exitMainButton.setMargin(insetDefinition);
 
-        restartButton.setText("Restart");
         restartButton.addActionListener(this);
-        exitMainButton.setText("Exit To Main Menu");
         exitMainButton.addActionListener(this);
-        add(restartButton);
-        add(exitMainButton);
+        add(label);
 
-        /*
+        
         GroupLayout pausePanelLayout = new GroupLayout(pausePanel);
         pausePanel.setLayout(pausePanelLayout);
         pausePanelLayout.setHorizontalGroup(
@@ -63,9 +63,9 @@ public class GameMenuPage extends View {
                     .addComponent(restartButton, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
                     .addComponent(exitMainButton, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE))
                 .addGap(54, 54, 54))
-        );*/
+        );
         
-        //add(pausePanel);
+        add(pausePanel);
     }	
 	
 	/**
@@ -89,4 +89,13 @@ public class GameMenuPage extends View {
         	frame.switchView(Consts.MAIN, null);
         }
 	}
+    
+    public void activate(Object message){
+    	super.activate(message);
+    	
+    	if (message instanceof Integer)
+    	{
+    		label.setText("Score: " + (Integer)message);
+    	}
+    }
 }
