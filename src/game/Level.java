@@ -163,15 +163,15 @@ public class Level {
 
         if(pause)
         {
-        	g.drawString(PAUSESTRING, 400, 300);
+        	g.drawString(PAUSESTRING, 340, 250);
         }
         if(hole.win){             
-            g.drawString(WINSTRING, 400, 100);
+            g.drawString(WINSTRING, 300, 350);
         }
         
         if(ball.shotCount == 0 && hole.win == false)
         {        	
-            g.drawString(LOSESTRING, 50, 200);   
+            g.drawString(LOSESTRING, 300, 350);   
             
         }
     }
