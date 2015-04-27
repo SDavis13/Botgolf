@@ -36,7 +36,7 @@ public class ExplosionBot extends Mob {
     ExplosionBot(World world, BodyDef bd, FixtureDef fd, PolygonShape shape, Grid grid)
     {
         super(world, bd, fd, shape, grid);
-
+        ticksTillRemoval = 20;
         mobGraphic = new Image[4];
         try {
             mobGraphic[0] = ImageIO.read(
@@ -75,7 +75,7 @@ public class ExplosionBot extends Mob {
             	Utils.applyBlastImpulse(otherEntity.body, body.getPosition(), 
                         otherEntity.body.getPosition(), BLAST_POWER);
             }
-            remove = true;
+            dead = true;
         }
     }
 }
