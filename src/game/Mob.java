@@ -32,11 +32,13 @@ public class Mob extends Entity{
     PolygonShape shape;
     Polygon pixShape;
     Rectangle rectangle;
-    Image mobGraphic;
+    Image[] mobGraphic;
     Grid grid;
     int health = DEFAULT_HEALTH;
     int origHealth = 0;  // added by CTS
     int numOfSpacesMobCanMove;
+    int ticksTillRemoval = 60;
+    boolean dead = false;
 
 
     /**
@@ -49,9 +51,9 @@ public class Mob extends Entity{
      * @param gridScale		Float gridscale passed
      */
     Mob(World world, BodyDef bd, FixtureDef fd, PolygonShape shape, Grid grid){
-        
+        mobGraphic = new Image[1];
         try {
-            mobGraphic = ImageIO.read(new File(Consts.IMG_GENROBO)).getScaledInstance(80, 98, Image.SCALE_SMOOTH);
+            mobGraphic[0] = ImageIO.read(new File(Consts.IMG_GENROBO)).getScaledInstance(80, 98, Image.SCALE_SMOOTH);
         } catch (IOException e1) {
             e1.printStackTrace();
         }
@@ -78,8 +80,8 @@ public class Mob extends Entity{
         pixX = Utils.toPixX(body.getPosition().x);
         pixY = Utils.toPixY(body.getPosition().y);
 
-        imgXOffset = mobGraphic.getWidth(null)/2;
-        imgYOffset = mobGraphic.getHeight(null)-rectangle.height/2;
+        imgXOffset = mobGraphic[0].getWidth(null)/2;
+        imgYOffset = mobGraphic[0].getHeight(null)-rectangle.height/2;
     }
 
     /**
@@ -115,7 +117,7 @@ public class Mob extends Entity{
             	Utils.applyBlastImpulse(otherEntity.body, body.getPosition(), 
                         otherEntity.body.getPosition(), BLAST_POWER);
             }
-        	remove = true;
+        	dead = true;
         }
     }
 
@@ -165,7 +167,13 @@ public class Mob extends Entity{
      */
     @Override
     public void render(Graphics2D g) {
-        g.drawImage(mobGraphic, (int)(pixX+.5f) - imgXOffset, (int)(pixY+.5f) - imgYOffset, null);
+        Image image;
+        if(health >= mobGraphic.length){
+            image = mobGraphic[mobGraphic.length - 1];
+        }else if(health < 0){
+            image = mobGraphic[0];
+        }else image = mobGraphic[health];
+        g.drawImage(image, (int)(pixX+.5f) - imgXOffset, (int)(pixY+.5f) - imgYOffset, null);
         g.draw(pixShape);
     }
 
@@ -180,6 +188,12 @@ public class Mob extends Entity{
         rectangle = pixShape.getBounds();
         pixX = newPixX;
         pixY = newPixY;
+        if(dead){
+            ticksTillRemoval--;
+            if(ticksTillRemoval < 0){
+                remove = true;
+            }
+        }
     }
 
 

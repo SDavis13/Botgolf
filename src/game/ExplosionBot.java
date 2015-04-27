@@ -37,9 +37,16 @@ public class ExplosionBot extends Mob {
     {
         super(world, bd, fd, shape, grid);
 
+        mobGraphic = new Image[4];
         try {
-            mobGraphic = ImageIO.read(
-                    new File(Consts.IMG_MADROBO)).getScaledInstance(80, 98, Image.SCALE_SMOOTH);
+            mobGraphic[0] = ImageIO.read(
+                    new File(Consts.IMG_MADROBO0)).getScaledInstance(80, 98, Image.SCALE_SMOOTH);
+            mobGraphic[1] = ImageIO.read(
+                    new File(Consts.IMG_MADROBO1)).getScaledInstance(80, 98, Image.SCALE_SMOOTH);
+            mobGraphic[2] = ImageIO.read(
+                    new File(Consts.IMG_MADROBO2)).getScaledInstance(80, 98, Image.SCALE_SMOOTH);
+            mobGraphic[3] = ImageIO.read(
+                    new File(Consts.IMG_MADROBO3)).getScaledInstance(80, 98, Image.SCALE_SMOOTH);
         } catch (IOException e1) {
             e1.printStackTrace();
         }

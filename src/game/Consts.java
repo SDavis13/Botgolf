@@ -30,8 +30,13 @@ public class Consts {
                                 IMG_BALL    = IMGLOC + "Ball.png",
                                 IMG_HOLE    = IMGLOC + "Hole.png",
                                 IMG_GENROBO = IMGLOC + "BotGeneric.png",
-                                IMG_STANDROBO = IMGLOC + "BotStandard.png",
-                                IMG_MADROBO = IMGLOC + "BotMad.png",
+                                IMG_STANDROBO2 = IMGLOC + "NormalBot2.png",
+                                IMG_STANDROBO1 = IMGLOC + "NormalBot1.png",
+                                IMG_STANDROBO0 = IMGLOC + "NormalBot0.png",
+                                IMG_MADROBO3 = IMGLOC + "Explodibot3.png",
+                                IMG_MADROBO2 = IMGLOC + "Explodibot2.png",
+                                IMG_MADROBO1 = IMGLOC + "Explodibot1.png",
+                                IMG_MADROBO0 = IMGLOC + "Explodibot0.png",
                                 IMG_INSTR = IMGLOC + "instructionsRobot.png";
 
     /**
