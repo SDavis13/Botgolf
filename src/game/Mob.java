@@ -174,7 +174,7 @@ public class Mob extends Entity{
             image = mobGraphic[0];
         }else image = mobGraphic[health];
         g.drawImage(image, (int)(pixX+.5f) - imgXOffset, (int)(pixY+.5f) - imgYOffset, null);
-        g.draw(pixShape);
+        //g.draw(pixShape);
     }
 
     /**
