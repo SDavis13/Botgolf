@@ -14,29 +14,61 @@ import org.jbox2d.collision.Manifold;
 import org.jbox2d.dynamics.contacts.Contact;
 
 /**
- * GameController represents the game play.  This keeps track of keyboard and
- * mouse input as well as recognizes game state changes.
+ * GameController manages gameplay by keeping track of keyboard and
+ * mouse input as well as recognizing and driving game state changes.
  * 
  * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
- * @version     2015-04-24
+ * @version     2015-04-28
  * @since       2015-04-24
  * @implements	ContactListener
  */
 public class GameController implements ContactListener{
+    /**
+     * The name of the thread executing physics and game logic, for debugging purposes.
+     */
     static final String THREAD_NAME = "PhysicsLoop";
+    /**
+     * Delay in milliseconds after the game has been won or lost before the game goes to the menu.
+     */
+    static final long WINDELAY = 5000;
+    /**
+     * The GamePage
+     */
     GamePage view;
+    /**
+     * The current Level
+     */
     Level curLevel;
+    /**
+     * The Ball
+     */
     Ball ball;
+    /**
+     * The Hole
+     */
     Hole hole;
+    /**
+     * The java.util.Timer which drives the game logic loop.
+     */
     Timer tickRunner;
+    /**
+     * The current state of the game.
+     */
     GameState state;
+    /**
+     * The GameState saved when the game is paused.
+     */
     GameState tempState;
-    LevelFactory curFactory = new CreateLevel(); //TODO This is hardcoded and will need to be changed.
+    /**
+     * The factory used to load the level.
+     * This is currently hardcoded to one level (From the CreateLevel class) and will need to be changed when support for non-hardcoded levels is added.
+     */
+    LevelFactory curFactory = new CreateLevel();
 
     /**
      * Constructor for GameController.
      * 
-     * @param page	Object type of GamePage passed
+     * @param page The GamePage
      */
     public GameController(GamePage page){
         state = GameState.INACTIVE;
@@ -50,9 +82,9 @@ public class GameController implements ContactListener{
     }
     
     /**
-     * LoadLevel method creates the specs and levels.
+     * The LoadLevel method loads the level from a levelFactory given the level specification.
      * 
-     * @param levelSpec		Object type of GameSpec passed
+     * @param levelSpec A GameSpec
      */
     public void loadLevel(GameSpec levelSpec){
         if(levelSpec.newGame)
@@ -76,7 +108,7 @@ public class GameController implements ContactListener{
     }
    
     /**
-     * PauseGame used to pause the game state of the current game.
+     * PauseGame used to pause the current game.
      */
     public void pauseGame(){
         tempState = state;
@@ -87,7 +119,7 @@ public class GameController implements ContactListener{
     }
     
     /**
-     * ExitGame used to change game state and then exit.
+     * ExitGame used to change game state to inactive and then exit.
      */
     public void exitGame(){
     	tempState = GameState.READY;
@@ -100,6 +132,7 @@ public class GameController implements ContactListener{
     
     /**
      * EndGame method used when game has ended.
+     * Waits WINDELAY milliseconds before calling exitGame().
      */
     public void endGame(){
     	new Timer().schedule(
@@ -109,21 +142,21 @@ public class GameController implements ContactListener{
     			    exitGame();
     			}
     		},
-    		5000
+    		WINDELAY
     	);
     }
     
     /**
      * PhysicsLoop class created extends TimerTask
      * 
-     * @extends		TimerTask
+     * @extends TimerTask
      */
     private class PhysicsLoop extends TimerTask{
         boolean launched = false;
         boolean ranWin = false;
 
         /**
-         * Run method to step thru current states
+         * Run method calls Level.step(), checks if the player has won or lost, then goes through GameStates and acts accordingly.
          */
         @Override
         public void run(){
@@ -169,7 +202,7 @@ public class GameController implements ContactListener{
     /**
      * KeyboardInput class created extends the KeyAdapter to detect keyboard input.
      * 
-     * @extends		KeyAdapter
+     * @extends KeyAdapter
      */
     private class KeyboardInput extends KeyAdapter{
         @Override
@@ -185,8 +218,9 @@ public class GameController implements ContactListener{
                 {
                     pauseGame();
                 }
-            }
-            else{
+            }else if(code == 0){
+                
+            }else{
             	SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_BOING]);
             }          
             /*else if(code == Consts.pauseMenuKey){
@@ -199,11 +233,17 @@ public class GameController implements ContactListener{
 
     /**
      * MouseInput class extends MouseInputAdapter to detect mouse input.
-     *
-     * @extends		MouseInputAdapter
+     * 
+     * @extends MouseInputAdapter
      */
     private class MouseInput extends MouseInputAdapter{
         float xOrigin, yOrigin, oldXOffset, oldYOffset;
+        
+        /**
+         * Used to receive a mouse dragged event for grabbing the ball or moving the screen offset around.
+         * 
+         * @param e MouseEvent
+         */
         @Override
         public void mouseDragged(MouseEvent e){
             int mouseX = e.getX();
@@ -227,9 +267,9 @@ public class GameController implements ContactListener{
         }
         
         /**
-         * MouseReleased method used to indicate mouse button release to launch ball.
+         * Used to receive a mouse released event to launch the ball if the ball is grabbed.
          * 
-         * @param e		Object type of mouse event passed
+         * @param e MouseEvent
          */
         @Override
         public void mouseReleased(MouseEvent e){
@@ -243,9 +283,9 @@ public class GameController implements ContactListener{
         }
         
         /**
-         * MousePressed method used to request focus in window.
-         * 
-         * @param e		Object type of mouse event passed
+         * Used to request focus in window.
+         * Focus is necessary for the KeyAdapter to receive input.
+         * @param e MouseEvent
          */
         public void mousePressed(MouseEvent e){
         	view.requestFocusInWindow();
@@ -253,9 +293,10 @@ public class GameController implements ContactListener{
     }
 
     /**
-     * BeginContact method to determine if contact was made between entities.
-     * 
-     * @param contact	Object type of Contact passed
+     * Used to receive input on contact between two JBox2D Fixtures, and by extension the Entities that hold them.
+     * Calls .hit() on the Entities involved.
+     * @see org.jbox2d.callbacks.ContactListener
+     * @param contact
      */
     @Override
     public void beginContact(Contact contact) {
@@ -266,38 +307,35 @@ public class GameController implements ContactListener{
     }
     
     /**
-     * EndContact method used to break contact with entities touching.
-     * 
-     * @param contact	Object type of contact passed
+     * Required by the ContactListener interface, but unused in this instance.
+     * Would be used if we had something that needed to occur when two entities stopped being in contact with each other.
+     * @param contact
      */
     @Override
     public void endContact(Contact contact) {
         // TODO Auto-generated method stub
-
     }
    
     /**
-     * PreSolve method 
+     * Required by the ContactListener interface, but unused in this instance.
      * 
-     * @param contact		Object type of contact passed
-     * @param oldManifold	Object type of old manifold passed
+     * @param contact
+     * @param oldManifold
      */
     @Override
     public void preSolve(Contact contact, Manifold oldManifold) {
         // TODO Auto-generated method stub
-
     }
     
     /**
-     * PostSolve method
+     * Required by the ContactListener interface, but unused in this instance.
      * 
-     * @param contact		Object type of contact passed
-     * @param impulse		Object type of Contact Impulse passed
+     * @param contact
+     * @param impulse
      */
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {
         // TODO Auto-generated method stub
-
     }
 
 }
