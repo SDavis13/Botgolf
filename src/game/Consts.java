@@ -55,7 +55,7 @@ public class Consts {
     							GAMEMENUPAGE= "GameMenuPage";
     
     /**
-     * Sound Names
+     * Sound names for hashtable retrieval
      */
     public static final String[] SOUNDS =  {"Score", 
     										"Wall1", 
@@ -69,7 +69,7 @@ public class Consts {
     										"TandemGravities"};
     
     /**
-     * Sound names with position number
+     * Indexes for sound names in the array.
      */
     public static final int SNDIDX_SCORE = 0,
     						SNDIDX_WALL1 = 1,
@@ -83,7 +83,7 @@ public class Consts {
                             MUSIDX_TANDEMGRAVITIES = 8;
     
     /**
-     * Sound Locations
+     * Sound file locations
      */
     public static final String[] SOUNDFILES =  {SNDLOC+"score.wav", 
     											SNDLOC+"wall1.wav",
@@ -97,18 +97,28 @@ public class Consts {
     											SNDLOC+"tandemgravities.wav"};
                                 
     /**
-     * Constants for Scale, Timestep andTimerTick
+     * Scale of the graphical representation of the JBox2D world for conversion.
+     * The JBox2D world is 100x100 meters, and the corresponding area is SCALExSCALE pixels.
      */
     public static final int SCALE = 2000;
+    /**
+     * Time in seconds between logic ticks.
+     */
     public static final float TIMESTEP = 1.f/60.f;
+    /**
+     * Time in milliseconds between render ticks.
+     */
     public static final long TIMERTICK = (long)(1000 * TIMESTEP + 0.5f);
+    /**
+     * A Swing object used to make sure the button graphics don't interfere with the text.
+     */
     public static final Insets BUTTON_MARGIN = new Insets(10,20,15,20);
 
     
     //Variable globals
     
     /**
-     * Keyboard Shortcuts
+     * Keyboard Shortcuts. Global variables rather than constants.
      */
     public static int pauseMenuKey = KeyEvent.VK_ESCAPE, //goes to pause menu
                       pauseKey = KeyEvent.VK_PAUSE; //simply pauses the game
