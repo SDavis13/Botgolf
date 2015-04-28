@@ -33,6 +33,7 @@ public class Level {
     final static Color TEXTCOLOR = new Color(0x659e0a);
     int id;
     String name;
+    String music;
     Ball ball;
     ArrayList<Mob> mobs;
     ArrayList<Mob> mDelete;
@@ -58,7 +59,7 @@ public class Level {
      * @param theBall	Object type of Ball passed
      * @param theHole	Object type of Hole passed
      */
-    Level(World world, GameSpec specs, ArrayList<Wall> wallList, ArrayList<Mob> mobList, Ball theBall, Hole theHole, Grid theGrid){
+    Level(World world, GameSpec specs, ArrayList<Wall> wallList, ArrayList<Mob> mobList, Ball theBall, Hole theHole, Grid theGrid, String musicName){
         this.world = world;
         name = specs.levelName;
         id = specs.levelNum;
@@ -70,6 +71,7 @@ public class Level {
         pause = false;
         mDelete = new ArrayList<Mob>();
         wDelete = new ArrayList<Wall>();
+        music = musicName;
 
         mobIterFlag.access = true;
     }

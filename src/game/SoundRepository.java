@@ -22,6 +22,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  */
 public class SoundRepository {
     HashMap<String,Clip> soundBank = new HashMap<String,Clip>();
+    Clip music;
     static SoundRepository repo = new SoundRepository();
 
     /**
@@ -81,6 +82,32 @@ public class SoundRepository {
             if(clip.getFramePosition() != 0) clip.setFramePosition(0);
             clip.start();
         }
+    }
+    
+    public static void resetMusic(){
+        if(repo.music != null){
+            repo.music.stop();
+            repo.music.setFramePosition(0);
+        }
+    }
+    
+    public static void setMusic(String musicName) {
+        resetMusic();
+        Clip clip = repo.soundBank.get(musicName);
+        if(clip != null){
+            if(clip.getFramePosition() != 0) clip.setFramePosition(0);
+            repo.music = clip;
+        }
+    }
+    
+    public static void pauseMusic(){
+        if(repo.music != null)
+            repo.music.stop();
+    }
+    
+    public static void startMusic(){
+        if(repo.music != null)
+            repo.music.loop(Clip.LOOP_CONTINUOUSLY);
     }
 
     /**

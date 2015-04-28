@@ -62,16 +62,8 @@ public class Wall extends Entity {
      */
     @Override
     public void hit(Entity otherEntity) {
-    	boolean wallTemp = true;
         if(otherEntity instanceof Ball){
-        	if(wallTemp == true){
-        	wallTemp = false;
         	SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_WALL1]);
-        	}
-        	if(wallTemp == false){
-        	wallTemp = true;
-        	SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_WALL2]);
-        	}
         }
 
     }

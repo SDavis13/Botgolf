@@ -110,7 +110,7 @@ public class CreateLevel implements LevelFactory {
         }
         grid.addObstruction(ball.getPosition(), Obstruction.KILL);
 
-        Level theLevel = new Level(world, specs, wallList, mobList, ball, hole, grid);
+        Level theLevel = new Level(world, specs, wallList, mobList, ball, hole, grid, Consts.SOUNDS[Consts.MUSIDX_TANDEMGRAVITIES]);
         theLevel.pointsForWin = WINPOINTS;
         theLevel.pointsPerShot = SHOTPOINTS;
         return theLevel;

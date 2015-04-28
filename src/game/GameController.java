@@ -61,6 +61,7 @@ public class GameController implements ContactListener{
         hole = curLevel.getHole();
         view.setLevel(curLevel);
         curLevel.world.setContactListener(this);
+        SoundRepository.setMusic(curLevel.music);
     }
     
     /**
@@ -71,6 +72,7 @@ public class GameController implements ContactListener{
         state = tempState;
         tickRunner = new Timer(THREAD_NAME);
         tickRunner.scheduleAtFixedRate(new PhysicsLoop(), 25, Consts.TIMERTICK);
+        SoundRepository.startMusic();
     }
    
     /**
@@ -81,6 +83,7 @@ public class GameController implements ContactListener{
         tickRunner.cancel();
         curLevel.pause();
         state = GameState.PAUSED;
+        SoundRepository.pauseMusic();
     }
     
     /**
@@ -91,6 +94,7 @@ public class GameController implements ContactListener{
     	state = GameState.INACTIVE;
     	curLevel.pause();
     	tickRunner.cancel();
+    	SoundRepository.resetMusic();
     	view.exit();
     }
     
@@ -127,8 +131,7 @@ public class GameController implements ContactListener{
             if (hole.win)
             {
             	state = GameState.WIN;
-            }
-            if (ball.shotCount == 0)
+            }else if (ball.shotCount == 0)
             {
             	state = GameState.LOSE;
             }
@@ -146,9 +149,10 @@ public class GameController implements ContactListener{
                     if(!curLevel.moveMobs()) state = GameState.READY;
                     break;
                 case WIN:
+                    SoundRepository.resetMusic();
                     if(!ranWin){
-                    	ranWin = true;
-                    	endGame();
+                        ranWin = true;
+                        endGame();
                     }
                     break;
                 case LOSE:

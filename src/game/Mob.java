@@ -106,7 +106,7 @@ public class Mob extends Entity{
         
         if (health > 0) {
         	if(otherEntity instanceof Ball){
-        		SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_ROBOTMOVE]);
+        		SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_ROBOTHIT]);
         	}
         }
         
@@ -136,6 +136,7 @@ public class Mob extends Entity{
             }else idxs.add(i);
         }
         Vec2[] destinations = grid.vnNeighborLocs(body.getPosition());
+        SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_ROBOTMOVE]);
         if(idxMoveTo != -1){
             moveTo(destinations[idxMoveTo]);
             return true;
@@ -145,7 +146,7 @@ public class Mob extends Entity{
             moveTo(destinations[idxs.get(0)]);
             return true;
         }else{
-            return false;
+            return true;
         }
     }
     

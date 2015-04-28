@@ -59,39 +59,42 @@ public class Consts {
      */
     public static final String[] SOUNDS =  {"Score", 
     										"Wall1", 
-    										"Wall2", 
+    										//"Wall2", 
     										"RobotBoom", 
     										"RobotMove", 
     										"Launch",
     										"Pause", 
     										"Boing",
-    										"RobotClang"};
+    										"RobotHit",
+    										"TandemGravities"};
     
     /**
      * Sound names with position number
      */
     public static final int SNDIDX_SCORE = 0,
     						SNDIDX_WALL1 = 1,
-    						SNDIDX_WALL2 = 2,
-    						SNDIDX_ROBOTBOOM = 3,
-    						SNDIDX_ROBOTMOVE = 4,
-    						SNDIDX_LAUNCH = 5,
-    						SNDIDX_PAUSE = 6,
-    						SNDIDX_BOING = 7,
-    						SNDIDX_ROBOTCLANG = 8;
+    						//SNDIDX_WALL2 = 2,
+    						SNDIDX_ROBOTBOOM = 2,
+    						SNDIDX_ROBOTMOVE = 3,
+    						SNDIDX_LAUNCH = 4,
+    						SNDIDX_PAUSE = 5,
+    						SNDIDX_BOING = 6,
+    						SNDIDX_ROBOTHIT = 7,
+                            MUSIDX_TANDEMGRAVITIES = 8;
     
     /**
      * Sound Locations
      */
     public static final String[] SOUNDFILES =  {SNDLOC+"score.wav", 
     											SNDLOC+"wall1.wav",
-    											SNDLOC+"wall2.wav", 
+    											//SNDLOC+"wall2.wav", 
     											SNDLOC+"robotboom.wav", 
     											SNDLOC+"robotmove.wav", 
     											SNDLOC+"launch.wav",
     											SNDLOC+"zap2.wav", 
     											SNDLOC+"boing.wav",
-    											SNDLOC+"robotclang.wav"};
+    											SNDLOC+"robothit.wav",
+    											SNDLOC+"tandemgravities.wav"};
                                 
     /**
      * Constants for Scale, Timestep andTimerTick
