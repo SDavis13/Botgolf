@@ -160,7 +160,7 @@ public class Level {
         
         g.setFont(new Font("Comic Sans MS", Font.BOLD, 48));
         g.setColor(TEXTCOLOR);
-        g.drawString("Hits: " + ball.shotCount, 10, 40);
+        g.drawString("Shots Left: " + ball.shotCount, 10, 40);
         g.drawString("Score: " + scoreCount, 400, 40);  //added by CTS
 
         if(pause)
