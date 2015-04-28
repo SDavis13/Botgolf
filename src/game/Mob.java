@@ -104,19 +104,13 @@ public class Mob extends Entity{
     public void hit(Entity otherEntity) {
         health--;
         
-        if (health > 0) {
+        if (health >= 0) {
         	if(otherEntity instanceof Ball){
         		SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_ROBOTHIT]);
         	}
         }
         
         if (health <= 0) {
-            if(otherEntity instanceof Ball){
-            	SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_ROBOTBOOM]);
-            	
-            	Utils.applyBlastImpulse(otherEntity.body, body.getPosition(), 
-                        otherEntity.body.getPosition(), BLAST_POWER);
-            }
         	dead = true;
         }
     }
