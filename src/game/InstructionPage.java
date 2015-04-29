@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 /**
  * This page represents the InstructionPage page to be used from MainPage.
  * 
- * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
+ * @author     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
  * @version     2015-04-24
  * @since       2015-04-24
  */

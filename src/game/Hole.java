@@ -16,10 +16,9 @@ import org.jbox2d.dynamics.World;
 /**
  * This represents the specifications of the Hole for the game.
  * 
- * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
+ * @author     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
  * @version     2015-04-24
  * @since       2015-04-24
- * @extends 	Entity
  */
 public class Hole extends Entity{
     public CircleShape shape;
