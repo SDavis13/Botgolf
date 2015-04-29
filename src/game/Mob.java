@@ -20,7 +20,7 @@ import org.jbox2d.dynamics.World;
 /**
  * This is the mob class that defines the robots as far as rendering and physics.
  * 
- * @authors Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
+ * @author Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
  * @version 2015-04-28
  * @since 2015-04-24
  */

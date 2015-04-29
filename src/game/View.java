@@ -8,11 +8,9 @@ import javax.swing.JPanel;
  * This class represents the abstract class of View.  This also
  * extends the Jpanel and implements ActionListener.
  * 
- * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
+ * @author     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
  * @version     2015-04-24
  * @since       2015-04-24
- * @extends		JPanel
- * @implements	ActionListener
  */
 public abstract class View extends JPanel implements ActionListener{
     Main frame;

@@ -15,10 +15,9 @@ import org.jbox2d.dynamics.World;
  * This class represents the standard robot settings along with
  * extending the Mob class.
  * 
- * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
+ * @author     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
  * @version     2015-04-24
  * @since       2015-04-24
- * @extends		Mob
  */
 public class StandardBot extends Mob {		
 

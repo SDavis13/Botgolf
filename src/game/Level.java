@@ -12,7 +12,7 @@ import org.jbox2d.dynamics.World;
  * This class represents a level in the game. It is a set of entities and the variables and methods necessary to work with them in the context of a level.
  * A level must have, at minimum, a ball, and a hole to shoot the ball into.
  * 
- * @authors Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
+ * @author Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
  * @version 2015-04-28
  * @since 2015-04-24
  */

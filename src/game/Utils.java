@@ -8,7 +8,7 @@ import org.jbox2d.dynamics.Body;
  * Applies an impulse to a jBox2d Body inversely proportional to its distance away,
  * to simulate something similar to an explosion.
  * 
- * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
+ * @author     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
  * @version     2015-04-24
  * @since       2015-04-24
  */

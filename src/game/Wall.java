@@ -13,10 +13,9 @@ import org.jbox2d.dynamics.World;
  * This class represents specifications of Wall.  This also
  * extends the Entity class and those specifications. 
  * 
- * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
+ * @author     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
  * @version     2015-04-24
  * @since       2015-04-24
- * @extends		Entity
  */
 public class Wall extends Entity {
     static final Color DEFAULTCOLOR = new Color(0x3f6e93);
