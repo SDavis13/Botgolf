@@ -55,7 +55,7 @@ public class InstructionPage extends View{
     /**
      * Action listener
      * 
-     * @param arg0		Action listener event
+     * @param e		Action listener event
      */
     @Override
     public void actionPerformed(ActionEvent e) {
