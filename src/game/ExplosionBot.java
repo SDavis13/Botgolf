@@ -12,26 +12,19 @@ import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
 /**
- * This class represents the explosion robot settings along with
- * extending the Mob class.
+ * This class represents a robot which explodes when it dies.
  * 
- * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
- * @version     2015-04-24
- * @since       2015-04-24
- * @extends		Mob
+ * @authors Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
+ * @version 2015-04-28
+ * @since 2015-04-24
+ * @extends Mob
  */
 public class ExplosionBot extends Mob {
-    
+
     static final float BLAST_POWER = 1000;
 
     /**
-     * Constructor for ExplosionBot
-     * 
-     * @param world			Object type of World passed
-     * @param bd			Object type of body definition passed
-     * @param fd			Object type of fixture definition passed
-     * @param shape			Object type of polygon shape passed
-     * @param gridScale		Float type of grid scale passed
+     * {@inheritDoc}
      */
     ExplosionBot(World world, BodyDef bd, FixtureDef fd, PolygonShape shape, Grid grid)
     {
@@ -56,23 +49,23 @@ public class ExplosionBot extends Mob {
      * this is the hit method that removes health and robot when 
      * health is down to zero.
      * 
-     * @param otherEntity	Object type of Entity passed
+     * @param otherEntity    Object type of Entity passed
      */
     @Override
     public void hit(Entity otherEntity) {
         health--;
-        
+
         if (health > 0) {
-        	if(otherEntity instanceof Ball){
-        		SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_ROBOTHIT]);
-        	}
+            if(otherEntity instanceof Ball){
+                SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_ROBOTHIT]);
+            }
         }
-        
+
         if (health <= 0) {
             if(otherEntity instanceof Ball) {
-            	SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_ROBOTBOOM]);
-            	
-            	Utils.applyBlastImpulse(otherEntity.body, body.getPosition(), 
+                SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_ROBOTBOOM]);
+
+                Utils.applyBlastImpulse(otherEntity.body, body.getPosition(), 
                         otherEntity.body.getPosition(), BLAST_POWER);
             }
             dead = true;

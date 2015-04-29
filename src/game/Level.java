@@ -12,9 +12,9 @@ import org.jbox2d.dynamics.World;
  * This class represents a level in the game. It is a set of entities and the variables and methods necessary to work with them in the context of a level.
  * A level must have, at minimum, a ball, and a hole to shoot the ball into.
  * 
- * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
- * @version     2015-04-28
- * @since       2015-04-24
+ * @authors Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
+ * @version 2015-04-28
+ * @since 2015-04-24
  */
 public class Level {
     /**
@@ -100,7 +100,7 @@ public class Level {
      * Used to prevent tallying a win multiple times.
      */
     public boolean winTalliedToScore = false;  // added by CTS
-    
+
     /**
      * Constructor for Level
      * 
@@ -186,9 +186,9 @@ public class Level {
      * 
      * @param g A Graphics2D context to render to.
      */
-    void render(Graphics2D g){     	
+    void render(Graphics2D g){
         Rectangle bounds = g.getClipBounds();
-        
+
         for(Wall wall : walls){
             if(wall.pixShape.intersects(bounds)){
                 wall.render(g);
@@ -209,10 +209,10 @@ public class Level {
             hole.render(g);
         }
         ball.render(g);
-        
+
         g.setColor(new Color(0x80000030, true));
         g.fillRect(0, 0, g.getClipBounds().width, 48);
-        
+
         g.setFont(new Font("Comic Sans MS", Font.BOLD, 48));
         g.setColor(TEXTCOLOR);
         g.drawString("Shots Left: " + ball.shotCount, 10, 40);
@@ -220,34 +220,34 @@ public class Level {
 
         if(pause)
         {
-        	g.drawString(PAUSESTRING, 340, 250);
+            g.drawString(PAUSESTRING, 340, 250);
         }
         if(hole.win){             
             g.drawString(WINSTRING, 300, 350);
         }
-        
+
         if(ball.shotCount == 0 && hole.win == false)
-        {        	
+        {
             g.drawString(LOSESTRING, 300, 350);   
-            
+
         }
     }
-    
-    
+
+
     /**
      * Pause method to indicate to the level that the game is paused.
      */
     public void pause()
     {
-    	pause = true;
+        pause = true;
     }
-    
+
     /**
      * Unpause method to indicate to the level that the game is no longer paused.
      */
     public void unPause()
     {
-    	pause = false;
+        pause = false;
     }
 
     /**
@@ -268,16 +268,16 @@ public class Level {
     {
         return hole;
     }
-    
+
     /**
      * Converts all remaining shots to score points per pointsPerShot.
      */
     public void tallyShots(){
-       for(; ball.shotCount > 0; ball.shotCount--){
+        for(; ball.shotCount > 0; ball.shotCount--){
             scoreCount += pointsPerShot;
         }
     }
-    
+
     /**
      * Method to get the Grid object of this level.
      * 
@@ -287,18 +287,18 @@ public class Level {
         return grid;
     }
 
-	/**
-	 * The class Iterflag is a simple wrapper for a boolean, for the purpose of synchronization.
-	 */
+    /**
+     * The class Iterflag is a simple wrapper for a boolean, for the purpose of synchronization.
+     */
     class IterFlag{
-		boolean access;
-		
-		/**
-		 * Constructor.
-		 * @param access Whether or not something should be accessed at this time.
-		 */
-		IterFlag(boolean access){
-		    this.access = access;
-		}
-	}
+        boolean access;
+
+        /**
+         * Constructor.
+         * @param access Whether or not something should be accessed at this time.
+         */
+        IterFlag(boolean access){
+            this.access = access;
+        }
+    }
 }

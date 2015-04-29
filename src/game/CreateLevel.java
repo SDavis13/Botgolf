@@ -10,13 +10,13 @@ import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
 /**
- * This is where the level is created.  The walls, hole, and robots are 
- * defined in this.
+ * This is where the level is created. The walls, hole, and robots are 
+ * defined in this. This class specifies a hardcoded level.
  * 
- * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
- * @version     2015-04-24
- * @since       2015-04-24
- * @implements 	LevelFactory
+ * @authors Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
+ * @version 2015-04-28
+ * @since 2015-04-24
+ * @implements LevelFactory
  */
 public class CreateLevel implements LevelFactory {
     /**
@@ -41,14 +41,14 @@ public class CreateLevel implements LevelFactory {
     public static final Vec2 HOLE_POSITION = new Vec2(4,96);
     public static final int WINPOINTS = 3000;
     public static final int SHOTPOINTS = 500;
-    
+
     private static Grid grid;
 
 
     /**
      * CreateLevel method creates a level to the specs defined.
      * 
-     * @param specs		Object type of game specs passed
+     * @param specs Object type of game specs passed
      */
     @Override
     public Level createLevel(GameSpec specs){
@@ -60,8 +60,8 @@ public class CreateLevel implements LevelFactory {
 
         Hole hole = createHole(world);
         Ball ball = createBall(world);
-        ball.setNumHits(4);
-        
+        ball.setNumShots(4);
+
         grid = new Grid(GRID_SIZE, GRID_SIZE/2, GRID_SIZE/2);
 
         StandardBot stanMob;
@@ -84,7 +84,7 @@ public class CreateLevel implements LevelFactory {
         //Interior Walls
         wallList.add(createWall(world, 8,84,6,2,0));//Horizontal
         wallList.add(createWall(world, 24,88,6,2,(float)Math.toRadians(-45)));//Diagonal
-        
+
         for(int i = -1; i <= 9; i++){
             grid.addObstruction(i, 25, Obstruction.STATIC);
             grid.addObstruction(i, 17, Obstruction.STATIC);
@@ -103,7 +103,7 @@ public class CreateLevel implements LevelFactory {
         grid.addObstruction(6, 22, Obstruction.STATIC);
         grid.addObstruction(5, 21, Obstruction.STATIC);
         grid.addObstruction(6, 21, Obstruction.STATIC);
-        
+
         grid.addObstruction(hole.getPosition(), Obstruction.STATIC);
         for(Mob mob : mobList){
             grid.addObstruction(mob.getPosition(), Obstruction.DYNAMIC);
@@ -117,10 +117,10 @@ public class CreateLevel implements LevelFactory {
     }
 
     /**
-     * CreateBall method used to define variables of the Ball.
+     * Creates a Ball object.
      * 
-     * @param theWorld		Object type of the world passed
-     * @return				The ball object created
+     * @param theWorld the World in which to create the Ball.
+     * @return The Ball.
      */
     private Ball createBall(World theWorld){
         Ball ball;
@@ -138,10 +138,10 @@ public class CreateLevel implements LevelFactory {
     }
 
     /**
-     * CreateHole method used to create the physics for the Hole.
+     * Creates a Hole object.
      * 
-     * @param theWorld		Object type of the world passed
-     * @return				Returns a hole object
+     * @param theWorld The World to put the Hole in.
+     * @return A Hole.
      */
     private Hole createHole(World theWorld)
     {
@@ -158,15 +158,15 @@ public class CreateLevel implements LevelFactory {
     }
 
     /**
-     * CreateWall method for creating a wall in the world.
+     * Creates a Wall object.
      * 
-     * @param theWorld		Object type of the world passed
-     * @param posX			Float type of x-coordinate passed
-     * @param posY			Float type of y-coordinate passed
-     * @param halfWidth		Float type of half the width passed
-     * @param halfHeight	Float type of half the height passed
-     * @param rotation		Float type of rotation passed
-     * @return				returns a Wall object
+     * @param theWorld The World to put the Wall in.
+     * @param posX The center X coordinate of the Wall.
+     * @param posY The center Y coordinate of the Wall.
+     * @param halfWidth Half the width of the Wall.
+     * @param halfHeight Half the height of the wall.
+     * @param rotation Angle of the Wall in radians.
+     * @return a Wall with the given specification.
      */
     private Wall createWall(World theWorld, float posX, float posY, float halfWidth, float halfHeight, float rotation){
         PolygonShape shape = new PolygonShape();
@@ -184,14 +184,14 @@ public class CreateLevel implements LevelFactory {
     }
 
     /**
-     * CreateMob is the method used to create the robot in the world.
+     * Creates a Mob object.
      * 
-     * @param theWorld		Object type of the world passed
-     * @param posX			Float type of x-coordinate passed
-     * @param posY			Float type of y-coordinate passed
-     * @param halfWidth		Float type of half the width passed
-     * @param halfHeight	Float type of half the height passed
-     * @return				returns a Mob object
+     * @param theWorld the World to put the Mob in.
+     * @param posX The center X coordinate of the Mob.
+     * @param posY The center Y coordinate of the Mob.
+     * @param halfWidth Half the width of the Mob.
+     * @param halfHeight Half the height of the Mob.
+     * @return a generic Mob with the given specification
      */
     private Mob createMob(World theWorld, float posX, float posY, float halfWidth, float halfHeight){
         PolygonShape shape = new PolygonShape();
@@ -209,14 +209,14 @@ public class CreateLevel implements LevelFactory {
     }
 
     /**
-     * CreateStanMob is creating the position of standard robot in world.
+     * Creates a standard robot object.
      * 
-     * @param theWorld		Object type of the world passed
-     * @param posX			Float type of x-coordinate passed
-     * @param posY			Float type of y-coordinate passed
-     * @param halfWidth		Float type of half the width passed
-     * @param halfHeight	Float type of half the height passed
-     * @return				returns a Mob object
+     * @param theWorld the World to put the Mob in.
+     * @param posX The center X coordinate of the robot.
+     * @param posY The center Y coordinate of the robot.
+     * @param halfWidth Half the width of the robot.
+     * @param halfHeight Half the height of the robot.
+     * @return a StandardBot with the given specification
      */
     private StandardBot createStanMob(World theWorld, float posX, float posY, float halfWidth, float halfHeight){
         PolygonShape shape = new PolygonShape();
@@ -234,14 +234,14 @@ public class CreateLevel implements LevelFactory {
     }
 
     /**
-     * CreateExpMob is creating the position of explosion robot in world.
+     * Creates an explosive robot object.
      * 
-     * @param theWorld		Object type of the world passed
-     * @param posX			Float type of x-coordinate passed
-     * @param posY			Float type of y-coordinate passed
-     * @param halfWidth		Float type of half the width passed
-     * @param halfHeight	Float type of half the height passed
-     * @return				returns a Mob object
+     * @param theWorld the World to put the robot in.
+     * @param posX The center X coordinate of the robot.
+     * @param posY The center Y coordinate of the robot.
+     * @param halfWidth Half the width of the robot.
+     * @param halfHeight Half the height of the robot.
+     * @return an ExplosionBot with the given specification
      */
     private ExplosionBot createExpMob(World theWorld, float posX, float posY, float halfWidth, float halfHeight){
         PolygonShape shape = new PolygonShape();

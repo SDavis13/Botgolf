@@ -17,10 +17,10 @@ import org.jbox2d.dynamics.contacts.Contact;
  * GameController manages gameplay by keeping track of keyboard and
  * mouse input as well as recognizing and driving game state changes.
  * 
- * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
- * @version     2015-04-28
- * @since       2015-04-24
- * @implements	ContactListener
+ * @authors Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
+ * @version 2015-04-28
+ * @since 2015-04-24
+ * @implements ContactListener
  */
 public class GameController implements ContactListener{
     /**
@@ -80,7 +80,7 @@ public class GameController implements ContactListener{
         view.addMouseMotionListener(mouseInput);
         view.addKeyListener(keyInput);
     }
-    
+
     /**
      * The LoadLevel method loads the level from a levelFactory given the level specification.
      * 
@@ -95,18 +95,18 @@ public class GameController implements ContactListener{
         curLevel.world.setContactListener(this);
         SoundRepository.setMusic(curLevel.music);
     }
-    
+
     /**
      * StartGame method used to start the game.
      */
     public void startGame(){
-    	curLevel.unPause();
+        curLevel.unPause();
         state = tempState;
         tickRunner = new Timer(THREAD_NAME);
         tickRunner.scheduleAtFixedRate(new PhysicsLoop(), 25, Consts.TIMERTICK);
         SoundRepository.startMusic();
     }
-   
+
     /**
      * PauseGame used to pause the current game.
      */
@@ -117,35 +117,35 @@ public class GameController implements ContactListener{
         state = GameState.PAUSED;
         SoundRepository.pauseMusic();
     }
-    
+
     /**
      * ExitGame used to change game state to inactive and then exit.
      */
     public void exitGame(){
-    	tempState = GameState.READY;
-    	state = GameState.INACTIVE;
-    	curLevel.pause();
-    	tickRunner.cancel();
-    	SoundRepository.resetMusic();
-    	view.exit();
+        tempState = GameState.READY;
+        state = GameState.INACTIVE;
+        curLevel.pause();
+        tickRunner.cancel();
+        SoundRepository.resetMusic();
+        view.exit();
     }
-    
+
     /**
      * EndGame method used when game has ended.
      * Waits WINDELAY milliseconds before calling exitGame().
      */
     public void endGame(){
-    	new Timer().schedule(
-    		new TimerTask(){
-    			@Override
-    			public void run(){
-    			    exitGame();
-    			}
-    		},
-    		WINDELAY
-    	);
+        new Timer().schedule(
+                new TimerTask(){
+                    @Override
+                    public void run(){
+                        exitGame();
+                    }
+                },
+                WINDELAY
+                );
     }
-    
+
     /**
      * PhysicsLoop class created extends TimerTask
      * 
@@ -163,10 +163,10 @@ public class GameController implements ContactListener{
             curLevel.step();
             if (hole.win)
             {
-            	state = GameState.WIN;
+                state = GameState.WIN;
             }else if (ball.shotCount == 0)
             {
-            	state = GameState.LOSE;
+                state = GameState.LOSE;
             }
             switch(state){
                 case LAUNCH:
@@ -189,16 +189,16 @@ public class GameController implements ContactListener{
                     }
                     break;
                 case LOSE:
-                	if(!ranWin){
-                	    ranWin = true;
-                		endGame();
-                	}
-                	break;
+                    if(!ranWin){
+                        ranWin = true;
+                        endGame();
+                    }
+                    break;
             }
         }
     }
 
-    
+
     /**
      * KeyboardInput class created extends the KeyAdapter to detect keyboard input.
      * 
@@ -209,19 +209,19 @@ public class GameController implements ContactListener{
         public void keyPressed(KeyEvent e){
             int code = e.getKeyCode();
             if(code == Consts.pauseKey || code == Consts.pauseMenuKey){
-                
+
                 if(state == GameState.PAUSED){
-                	SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_PAUSE]);
-                	startGame();                	
+                    SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_PAUSE]);
+                    startGame();
                 }
                 else
                 {
                     pauseGame();
                 }
             }else if(code == 0){
-                
+
             }else{
-            	SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_BOING]);
+                SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_BOING]);
             }          
             /*else if(code == Consts.pauseMenuKey){
                 pauseGame();
@@ -238,7 +238,7 @@ public class GameController implements ContactListener{
      */
     private class MouseInput extends MouseInputAdapter{
         float xOrigin, yOrigin, oldXOffset, oldYOffset;
-        
+
         /**
          * Used to receive a mouse dragged event for grabbing the ball or moving the screen offset around.
          * 
@@ -265,7 +265,7 @@ public class GameController implements ContactListener{
                 }
             }
         }
-        
+
         /**
          * Used to receive a mouse released event to launch the ball if the ball is grabbed.
          * 
@@ -281,14 +281,14 @@ public class GameController implements ContactListener{
                 state = GameState.LAUNCH;
             }
         }
-        
+
         /**
          * Used to request focus in window.
          * Focus is necessary for the KeyAdapter to receive input.
          * @param e MouseEvent
          */
         public void mousePressed(MouseEvent e){
-        	view.requestFocusInWindow();
+            view.requestFocusInWindow();
         }
     }
 
@@ -305,7 +305,7 @@ public class GameController implements ContactListener{
         entity1.hit(entity2);
         entity2.hit(entity1);
     }
-    
+
     /**
      * Required by the ContactListener interface, but unused in this instance.
      * Would be used if we had something that needed to occur when two entities stopped being in contact with each other.
@@ -315,7 +315,7 @@ public class GameController implements ContactListener{
     public void endContact(Contact contact) {
         // TODO Auto-generated method stub
     }
-   
+
     /**
      * Required by the ContactListener interface, but unused in this instance.
      * 
@@ -326,7 +326,7 @@ public class GameController implements ContactListener{
     public void preSolve(Contact contact, Manifold oldManifold) {
         // TODO Auto-generated method stub
     }
-    
+
     /**
      * Required by the ContactListener interface, but unused in this instance.
      * 

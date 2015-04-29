@@ -20,9 +20,9 @@ import org.jbox2d.dynamics.World;
 /**
  * This is the mob class that defines the robots as far as rendering and physics.
  * 
- * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
- * @version     2015-04-24
- * @since       2015-04-24
+ * @authors Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
+ * @version 2015-04-28
+ * @since 2015-04-24
  */
 public class Mob extends Entity{
     public final static int DEFAULT_HEALTH = 2;
@@ -42,13 +42,13 @@ public class Mob extends Entity{
 
 
     /**
-     * Constructor for Mob object.
+     * Constructor for Mob.
      * 
-     * @param world			Object of World passed
-     * @param bd			Object of body definition passed
-     * @param fd			Object of fixture definition passed
-     * @param shape			Object of Polygon shape passed
-     * @param gridScale		Float gridscale passed
+     * @param world the World the Mob resides in.
+     * @param bd The JBox2D Body definition. This includes the position of the Mob.
+     * @param fd The fixture that defines the physical characteristics of the Mob.
+     * @param shape The shape of the Mob.
+     * @param grid The Grid used by the Mob for navigation.
      */
     Mob(World world, BodyDef bd, FixtureDef fd, PolygonShape shape, Grid grid){
         mobGraphic = new Image[1];
@@ -61,7 +61,7 @@ public class Mob extends Entity{
         this.world = world;
         this.shape = shape;
         this.grid = grid;
-        
+
         fd.shape = shape;
 
         body = world.createBody(bd);
@@ -85,36 +85,40 @@ public class Mob extends Entity{
     }
 
     /**
-     * SetHealth method is used for setting health on robot.
+     * Sets the health of the Mob, including origHealth.
      * 
-     * @param health	Integer health passed
+     * @param health The number of health points.
      */
     public void setHealth(int health){
-    	this.health = health;
-    	origHealth = health; //added by CTS
+        this.health = health;
+        origHealth = health; //added by CTS
     }
 
     /**
      * Hit method used to decrement health when hit by ball object.
      * and play hit sounds for robot.
      * 
-     * @param otherEntity	Object type of Entity passed
+     * @param otherEntity the Entity that has made contact with the Mob.
      */
     @Override
     public void hit(Entity otherEntity) {
         health--;
-        
+
         if (health >= 0) {
-        	if(otherEntity instanceof Ball){
-        		SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_ROBOTHIT]);
-        	}
+            if(otherEntity instanceof Ball){
+                SoundRepository.playSound(Consts.SOUNDS[Consts.SNDIDX_ROBOTHIT]);
+            }
         }
-        
+
         if (health <= 0) {
-        	dead = true;
+            dead = true;
         }
     }
 
+    /**
+     * 
+     * @return whether or not the Mob is finished moving. Always true until further modification.
+     */
     public boolean move(){
         Obstruction[] obs = grid.vnNeighborhood(body.getPosition());
         int idxMoveTo = -1;
@@ -143,22 +147,26 @@ public class Mob extends Entity{
             return true;
         }
     }
-    
+
+    /**
+     * Moves the Mob to a new position.
+     * @param position
+     */
     protected void moveTo(Vec2 position){
         grid.removeObstruction(body.getPosition(), Obstruction.DYNAMIC);
         grid.addObstruction(position, Obstruction.DYNAMIC);
         body.setTransform(position, 0);
     }
-   
+
     // added by CTS
     public int getOrigHealthAmount(){
-    	return origHealth;
+        return origHealth;
     }
-    
+
     /**
      * Render method is used to draw the image of the mob.
      * 
-     * @param g		Object type of Graphics2D passed
+     * @param g	Object type of Graphics2D passed
      */
     @Override
     public void render(Graphics2D g) {
@@ -173,7 +181,8 @@ public class Mob extends Entity{
     }
 
     /**
-     * PixUpdate method used to update pixel location of mob.
+     * PixUpdate method used to update pixel based objects of Mob.
+     * This will also flag the Mob for removal when the Mob is dead and a set time has passed after dying.
      */
     @Override
     public void pixUpdate() {

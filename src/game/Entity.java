@@ -10,9 +10,9 @@ import org.jbox2d.dynamics.World;
 /**
  * This is the abstract class for Entity.
  * 
- * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
- * @version     2015-04-24
- * @since       2015-04-24
+ * @authors Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
+ * @version 2015-04-28
+ * @since 2015-04-24
  */
 public abstract class Entity {
     Body body;
@@ -23,25 +23,28 @@ public abstract class Entity {
 
     /**
      * Abstract hit method.
+     * Called by a JBox2D ContactListener when another entity comes in contact with this one.
      *
-     * @param otherEntity	Object type of entity passed
+     * @param otherEntity the other Entity which hits this one.
      */
     public abstract void hit(Entity otherEntity);
-    
+
     /**
      * Abstract render method.
+     * Renders the Entity to a Graphics2D object.
      *
-     * @param g		Object type of Graphics2D passed
+     * @param g the Graphics2D context in which to render the Entity.
      */
     public abstract void render(Graphics2D g);
-    
+
     /**
      * Abstract pixUpdate method.
+     * Updates the pixel based objects used by the Entity for rendering.
      */
     public abstract void pixUpdate();
 
     /**
-     * Gets the jbox2d position of the Entity.
+     * Gets the JBox2D position of the Entity from the Body associated with it.
      * 
      * @return a Vec2 position.
      */

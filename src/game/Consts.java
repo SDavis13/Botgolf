@@ -4,11 +4,11 @@ import java.awt.Insets;
 import java.awt.event.KeyEvent;
 
 /**
- * This is where all constants and variable globals are saved for organizing.
+ * This is where constants and variable globals are saved for organizing.
  * 
- * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
- * @version     2015-04-24
- * @since       2015-04-24
+ * @authors Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
+ * @version 2015-04-28
+ * @since 2015-04-24
  */
 public class Consts {
     private Consts(){}
@@ -52,49 +52,49 @@ public class Consts {
                                 PAUSE       = "Pause",
                                 HIGHSCORE   = "HighScore",
                                 GAME        = "Game",
-    							GAMEMENUPAGE= "GameMenuPage";
+                                GAMEMENUPAGE= "GameMenuPage";
     
     /**
      * Sound names for hashtable retrieval
      */
     public static final String[] SOUNDS =  {"Score", 
-    										"Wall1", 
-    										//"Wall2", 
-    										"RobotBoom", 
-    										"RobotMove", 
-    										"Launch",
-    										"Pause", 
-    										"Boing",
-    										"RobotHit",
-    										"TandemGravities"};
+                                            "Wall1", 
+                                            //"Wall2", 
+                                            "RobotBoom", 
+                                            "RobotMove", 
+                                            "Launch",
+                                            "Pause", 
+                                            "Boing",
+                                            "RobotHit",
+                                            "TandemGravities"};
     
     /**
      * Indexes for sound names in the array.
      */
     public static final int SNDIDX_SCORE = 0,
-    						SNDIDX_WALL1 = 1,
-    						//SNDIDX_WALL2 = 2,
-    						SNDIDX_ROBOTBOOM = 2,
-    						SNDIDX_ROBOTMOVE = 3,
-    						SNDIDX_LAUNCH = 4,
-    						SNDIDX_PAUSE = 5,
-    						SNDIDX_BOING = 6,
-    						SNDIDX_ROBOTHIT = 7,
+                            SNDIDX_WALL1 = 1,
+                            //SNDIDX_WALL2 = 2,
+                            SNDIDX_ROBOTBOOM = 2,
+                            SNDIDX_ROBOTMOVE = 3,
+                            SNDIDX_LAUNCH = 4,
+                            SNDIDX_PAUSE = 5,
+                            SNDIDX_BOING = 6,
+                            SNDIDX_ROBOTHIT = 7,
                             MUSIDX_TANDEMGRAVITIES = 8;
     
     /**
      * Sound file locations
      */
     public static final String[] SOUNDFILES =  {SNDLOC+"score.wav", 
-    											SNDLOC+"wall1.wav",
-    											//SNDLOC+"wall2.wav", 
-    											SNDLOC+"robotboom.wav", 
-    											SNDLOC+"robotmove.wav", 
-    											SNDLOC+"launch.wav",
-    											SNDLOC+"zap2.wav", 
-    											SNDLOC+"boing.wav",
-    											SNDLOC+"robothit.wav",
-    											SNDLOC+"tandemgravities.wav"};
+                                                SNDLOC+"wall1.wav",
+                                                //SNDLOC+"wall2.wav", 
+                                                SNDLOC+"robotboom.wav", 
+                                                SNDLOC+"robotmove.wav", 
+                                                SNDLOC+"launch.wav",
+                                                SNDLOC+"zap2.wav", 
+                                                SNDLOC+"boing.wav",
+                                                SNDLOC+"robothit.wav",
+                                                SNDLOC+"tandemgravities.wav"};
                                 
     /**
      * Scale of the graphical representation of the JBox2D world for conversion.

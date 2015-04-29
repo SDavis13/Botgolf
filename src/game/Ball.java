@@ -16,36 +16,59 @@ import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
 /**
- * Class Ball extends Entity and 
- * creates a ball used in World
- * and sets its behavior.
+ * This is the ball which is launched around in the game.
  * 
- * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
- * @version     2015-04-24
- * @since       2015-04-24
- * @extends 	Entity class
+ * @authors Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
+ * @version 2015-04-28
+ * @since 2015-04-24
+ * @extends Entity
  */
 public class Ball extends Entity{
-
-    int mouseX,mouseY;
-    boolean grabbed;
-    float pixRad;
-    int shotCount = 3;
-
-    
-
-    CircleShape shape;
-    Ellipse2D.Float pixCircle;
-    Ellipse2D.Float grabCircle;
-    static final float IMPULSE_SCALE = Consts.SCALE/400;
-    BufferedImage ballImage;
-    
     /**
-     * Constructor Ball creates a Ball.
+     * The scale of the launch speed.
+     */
+    static final float IMPULSE_SCALE = Consts.SCALE/400;
+    /**
+     * The coordinates of the mouse. These are used to render the "rubber band" thing that appears when the ball is grabbed.
+     */
+    int mouseX,mouseY;
+    /**
+     * Whether or not the ball is being grabbed.
+     */
+    boolean grabbed;
+    /**
+     * The radius of the ball in pixels.
+     */
+    float pixRad;
+    /**
+     * The number of shots left.
+     */
+    int shotCount = 3;
+    /**
+     * The JBox2D shape of the Ball.
+     */
+    CircleShape shape;
+    /**
+     * The javax.awt shape of the Ball.
+     */
+    Ellipse2D.Float pixCircle;
+    /**
+     * An expanded circle for grabbing the Ball. Should have double the radius.
+     */
+    Ellipse2D.Float grabCircle;
+    /**
+     * The image of the Ball.
+     */
+    BufferedImage ballImage;
+
+    /**
+     * Constructor.
+     * Note that attaching a JBox2D Shape to the fixture passed is unnecessary and any such shape will be replaced.
+     * This constructor produces a new Shape using the interior radius of the Ball's image, defined in Consts.
      * 
-     * @param world		Object type of World passed
-     * @param bd		Object type of body definition passed
-     * @param fd		Object type of fixture definition passed
+     * @param world the World that the Ball exists in.
+     * @param bd The JBox2D Body definition. This includes the position of the Ball.
+     * @param fd The fixture that defines the physical characteristics of the Ball.
      */
     public Ball(World world, BodyDef bd, FixtureDef fd){
 
@@ -76,49 +99,49 @@ public class Ball extends Entity{
         pixCircle = new Ellipse2D.Float((pixX - pixRad), (pixY - pixRad), pixRad*2, pixRad*2);
         grabCircle = new Ellipse2D.Float(pixCircle.x - pixRad, pixCircle.y - pixRad, pixCircle.width*2, pixCircle.height*2);
     }
+
     /**
-     * SetGrabbed method sets grabbed to true
+     * Sets grabbed to true.
      */
     public void setGrabbed(){
         grabbed = true;
     }
 
     /**
-     * SetMouseLoc method sets mouse to a x,y coordinate on the world.
+     * Setter for the mouse location.
      * 
-     * @param	mouseX	Set x value of mouse location.
-     * @param	mouseY	Set y value of mouse location.
+     * @param mouseX the X value of mouse location.
+     * @param mouseY the Y value of mouse location.
      */
     public void setMouseLoc(int mouseX, int mouseY){
         this.mouseX = mouseX;
         this.mouseY = mouseY;
     }
-    
+
     /**
-     * SetNumHits method keeps track of number of hits.
+     * Setter for shotCount.
      * 
-     * @param hits	Integer type of number of hits
+     * @param shots the number of shots.
      */
-    public void setNumHits(int hits)
+    public void setNumShots(int shots)
     {
-    	shotCount = hits;
+        shotCount = shots;
     }
 
     /**
-     * Hit method to identify when another entity is hit.
+     * Required as an Entity, but not currently used.
      * 
-     * @param otherEntity	Object type of entity passed
+     * @param otherEntity the Entity that has made contact with the Ball.
      */
     @Override
     public void hit(Entity otherEntity) {
         // TODO Auto-generated method stub
-
     }
 
     /**
      * Render method to draw the ball image. 
      * 
-     * @param g		Object type of Graphics2D passed
+     * @param g the Graphics2D context in which to draw the Ball.
      */
     @Override
     public void render(Graphics2D g) {
@@ -134,7 +157,7 @@ public class Ball extends Entity{
     }
 
     /**
-     * PixUpdate method to update the location of the object.
+     * Updates the pixel location of the object.
      */
     @Override
     public void pixUpdate() {
@@ -148,11 +171,11 @@ public class Ball extends Entity{
     }
 
     /**
-     * Launch method to launch the ball.
-     * Plays sound after mouse is released.
+     * Launches the Ball by taking the difference between the impulse coordinates and the current Ball coordinates and turning it into a velocity vector, scaled by IMPULSE_SCALE.
+     * Plays the launch sound and sets grabbed to false.
      * 
-     * @param impulseX	Float type passed for x-coordinate
-     * @param impulseY	Float type passed for y-coordinate
+     * @param impulseX the JBox2D X coordinate of the foreign end of the launch vector.
+     * @param impulseY the JBox2D Y coordinate of the foreign end of the launch vector.
      */
     public void launch(float impulseX, float impulseY){
         grabbed = false;
@@ -166,7 +189,9 @@ public class Ball extends Entity{
     }
 
     /**
-     * Postlaunch method to update the location of the object.
+     * Finds out whether the Ball has stopped yet or not. Accurate to within .5 of 0 meters per second.
+     * (Reminder: JBox2D values are in meters instead of pixels.)
+     * @return the boolean value of whether the ball is still moving.
      */
     public boolean postLaunch(){
         Vec2 vec = body.getLinearVelocity();
@@ -176,17 +201,23 @@ public class Ball extends Entity{
         }
         return false;
     }
-    
+
     /**
-     * Contains method to see if x and y coordinates are contained in pixCircle.
+     * Finds out if a pixel coordinate is contained in pixCircle.
      * 
-     * @param pixX	Integer type of pixel x-coordinate passed
-     * @param pixY	Integer type of pixel y-coordinate passed
+     * @param pixX the X value of a pixel coordinate
+     * @param pixY the Y value of a pixel coordinate
      */
     public boolean contains(int pixX, int pixY){
         return pixCircle.contains(pixX, pixY);
     }
-    
+
+    /**
+     * Finds out if a pixel coordinate is contained in grabCircle.
+     * 
+     * @param pixX the X value of a pixel coordinate
+     * @param pixY the Y value of a pixel coordinate
+     */
     public boolean containsDoubleSize(int pixX, int pixY){
         return grabCircle.contains(pixX, pixY);
     }
