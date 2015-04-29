@@ -12,10 +12,9 @@ import javax.swing.*;
  * Class of GameMenuPage used to return back to main menu or exit game after
  * the game has been played.
  * 
- * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
+ * @author     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
  * @version     2015-04-24
  * @since       2015-04-24
- * @extends		View
  */
 public class GameMenuPage extends View {
 	static GameMenuPage page = new GameMenuPage(Consts.GAMEMENUPAGE);

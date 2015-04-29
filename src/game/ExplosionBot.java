@@ -14,10 +14,9 @@ import org.jbox2d.dynamics.World;
 /**
  * This class represents a robot which explodes when it dies.
  * 
- * @authors Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
+ * @author Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
  * @version 2015-04-28
  * @since 2015-04-24
- * @extends Mob
  */
 public class ExplosionBot extends Mob {
 

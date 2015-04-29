@@ -10,7 +10,7 @@ import java.util.TimerTask;
 /**
  * GamePage represents the GamePage view from the MainPage.
  * 
- * @authors     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
+ * @author     Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
  * @version     2015-04-24
  * @since       2015-04-24
  */

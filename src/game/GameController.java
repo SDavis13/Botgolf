@@ -17,10 +17,9 @@ import org.jbox2d.dynamics.contacts.Contact;
  * GameController manages gameplay by keeping track of keyboard and
  * mouse input as well as recognizing and driving game state changes.
  * 
- * @authors Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
+ * @author Spencer Davis, Josh Kepros, Josh McDermott, Chris Swanson
  * @version 2015-04-28
  * @since 2015-04-24
- * @implements ContactListener
  */
 public class GameController implements ContactListener{
     /**
